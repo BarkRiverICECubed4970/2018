@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 import org.usfirst.frc.team4970.robot.commands.DriveWithJoystick;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import org.usfirst.frc.team4970.robot.Robot;
@@ -37,10 +37,10 @@ public class DriveTrain extends Subsystem {
 	PigeonIMU _pigeon;
 	
     /* drive motors and differential drive */
-	TalonSRX m_leftFront = new TalonSRX(2);
-	TalonSRX m_leftRear = new TalonSRX(3);
-	TalonSRX m_rightFront = new TalonSRX(4);
-	TalonSRX m_rightRear = new TalonSRX(5);
+	WPI_TalonSRX m_leftRear = new WPI_TalonSRX(2);
+	WPI_TalonSRX m_leftFront = new WPI_TalonSRX(3);
+	WPI_TalonSRX m_rightRear = new WPI_TalonSRX(4);
+	WPI_TalonSRX m_rightFront = new WPI_TalonSRX(5);
     
 	SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);
 	SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);
@@ -74,7 +74,7 @@ public class DriveTrain extends Subsystem {
 	    		break;
     	}
 
-    	robotDrive41.arcadeDrive(forward, rotate, false);
+    	_robotDrive.arcadeDrive(forward, rotate, false);
     	
     }
 }
