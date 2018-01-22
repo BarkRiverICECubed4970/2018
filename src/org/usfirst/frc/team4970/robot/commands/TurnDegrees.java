@@ -14,8 +14,8 @@ import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 /**
  * An example command.  You can replace me with your own command.
  */
-public class DriveWithJoystick extends Command {
-	public DriveWithJoystick() {
+public class TurnDegrees extends Command {
+	public TurnDegrees(double degrees) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 	}
@@ -23,13 +23,12 @@ public class DriveWithJoystick extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Joystick);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Joystick);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Turn_Degrees);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

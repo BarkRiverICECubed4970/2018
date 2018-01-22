@@ -7,7 +7,11 @@
 
 package org.usfirst.frc.team4970.robot;
 
+
+import org.usfirst.frc.team4970.robot.commands.*;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -44,4 +48,11 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public Joystick joystick = new Joystick(0);
+
+    public OI() {
+
+    	// SmartDashboard Buttons
+    	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive", Robot.driveInches)));
+    	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", Robot.turnDegrees)));
+    }
 }

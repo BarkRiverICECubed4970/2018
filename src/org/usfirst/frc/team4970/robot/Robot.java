@@ -10,6 +10,7 @@ package org.usfirst.frc.team4970.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
@@ -30,6 +31,10 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+    public static double turnDegrees = -60.0;
+    public static double driveInches = 48;
+    public static double straightDriveDutyCycle = 0.4;
+    
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -42,6 +47,13 @@ public class Robot extends TimedRobot {
 //		m_chooser.addDefault("Default Auto", new DriveWithJoystick());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		
+		new Thread(() -> {
+	    	while (true) {
+	    		updateSmartDashboard();
+	    		Timer.delay(0.5);
+	    	}
+	    }).start();
 	}
 
 	/**
@@ -119,5 +131,18 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+	}
+	
+	private void updateSmartDashboard() {
+		SmartDashboard.putNumber("Joystick forward", Robot.m_oi.joystick.getRawAxis(1));
+		SmartDashboard.putNumber("Joystick rotate", Robot.m_oi.joystick.getRawAxis(0));
+		SmartDashboard.putNumber("Left drive encoder", 111);
+		SmartDashboard.putNumber("Right drive encoder", 222);
+		SmartDashboard.putNumber("Pigeon raw gyro", Robot._driveTrain._pigeon.getFusedHeading());
+		SmartDashboard.putNumber("Degrees to turn", Robot.turnDegrees);
+		SmartDashboard.putNumber("Inches to drive", Robot.driveInches);
+		/* consider ramping function on the talons */
+		SmartDashboard.putNumber("Straight drive duty cycle", Robot.straightDriveDutyCycle);
+		SmartDashboard.putNumber("Max Drive DutyCycle",1.0);
 	}
 }

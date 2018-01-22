@@ -8,14 +8,17 @@
 package org.usfirst.frc.team4970.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team4970.robot.Robot;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class DriveWithJoystick extends Command {
-	public DriveWithJoystick() {
+public class DriveStraight extends Command {
+	
+	public DriveStraight(double inches) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 	}
@@ -23,13 +26,16 @@ public class DriveWithJoystick extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Joystick);
+
+		Robot.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Robot.straightDriveDutyCycle);	
+//		driveTrain.resetGyro();
+
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Joystick);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Drive_Straight);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
