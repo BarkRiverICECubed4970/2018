@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 import org.usfirst.frc.team4970.robot.commands.DriveWithJoystick;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
@@ -45,10 +46,16 @@ public class DriveTrain extends Subsystem {
 	SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);
 	SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);
 	
+    private final DifferentialDrive _robotDrive = new DifferentialDrive(m_left, m_right);
+
 	public PigeonIMU _pigeon = new PigeonIMU(m_leftRear);
 	
-    private final DifferentialDrive _robotDrive = new DifferentialDrive(m_left, m_right);
-    
+	public DriveTrain()
+	{
+    	m_leftFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    	m_rightFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+	}
+	
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new DriveWithJoystick());		
@@ -104,5 +111,15 @@ public class DriveTrain extends Subsystem {
     public double captureTargetHeading()
     {
     	return _pigeon.getFusedHeading();
+    }
+    
+    public int getRightEncoderCount()
+    {
+    	return m_rightFront.getSelectedSensorPosition(0);
+    }
+    
+    public int getLeftEncoderCount()
+    {
+    	return m_leftFront.getSelectedSensorPosition(0);
     }
 }

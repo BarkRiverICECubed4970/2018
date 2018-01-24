@@ -144,5 +144,7 @@ public class Robot extends TimedRobot {
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive duty cycle", Robot.straightDriveDutyCycle);
 		SmartDashboard.putNumber("Max Drive DutyCycle",1.0);
+		SmartDashboard.putNumber("Right Encoder Count", Robot._driveTrain.getRightEncoderCount());
+		SmartDashboard.putNumber("Left Encoder Count", Robot._driveTrain.getLeftEncoderCount());
 	}
 }
