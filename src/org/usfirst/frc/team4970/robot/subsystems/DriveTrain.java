@@ -10,6 +10,7 @@ package org.usfirst.frc.team4970.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 import org.usfirst.frc.team4970.robot.commands.DriveWithJoystick;
@@ -48,7 +49,9 @@ public class DriveTrain extends Subsystem {
 	
     private final DifferentialDrive _robotDrive = new DifferentialDrive(m_left, m_right);
 
-	public PigeonIMU _pigeon = new PigeonIMU(m_leftRear);
+	private PigeonIMU _pigeon = new PigeonIMU(m_leftRear);
+	
+//    private final PIDController gyroPid = new PIDController(0.010, 0, 0, _pigeon, this);
 	
 	public DriveTrain()
 	{
@@ -108,11 +111,6 @@ public class DriveTrain extends Subsystem {
     	
     }
     
-    public double captureTargetHeading()
-    {
-    	return _pigeon.getFusedHeading();
-    }
-    
     public int getRightEncoderCount()
     {
     	return m_rightFront.getSelectedSensorPosition(0);
@@ -121,5 +119,38 @@ public class DriveTrain extends Subsystem {
     public int getLeftEncoderCount()
     {
     	return m_leftFront.getSelectedSensorPosition(0);
+    }
+    
+    public double getGyroHeading()
+    {
+    	return _pigeon.getFusedHeading();
+    }
+    
+    public void setupGyroPID()
+    {
+//    	Robot.gyroPidKp = SmartDashboard.getNumber("Gyro PID KP", Robot.gyroPidKp);
+//    	Robot.gyroPidKi = SmartDashboard.getNumber("Gyro PID KI", Robot.gyroPidKi);
+//    	Robot.gyroPidKd = SmartDashboard.getNumber("Gyro PID KD", Robot.gyroPidKd);
+//    	Robot.gyroPidMinIn = SmartDashboard.getNumber("Gyro PID Min Input", Robot.gyroPidMinIn);
+//    	Robot.gyroPidMaxIn = SmartDashboard.getNumber("Gyro PID Max Input", Robot.gyroPidMaxIn);
+//    	Robot.gyroPidMinOut = SmartDashboard.getNumber("Gyro PID Min Output", Robot.gyroPidMinOut);
+//    	Robot.gyroPidMaxOut = SmartDashboard.getNumber("Gyro PID Max Output", Robot.gyroPidMaxOut);
+//    	Robot.gyroPidTolerance = SmartDashboard.getNumber("Gyro PID Tolerance", Robot.gyroPidTolerance);
+//    	Robot.gyroPidMaxSetpoint = SmartDashboard.getNumber("Gyro PID Max Setpoint", Robot.gyroPidMaxSetpoint);
+
+//    	gyroPid.reset();
+//		gyroPid.setPID(Robot.gyroPidKp, Robot.gyroPidKi , Robot.gyroPidKd);
+//		gyroPid.setInputRange(Robot.gyroPidMinIn, Robot.gyroPidMaxIn);
+//		gyroPid.setOutputRange(Robot.gyroPidMinOut, Robot.gyroPidMaxOut);
+//		gyroPid.setAbsoluteTolerance(Robot.gyroPidTolerance);
+//		gyroPid.setSetpoint(0.0);
+		
+		/*
+		 *  commands should be calling this, but call this just in case
+		 *  since the pidSetpoint is initialized to 0.0 for ramping purposes
+		 */
+//		gyro.reset();
+		
+//		gyroPid.enable();
     }
 }

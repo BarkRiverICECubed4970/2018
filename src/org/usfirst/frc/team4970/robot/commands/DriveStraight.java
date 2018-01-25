@@ -18,6 +18,8 @@ import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
  */
 public class DriveStraight extends Command {
 	
+	private double targetHeading;
+	
 	public DriveStraight(double inches) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
@@ -28,8 +30,10 @@ public class DriveStraight extends Command {
 	protected void initialize() {
 
 		Robot.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Robot.straightDriveDutyCycle);	
-//		driveTrain.resetGyro();
+		targetHeading = Robot._driveTrain.getGyroHeading();
 
+//		Robot._driveTrain.setupGyroPID();
+//    	Robot._driveTrain.setGyroPidSetpoint(targetHeading);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

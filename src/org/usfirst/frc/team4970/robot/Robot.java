@@ -138,7 +138,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Joystick rotate", Robot.m_oi.joystick.getRawAxis(0));
 		SmartDashboard.putNumber("Left drive encoder", 111);
 		SmartDashboard.putNumber("Right drive encoder", 222);
-		SmartDashboard.putNumber("Pigeon raw gyro", Robot._driveTrain._pigeon.getFusedHeading());
+		SmartDashboard.putNumber("Pigeon fused heading", Robot._driveTrain.getGyroHeading());
 		SmartDashboard.putNumber("Degrees to turn", Robot.turnDegrees);
 		SmartDashboard.putNumber("Inches to drive", Robot.driveInches);
 		/* consider ramping function on the talons */
