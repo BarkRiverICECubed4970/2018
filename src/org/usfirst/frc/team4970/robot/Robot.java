@@ -35,7 +35,23 @@ public class Robot extends TimedRobot {
     public static double driveInches = 48;
     public static double straightDriveDutyCycle = 0.4;
     
-	/**
+    public static double gyroPidKp = 0.05;
+    public static double gyroPidKi = 0.0;
+    public static double gyroPidKd = 0.0;
+    public static double gyroPidMinIn = -60.0;
+    public static double gyroPidMaxIn = 60.0;
+    public static double gyroPidMinOut = -1.0;
+    public static double gyroPidMaxOut = 1.0;
+    public static double gyroPidTolerance = 4.0;
+    public static double gyroPidMaxSetpoint = 8;
+    
+    /* counts per revolution on output shaft * inches per revolution from tires */
+    public static double driveEncoderCountsPerInch = 1000;
+
+    public static double turnDegreesTimeout = 3.0;
+
+    
+    /**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
@@ -136,8 +152,6 @@ public class Robot extends TimedRobot {
 	private void updateSmartDashboard() {
 		SmartDashboard.putNumber("Joystick forward", Robot.m_oi.joystick.getRawAxis(1));
 		SmartDashboard.putNumber("Joystick rotate", Robot.m_oi.joystick.getRawAxis(0));
-		SmartDashboard.putNumber("Left drive encoder", 111);
-		SmartDashboard.putNumber("Right drive encoder", 222);
 		SmartDashboard.putNumber("Pigeon fused heading", Robot._driveTrain.getGyroHeading());
 		SmartDashboard.putNumber("Degrees to turn", Robot.turnDegrees);
 		SmartDashboard.putNumber("Inches to drive", Robot.driveInches);
@@ -146,5 +160,18 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Max Drive DutyCycle",1.0);
 		SmartDashboard.putNumber("Right Encoder Count", Robot._driveTrain.getRightEncoderCount());
 		SmartDashboard.putNumber("Left Encoder Count", Robot._driveTrain.getLeftEncoderCount());
+		SmartDashboard.putNumber("Gyro PID output value", Robot._driveTrain.getPidOutput());
+    	SmartDashboard.putNumber("Gyro PID KP", gyroPidKp);
+    	SmartDashboard.putNumber("Gyro PID KI", gyroPidKi);
+    	SmartDashboard.putNumber("Gyro PID KD", gyroPidKd);
+    	SmartDashboard.putNumber("Gyro PID Min Input", gyroPidMinIn);
+    	SmartDashboard.putNumber("Gyro PID Max Input", gyroPidMaxIn);
+    	SmartDashboard.putNumber("Gyro PID Min Output", gyroPidMinOut);
+    	SmartDashboard.putNumber("Gyro PID Max Output", gyroPidMaxOut);
+    	SmartDashboard.putNumber("Gyro PID Tolerance", gyroPidTolerance);
+    	SmartDashboard.putNumber("Gyro PID Max Setpoint", gyroPidMaxSetpoint);
+    	SmartDashboard.putNumber("Drive Encoder Counts Per Inch", driveEncoderCountsPerInch);
+    	SmartDashboard.putNumber("Turn Degrees Timeout", turnDegreesTimeout);
+
 	}
 }

@@ -18,7 +18,7 @@ import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
  */
 public class DriveStraight extends Command {
 	
-	private double targetHeading;
+	private double encoderAvg;
 	
 	public DriveStraight(double inches) {
 		// Use requires() here to declare subsystem dependencies
@@ -30,10 +30,12 @@ public class DriveStraight extends Command {
 	protected void initialize() {
 
 		Robot.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Robot.straightDriveDutyCycle);	
-		targetHeading = Robot._driveTrain.getGyroHeading();
-
-//		Robot._driveTrain.setupGyroPID();
-//    	Robot._driveTrain.setGyroPidSetpoint(targetHeading);
+		Robot.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Robot.driveEncoderCountsPerInch);
+		
+		
+		Robot._driveTrain.setupGyroPID();
+		/* redundant... the setup function should call this */
+    	Robot._driveTrain.setGyroPidSetpoint(0.0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -45,7 +47,9 @@ public class DriveStraight extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		encoderAvg = ((double)Robot._driveTrain.getLeftEncoderCount() + (double)Robot._driveTrain.getRightEncoderCount())/2.0;
+		
+		return (encoderAvg >= Robot.driveEncoderCountsPerInch);
 	}
 
 	// Called once after isFinished returns true
