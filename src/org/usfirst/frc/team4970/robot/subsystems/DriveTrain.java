@@ -22,6 +22,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import org.usfirst.frc.team4970.robot.Robot;
 
 import utils.Gyro;
+import utils.CalibrationManager;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
@@ -45,10 +46,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     private double potentialError;
 
     /* drive motors and differential drive */
-	WPI_TalonSRX m_leftRear = new WPI_TalonSRX(2);
-	WPI_TalonSRX m_leftFront = new WPI_TalonSRX(3);
-	WPI_TalonSRX m_rightRear = new WPI_TalonSRX(4);
-	WPI_TalonSRX m_rightFront = new WPI_TalonSRX(5);
+	WPI_TalonSRX m_leftRear = new WPI_TalonSRX(CalibrationManager.leftRearDriveMotorCanAddress);
+	WPI_TalonSRX m_leftFront = new WPI_TalonSRX(CalibrationManager.leftFrontDriveMotorCanAddress);
+	WPI_TalonSRX m_rightRear = new WPI_TalonSRX(CalibrationManager.rightRearDriveMotorCanAddress);
+	WPI_TalonSRX m_rightFront = new WPI_TalonSRX(CalibrationManager.rightFrontDriveMotorCanAddress);
     
 	SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);
 	SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);
@@ -87,7 +88,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		break;
 	    		
 	    	case Drive_Straight:
-	    		forward = Robot.straightDriveDutyCycle;
+	    		forward = CalibrationManager.straightDriveDutyCycle;
 	    		rotate = PID_rotateValue;
 	    		break;
 	    		
@@ -147,21 +148,21 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     
     public void setupGyroPID()
     {
-    	Robot.gyroPidKp = SmartDashboard.getNumber("Gyro PID KP", Robot.gyroPidKp);
-    	Robot.gyroPidKi = SmartDashboard.getNumber("Gyro PID KI", Robot.gyroPidKi);
-    	Robot.gyroPidKd = SmartDashboard.getNumber("Gyro PID KD", Robot.gyroPidKd);
-    	Robot.gyroPidMinIn = SmartDashboard.getNumber("Gyro PID Min Input", Robot.gyroPidMinIn);
-    	Robot.gyroPidMaxIn = SmartDashboard.getNumber("Gyro PID Max Input", Robot.gyroPidMaxIn);
-    	Robot.gyroPidMinOut = SmartDashboard.getNumber("Gyro PID Min Output", Robot.gyroPidMinOut);
-    	Robot.gyroPidMaxOut = SmartDashboard.getNumber("Gyro PID Max Output", Robot.gyroPidMaxOut);
-    	Robot.gyroPidTolerance = SmartDashboard.getNumber("Gyro PID Tolerance", Robot.gyroPidTolerance);
-    	Robot.gyroPidMaxSetpoint = SmartDashboard.getNumber("Gyro PID Max Setpoint", Robot.gyroPidMaxSetpoint);
+    	CalibrationManager.gyroPidKp = SmartDashboard.getNumber("Gyro PID KP", CalibrationManager.gyroPidKp);
+    	CalibrationManager.gyroPidKi = SmartDashboard.getNumber("Gyro PID KI", CalibrationManager.gyroPidKi);
+    	CalibrationManager.gyroPidKd = SmartDashboard.getNumber("Gyro PID KD", CalibrationManager.gyroPidKd);
+    	CalibrationManager.gyroPidMinIn = SmartDashboard.getNumber("Gyro PID Min Input", CalibrationManager.gyroPidMinIn);
+    	CalibrationManager.gyroPidMaxIn = SmartDashboard.getNumber("Gyro PID Max Input", CalibrationManager.gyroPidMaxIn);
+    	CalibrationManager.gyroPidMinOut = SmartDashboard.getNumber("Gyro PID Min Output", CalibrationManager.gyroPidMinOut);
+    	CalibrationManager.gyroPidMaxOut = SmartDashboard.getNumber("Gyro PID Max Output", CalibrationManager.gyroPidMaxOut);
+    	CalibrationManager.gyroPidTolerance = SmartDashboard.getNumber("Gyro PID Tolerance", CalibrationManager.gyroPidTolerance);
+    	CalibrationManager.gyroPidMaxSetpoint = SmartDashboard.getNumber("Gyro PID Max Setpoint", CalibrationManager.gyroPidMaxSetpoint);
 
     	gyroPid.reset();
-		gyroPid.setPID(Robot.gyroPidKp, Robot.gyroPidKi , Robot.gyroPidKd);
-		gyroPid.setInputRange(Robot.gyroPidMinIn, Robot.gyroPidMaxIn);
-		gyroPid.setOutputRange(Robot.gyroPidMinOut, Robot.gyroPidMaxOut);
-		gyroPid.setAbsoluteTolerance(Robot.gyroPidTolerance);
+		gyroPid.setPID(CalibrationManager.gyroPidKp, CalibrationManager.gyroPidKi , CalibrationManager.gyroPidKd);
+		gyroPid.setInputRange(CalibrationManager.gyroPidMinIn, CalibrationManager.gyroPidMaxIn);
+		gyroPid.setOutputRange(CalibrationManager.gyroPidMinOut, CalibrationManager.gyroPidMaxOut);
+		gyroPid.setAbsoluteTolerance(CalibrationManager.gyroPidTolerance);
 		gyroPid.setSetpoint(0.0);
 		
 		/*
@@ -184,14 +185,14 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	 * then reduce it to something that won't go wild with a more aggressive 
     	 * kP term
     	 */
-    	if ((Math.abs(potentialError)) > Robot.gyroPidMaxSetpoint)
+    	if ((Math.abs(potentialError)) > CalibrationManager.gyroPidMaxSetpoint)
     	{    		
     		/*
     		 * if setpoint is greater than angle, then add the max setpoint to the
     		 * current angle, or else subtract the max setpoint from the current
     		 * angle
     		 */
-    		gyroPid.setSetpoint((Math.copySign(Robot.gyroPidMaxSetpoint, potentialError) + gyroAngle));
+    		gyroPid.setSetpoint((Math.copySign(CalibrationManager.gyroPidMaxSetpoint, potentialError) + gyroAngle));
     	} else
     	{
     		gyroPid.setSetpoint(setPoint);    	    		
@@ -202,7 +203,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     static final int onTargetThresh = 10;
     public boolean gyroPidOnTarget()
     {
-    	if (Math.abs(gyroPid.getError()) < Robot.gyroPidTolerance)
+    	if (Math.abs(gyroPid.getError()) < CalibrationManager.gyroPidTolerance)
     	{
     		onTargetCount++;
     		if (onTargetCount >= onTargetThresh)

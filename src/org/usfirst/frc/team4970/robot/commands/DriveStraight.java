@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.Robot;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 
+import utils.CalibrationManager;
+
 /**
  * An example command.  You can replace me with your own command.
  */
@@ -29,8 +31,8 @@ public class DriveStraight extends Command {
 	@Override
 	protected void initialize() {
 
-		Robot.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Robot.straightDriveDutyCycle);	
-		Robot.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Robot.driveEncoderCountsPerInch);
+		CalibrationManager.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", CalibrationManager.straightDriveDutyCycle);	
+		CalibrationManager.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", CalibrationManager.driveEncoderCountsPerInch);
 		
 		
 		Robot._driveTrain.setupGyroPID();
@@ -49,7 +51,7 @@ public class DriveStraight extends Command {
 	protected boolean isFinished() {
 		encoderAvg = ((double)Robot._driveTrain.getLeftEncoderCount() + (double)Robot._driveTrain.getRightEncoderCount())/2.0;
 		
-		return (encoderAvg >= Robot.driveEncoderCountsPerInch);
+		return (encoderAvg >= CalibrationManager.driveEncoderCountsPerInch);
 	}
 
 	// Called once after isFinished returns true

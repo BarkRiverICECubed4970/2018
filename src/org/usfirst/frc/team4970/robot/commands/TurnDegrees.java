@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.Robot;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 
+import utils.CalibrationManager;
+
 /**
  * An example command.  You can replace me with your own command.
  */
@@ -30,12 +32,12 @@ public class TurnDegrees extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-    	Robot.turnDegreesTimeout = SmartDashboard.getNumber("Turn Degrees Timeout", Robot.turnDegreesTimeout);
+		CalibrationManager.turnDegreesTimeout = SmartDashboard.getNumber("Turn Degrees Timeout", CalibrationManager.turnDegreesTimeout);
     	if (SmartDashboard.getNumber("Turn Degrees Override", 0.0) == 1.0)
     	{
     		desiredAngle = SmartDashboard.getNumber("Turn Degrees", desiredAngle);
     	}
-    	setTimeout(Robot.turnDegreesTimeout);
+    	setTimeout(CalibrationManager.turnDegreesTimeout);
     	Robot._driveTrain.resetOnTargetCount();
     	Robot._driveTrain.setupGyroPID();
     	// redundant, since setupGyroPID() does this already

@@ -11,7 +11,9 @@ package org.usfirst.frc.team4970.robot;
 import org.usfirst.frc.team4970.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import utils.CalibrationManager;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -48,11 +50,50 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public Joystick joystick = new Joystick(0);
-
+    public JoystickButton joystickButton1;
+    public JoystickButton joystickButton2;
+    public JoystickButton joystickButton3;
+    public JoystickButton joystickButton4;
+    public JoystickButton joystickButton5;
+    public JoystickButton joystickButton6;
+    public JoystickButton joystickButton7;
+    
     public OI() {
 
+        joystickButton1 = new JoystickButton(joystick, 2);
+        joystickButton1.whenPressed(new RaiseHinge());
+        
+        joystickButton1 = new JoystickButton(joystick, 3);
+        joystickButton1.whenPressed(new LowerHinge());
+        
+        joystickButton1 = new JoystickButton(joystick, 4);
+        joystickButton1.whenPressed(new RaiseArm());
+        
+        joystickButton1 = new JoystickButton(joystick, 5);
+        joystickButton1.whenPressed(new LowerArm());
+        
+        joystickButton1 = new JoystickButton(joystick, 6);
+        joystickButton1.whileHeld(new CubeIntake());
+        
+        joystickButton1 = new JoystickButton(joystick, 7);
+        joystickButton1.whileHeld(new CubeOutput());
+        
+        joystickButton1 = new JoystickButton(joystick, 7);
+        joystickButton1.whileHeld(new ExtendTape());
+        
+        joystickButton1 = new JoystickButton(joystick, 7);
+        joystickButton1.whileHeld(new ReelTape());
+        
     	// SmartDashboard Buttons
-    	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive", Robot.driveInches)));
-    	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", Robot.turnDegrees)));
+    	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive", CalibrationManager.driveInches)));
+    	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", CalibrationManager.turnDegrees)));
+    	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
+    	SmartDashboard.putData("Lower Hinge", new LowerHinge());
+    	SmartDashboard.putData("Raise Arm", new RaiseArm());
+    	SmartDashboard.putData("Lower Arm", new LowerArm());
+    	SmartDashboard.putData("Intake Cube", new CubeIntake());
+    	SmartDashboard.putData("Output Cube", new CubeOutput());
+    	SmartDashboard.putData("Extend Tape", new ExtendTape());
+    	SmartDashboard.putData("Reel Tape", new ReelTape());
     }
 }
