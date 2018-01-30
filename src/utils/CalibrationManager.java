@@ -64,6 +64,8 @@ public class CalibrationManager {
 		SmartDashboard.putNumber("Joystick forward", Robot.m_oi.joystick.getRawAxis(1));
 		SmartDashboard.putNumber("Joystick rotate", Robot.m_oi.joystick.getRawAxis(0));
 		SmartDashboard.putNumber("Pigeon fused heading", Robot._driveTrain.getGyroHeading());
+		SmartDashboard.putData(Robot._driveTrain._gyro);
+		SmartDashboard.putData(Robot._driveTrain._gyroPid);
 		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Inches to drive", driveInches);
 		/* consider ramping function on the talons */

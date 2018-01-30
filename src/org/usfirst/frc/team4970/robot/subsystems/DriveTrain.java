@@ -56,9 +56,9 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	
     private final DifferentialDrive _robotDrive = new DifferentialDrive(m_left, m_right);
 
-	private Gyro _gyro = new Gyro(m_leftRear);
+	public Gyro _gyro = new Gyro(m_leftRear);
 	
-    private final PIDController gyroPid = new PIDController(0.010, 0, 0, _gyro, this);
+    public final PIDController _gyroPid = new PIDController(0.010, 0, 0, _gyro, this);
 	
 	public DriveTrain()
 	{
@@ -158,12 +158,12 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	CalibrationManager.gyroPidTolerance = SmartDashboard.getNumber("Gyro PID Tolerance", CalibrationManager.gyroPidTolerance);
     	CalibrationManager.gyroPidMaxSetpoint = SmartDashboard.getNumber("Gyro PID Max Setpoint", CalibrationManager.gyroPidMaxSetpoint);
 
-    	gyroPid.reset();
-		gyroPid.setPID(CalibrationManager.gyroPidKp, CalibrationManager.gyroPidKi , CalibrationManager.gyroPidKd);
-		gyroPid.setInputRange(CalibrationManager.gyroPidMinIn, CalibrationManager.gyroPidMaxIn);
-		gyroPid.setOutputRange(CalibrationManager.gyroPidMinOut, CalibrationManager.gyroPidMaxOut);
-		gyroPid.setAbsoluteTolerance(CalibrationManager.gyroPidTolerance);
-		gyroPid.setSetpoint(0.0);
+    	_gyroPid.reset();
+		_gyroPid.setPID(CalibrationManager.gyroPidKp, CalibrationManager.gyroPidKi , CalibrationManager.gyroPidKd);
+		_gyroPid.setInputRange(CalibrationManager.gyroPidMinIn, CalibrationManager.gyroPidMaxIn);
+		_gyroPid.setOutputRange(CalibrationManager.gyroPidMinOut, CalibrationManager.gyroPidMaxOut);
+		_gyroPid.setAbsoluteTolerance(CalibrationManager.gyroPidTolerance);
+		_gyroPid.setSetpoint(0.0);
 		
 		/*
 		 *  commands should be calling this, but call this just in case
@@ -171,7 +171,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		 */
 		_gyro.reset();
 		
-		gyroPid.enable();
+		_gyroPid.enable();
     }
 
     public void setGyroPidSetpoint(double setPoint)
@@ -192,10 +192,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     		 * current angle, or else subtract the max setpoint from the current
     		 * angle
     		 */
-    		gyroPid.setSetpoint((Math.copySign(CalibrationManager.gyroPidMaxSetpoint, potentialError) + gyroAngle));
+    		_gyroPid.setSetpoint((Math.copySign(CalibrationManager.gyroPidMaxSetpoint, potentialError) + gyroAngle));
     	} else
     	{
-    		gyroPid.setSetpoint(setPoint);    	    		
+    		_gyroPid.setSetpoint(setPoint);    	    		
     	}
     }
     
@@ -203,7 +203,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     static final int onTargetThresh = 10;
     public boolean gyroPidOnTarget()
     {
-    	if (Math.abs(gyroPid.getError()) < CalibrationManager.gyroPidTolerance)
+    	if (Math.abs(_gyroPid.getError()) < CalibrationManager.gyroPidTolerance)
     	{
     		onTargetCount++;
     		if (onTargetCount >= onTargetThresh)
