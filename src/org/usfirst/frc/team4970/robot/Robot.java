@@ -49,14 +49,15 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		
-		_calibrationManager = new CalibrationManager();
-		
 		m_oi = new OI();
 
+		_calibrationManager = new CalibrationManager();
+		
 		
 //		m_chooser.addDefault("Default Auto", new DriveWithJoystick());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);	
+		
 	}
 
 	/**

@@ -57,7 +57,7 @@ public class CalibrationManager {
 		   		updateSmartDashboard();
 		   		Timer.delay(0.5);
 		   	}
-		}).start();
+		}).start();	    
     }
     
 	private void updateSmartDashboard() {
@@ -68,7 +68,6 @@ public class CalibrationManager {
 		SmartDashboard.putData(Robot._driveTrain._gyroPid);
 		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Inches to drive", driveInches);
-		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive duty cycle", straightDriveDutyCycle);
 		SmartDashboard.putNumber("Max Drive DutyCycle",1.0);
 		SmartDashboard.putNumber("Right Encoder Count", Robot._driveTrain.getRightEncoderCount());
