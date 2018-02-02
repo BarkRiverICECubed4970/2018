@@ -67,10 +67,10 @@ public class OI {
         joystickButton1.whenPressed(new LowerHinge());
         
         joystickButton1 = new JoystickButton(joystick, 4);
-        joystickButton1.whenPressed(new RaiseArm());
+        joystickButton1.whenPressed(new ArmToScalePosition());
         
         joystickButton1 = new JoystickButton(joystick, 5);
-        joystickButton1.whenPressed(new LowerArm());
+        joystickButton1.whenPressed(new ArmToIntakePosition());
         
         joystickButton1 = new JoystickButton(joystick, 6);
         joystickButton1.whileHeld(new CubeIntake());
@@ -89,8 +89,8 @@ public class OI {
     	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", CalibrationManager.turnDegrees)));
     	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
     	SmartDashboard.putData("Lower Hinge", new LowerHinge());
-    	SmartDashboard.putData("Raise Arm", new RaiseArm());
-    	SmartDashboard.putData("Lower Arm", new LowerArm());
+    	SmartDashboard.putData("Raise Arm", new ArmToScalePosition());
+    	SmartDashboard.putData("Lower Arm", new ArmToIntakePosition());
     	SmartDashboard.putData("Intake Cube", new CubeIntake());
     	SmartDashboard.putData("Output Cube", new CubeOutput());
     	SmartDashboard.putData("Extend Tape", new ExtendTape());

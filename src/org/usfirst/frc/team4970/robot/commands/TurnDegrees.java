@@ -47,7 +47,7 @@ public class TurnDegrees extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Turn_Degrees);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.TURN_DEGREES);
     	// continue to set this, since this function will ramp the setpoint
     	Robot._driveTrain.setGyroPidSetpoint(desiredAngle);
 	}
@@ -61,7 +61,7 @@ public class TurnDegrees extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Stop);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP);
 	}
 
 	// Called when another command which requires one or more of the same

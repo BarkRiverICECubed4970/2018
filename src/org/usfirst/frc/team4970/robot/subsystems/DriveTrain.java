@@ -33,10 +33,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
 	public enum DriveTrainControl
 	{
-		Stop, Joystick, Drive_Straight, Turn_Degrees
+		STOP, JOYSTICK, DRIVE_STRAIGHT, TURN_DEGREES
 	};
 	
-	private DriveTrainControl _driveTrainControl = DriveTrainControl.Stop;
+	private DriveTrainControl _driveTrainControl = DriveTrainControl.STOP;
     private static double PID_rotateValue;
     private static double forward;
     private static double rotate;
@@ -77,22 +77,22 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	
     	switch (_driveTrainControl) {
     	
-	    	case Joystick:
+	    	case JOYSTICK:
     			forward = Robot.m_oi.joystick.getRawAxis(1);
 	    		rotate = Robot.m_oi.joystick.getRawAxis(0);
 	    		break;
 
-	    	case Turn_Degrees:
+	    	case TURN_DEGREES:
 	    		forward = 0.0;
 	    		rotate = PID_rotateValue;	    		
 	    		break;
 	    		
-	    	case Drive_Straight:
+	    	case DRIVE_STRAIGHT:
 	    		forward = CalibrationManager.straightDriveDutyCycle;
 	    		rotate = PID_rotateValue;
 	    		break;
 	    		
-	    	case Stop:
+	    	case STOP:
 	    		forward = 0.0;
 	    		rotate = 0.0;
 	    		break;

@@ -43,7 +43,7 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Drive_Straight);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -57,7 +57,7 @@ public class DriveStraight extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.Stop);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP);
 	}
 
 	// Called when another command which requires one or more of the same
