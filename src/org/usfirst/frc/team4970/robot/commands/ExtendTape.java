@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import utils.CalibrationManager;
+import utils.Constants;
 
 /**
  *
@@ -17,12 +17,12 @@ public class ExtendTape extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	CalibrationManager.extendTapeDutyCycle = SmartDashboard.getNumber("Extend Tape Duty Cycle", CalibrationManager.extendTapeDutyCycle);
+    	Constants.extendTapeDutyCycle = SmartDashboard.getNumber("Extend Tape Duty Cycle", Constants.extendTapeDutyCycle);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._climbMotor.extendTape(CalibrationManager.extendTapeDutyCycle);
+    	Robot._climbMotor.extendTape(Constants.extendTapeDutyCycle);
     }
 
     protected boolean isFinished() {

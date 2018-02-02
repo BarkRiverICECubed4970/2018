@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.Robot;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 
-import utils.CalibrationManager;
+import utils.Constants;
 
 /**
  * An example command.  You can replace me with your own command.
@@ -21,18 +21,21 @@ import utils.CalibrationManager;
 public class DriveStraight extends Command {
 	
 	private double encoderAvg;
+	private double inchesToDrive;
 	
 	public DriveStraight(double inches) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
+		
+		inchesToDrive = inches;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 
-		CalibrationManager.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", CalibrationManager.straightDriveDutyCycle);	
-		CalibrationManager.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", CalibrationManager.driveEncoderCountsPerInch);
+		Constants.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Constants.straightDriveDutyCycle);	
+		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
 		
 		
 		Robot._driveTrain.setupGyroPID();
@@ -51,7 +54,7 @@ public class DriveStraight extends Command {
 	protected boolean isFinished() {
 		encoderAvg = ((double)Robot._driveTrain.getLeftEncoderCount() + (double)Robot._driveTrain.getRightEncoderCount())/2.0;
 		
-		return (encoderAvg >= CalibrationManager.driveEncoderCountsPerInch);
+		return (encoderAvg >= (Constants.driveEncoderCountsPerInch * inchesToDrive));
 	}
 
 	// Called once after isFinished returns true

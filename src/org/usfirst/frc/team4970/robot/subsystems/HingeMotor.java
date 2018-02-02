@@ -33,11 +33,7 @@ public class HingeMotor extends Subsystem {
     public void initDefaultCommand() {
     }
     
-    public void raiseHinge(double setPoint) {
-    	m_hinge.set(ControlMode.Position, setPoint);
-    }
-    
-    public void lowerHinge(double setPoint) {
+    public void moveHinge(double setPoint) {
     	m_hinge.set(ControlMode.Position, setPoint);
     }
     

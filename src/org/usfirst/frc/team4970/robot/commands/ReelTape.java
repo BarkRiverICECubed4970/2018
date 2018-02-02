@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import utils.CalibrationManager;
+import utils.Constants;
 
 /**
  *
@@ -17,12 +17,12 @@ public class ReelTape extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	CalibrationManager.reelTapeDutyCycle = SmartDashboard.getNumber("Reel Tape Duty Cycle", CalibrationManager.reelTapeDutyCycle);
+    	Constants.reelTapeDutyCycle = SmartDashboard.getNumber("Reel Tape Duty Cycle", Constants.reelTapeDutyCycle);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._climbMotor.reelTape(CalibrationManager.reelTapeDutyCycle);
+    	Robot._climbMotor.reelTape(Constants.reelTapeDutyCycle);
     }
 
     protected boolean isFinished() {

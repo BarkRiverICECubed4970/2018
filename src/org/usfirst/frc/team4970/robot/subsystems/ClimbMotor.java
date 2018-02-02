@@ -3,11 +3,11 @@ package org.usfirst.frc.team4970.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import utils.CalibrationManager;
+import utils.Constants;
 
 public class ClimbMotor extends Subsystem {
 
-	WPI_TalonSRX m_climb = new WPI_TalonSRX(CalibrationManager.climbMotorCanAddress);
+	WPI_TalonSRX m_climb = new WPI_TalonSRX(Constants.climbMotorCanAddress);
 
     public void initDefaultCommand() {
     }

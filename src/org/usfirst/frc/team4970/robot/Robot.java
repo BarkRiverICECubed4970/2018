@@ -8,7 +8,6 @@
 package org.usfirst.frc.team4970.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -18,7 +17,7 @@ import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
 import org.usfirst.frc.team4970.robot.subsystems.ClimbMotor;
-import utils.CalibrationManager;
+import utils.Constants;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -40,7 +39,7 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	public static CalibrationManager _calibrationManager;
+	public static Constants _calibrationManager;
 	
     /**
 	 * This function is run when the robot is first started up and should be
@@ -51,7 +50,7 @@ public class Robot extends TimedRobot {
 		
 		m_oi = new OI();
 
-		_calibrationManager = new CalibrationManager();
+		_calibrationManager = new Constants();
 		
 		
 //		m_chooser.addDefault("Default Auto", new DriveWithJoystick());

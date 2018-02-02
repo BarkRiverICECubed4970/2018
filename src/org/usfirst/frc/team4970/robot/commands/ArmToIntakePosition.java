@@ -11,10 +11,6 @@ import utils.Constants;
 /**
  *
  */
-
-/**
- *
- */
 public class ArmToIntakePosition extends Command {
 
 	private boolean _cancelCommand = false;
@@ -26,7 +22,7 @@ public class ArmToIntakePosition extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	_cancelCommand = false;
-    	Constants.lowerArmPidSetpoint = SmartDashboard.getNumber("Lower Arm Max Duty Cycle", Constants.lowerArmPidSetpoint);
+    	Constants.intakePositionArmPidSetpoint = SmartDashboard.getNumber("Intake Position Arm PID Setpoint", Constants.intakePositionArmPidSetpoint);
 
     	/* don't attempt to move the arm up or down when the hinge is not closed */
     	if (HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP)
@@ -40,12 +36,21 @@ public class ArmToIntakePosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._armMotor.lowerArm(Constants.lowerArmPidSetpoint);
+    	Robot._armMotor.moveArm(Constants.intakePositionArmPidSetpoint);
     }
 
     protected boolean isFinished() {
-    	return ((_cancelCommand) ||
-    			(Robot._armMotor.getClosedLoopError() <= (int)Constants.armMotorAllowableClosedLoopError));
+    	if (Robot._armMotor.getClosedLoopError() <= (int)Constants.armMotorAllowableClosedLoopError)
+    	{
+    		/* don't consider the hinge up until command completes */
+    		ArmMotor._armState = ArmMotor.ArmState.ARM_INTAKE_HEIGHT;
+    		return true;
+    	} else if (_cancelCommand)
+    	{
+    		return true;
+    	} else {
+    		return false;
+    	}    	
     }
 
     // Called once after isFinished returns true

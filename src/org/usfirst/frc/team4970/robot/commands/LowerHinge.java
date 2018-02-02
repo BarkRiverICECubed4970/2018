@@ -26,20 +26,20 @@ public class LowerHinge extends Command {
     	Constants.lowerHingePidSetpoint = SmartDashboard.getNumber("Lower Hinge PID Setpoint", Constants.lowerHingePidSetpoint);
 
     	/* do not lower hinge unless arm is at switch height, start height, or intake height */
-    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_MOVING) ||
-   			(ArmMotor._armState == ArmMotor.ArmState.ARM_SWITCH_HEIGHT))
+    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
+   			(ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT))
    		{
-    		_cancelCommand = true;
-   		} else {
-   			/* as soon as this command is invoked, consider the hinge open in case the
+   			/* as soon as this command is invoked, consider the hinge down in case the
    			 * command is interrupted before it can finish */
    			HingeMotor._hingeState = HingeMotor.HingeState.HINGE_DOWN;
+   		} else {
+    		_cancelCommand = true;
    		}
    	}
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._hingeMotor.lowerHinge(Constants.lowerHingePidSetpoint);
+    	Robot._hingeMotor.moveHinge(Constants.lowerHingePidSetpoint);
     }
 
     protected boolean isFinished() {

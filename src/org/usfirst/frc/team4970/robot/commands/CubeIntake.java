@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import utils.CalibrationManager;
+import utils.Constants;
 
 /**
  *
@@ -17,12 +17,12 @@ public class CubeIntake extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	CalibrationManager.intakeCubeDutyCycle = SmartDashboard.getNumber("Intake Cube Duty Cycle", CalibrationManager.intakeCubeDutyCycle);
+    	Constants.intakeCubeDutyCycle = SmartDashboard.getNumber("Intake Cube Duty Cycle", Constants.intakeCubeDutyCycle);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._intakeMotor.intakeCube(CalibrationManager.intakeCubeDutyCycle);
+    	Robot._intakeMotor.intakeCube(Constants.intakeCubeDutyCycle);
     }
 
     protected boolean isFinished() {

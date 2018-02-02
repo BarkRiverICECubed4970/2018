@@ -13,7 +13,7 @@ import org.usfirst.frc.team4970.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import utils.CalibrationManager;
+import utils.Constants;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -85,8 +85,8 @@ public class OI {
         joystickButton1.whileHeld(new ReelTape());
         
     	// SmartDashboard Buttons
-    	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive", CalibrationManager.driveInches)));
-    	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", CalibrationManager.turnDegrees)));
+    	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive", Constants.driveInches)));
+    	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
     	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
     	SmartDashboard.putData("Lower Hinge", new LowerHinge());
     	SmartDashboard.putData("Raise Arm", new ArmToScalePosition());

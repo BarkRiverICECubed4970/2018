@@ -11,29 +11,42 @@ import utils.Constants;
 /**
  *
  */
-public class RaiseHinge extends Command {
+public class ArmToSwitchPosition extends Command {
 
 	private boolean _cancelCommand = false;
 	
-	public RaiseHinge() {
-        requires(Robot._hingeMotor);
+	public ArmToSwitchPosition() {
+        requires(Robot._armMotor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Constants.raiseHingePidSetpoint = SmartDashboard.getNumber("Raise Hinge PID Set Point", Constants.raiseHingePidSetpoint);
+    	_cancelCommand = false;
+    	Constants.switchPositionArmPidSetpoint = SmartDashboard.getNumber("Switch Position Arm PID Setpoint", Constants.switchPositionArmPidSetpoint);
+
+    	/* don't attempt to move the arm up or down when the hinge is not closed */
+    	if (HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP)
+    	{
+    		_cancelCommand = true;
+    	} else {
+        	/* indicate that the arm is about to move, so the hinge cannot */
+        	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._hingeMotor.moveHinge(Constants.raiseHingePidSetpoint);
+    	Robot._armMotor.moveArm(Constants.switchPositionArmPidSetpoint);
     }
 
     protected boolean isFinished() {
-    	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
+    	if (Robot._armMotor.getClosedLoopError() <= (int)Constants.armMotorAllowableClosedLoopError)
     	{
     		/* don't consider the hinge up until command completes */
-    		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_UP;
+    		ArmMotor._armState = ArmMotor.ArmState.ARM_SWITCH_HEIGHT;
+    		return true;
+    	} else if (_cancelCommand)
+    	{
     		return true;
     	} else {
     		return false;
@@ -42,7 +55,7 @@ public class RaiseHinge extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._hingeMotor.stop();
+    	Robot._armMotor.stop();
     }
 
     // Called when another command which requires one or more of the same

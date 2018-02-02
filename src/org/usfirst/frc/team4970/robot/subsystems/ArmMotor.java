@@ -33,11 +33,7 @@ public class ArmMotor extends Subsystem {
     public void initDefaultCommand() {
     }
     
-    public void raiseArm(double setpoint) {
-    	m_arm.set(ControlMode.Position, setpoint);
-    }
-    
-    public void lowerArm(double setpoint) {
+    public void moveArm(double setpoint) {
     	m_arm.set(ControlMode.Position, setpoint);
     }
     
