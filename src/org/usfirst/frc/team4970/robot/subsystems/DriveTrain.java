@@ -50,13 +50,16 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	WPI_TalonSRX m_leftFront = new WPI_TalonSRX(Constants.leftFrontDriveMotorCanAddress);
 	WPI_TalonSRX m_rightRear = new WPI_TalonSRX(Constants.rightRearDriveMotorCanAddress);
 	WPI_TalonSRX m_rightFront = new WPI_TalonSRX(Constants.rightFrontDriveMotorCanAddress);
+	
+	/* using a spare talon SRX so the gyro can be as far away from any motors as possible */
+	WPI_TalonSRX m_gyro = new WPI_TalonSRX(Constants.gyroControllerCanAddress);
     
 	SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);
 	SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);
 	
     private final DifferentialDrive _robotDrive = new DifferentialDrive(m_left, m_right);
 
-	public Gyro _gyro = new Gyro(m_leftRear);
+	public Gyro _gyro = new Gyro(m_gyro);
 	
     public final PIDController _gyroPid = new PIDController(0.010, 0, 0, _gyro, this);
 	
@@ -109,8 +112,14 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		break;
     	}
 
-    	dutyCycleLimit = SmartDashboard.getNumber("Max Drive DutyCycle",1.0);
-
+		if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
+			(ArmMotor._armState == ArmMotor.ArmState.ARM_MOVING))	
+		{
+			dutyCycleLimit = SmartDashboard.getNumber("Arm Up Max Drive DutyCycle",1.0);
+		} else {
+			dutyCycleLimit = SmartDashboard.getNumber("Arm Down Max Drive DutyCycle",1.0);			
+		}
+			
 		if (Math.abs(forward) > dutyCycleLimit)
     	{
     		forward = Math.copySign(dutyCycleLimit, forward);    	
@@ -120,7 +129,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	{
     		rotate = Math.copySign(dutyCycleLimit, rotate);    	
     	}
-  
+ 
 		/* try this to potentially turn better with only high gear */
 //		if (_driveTrainControl == DriveTrainControl.Turn_Degrees)
 //		{

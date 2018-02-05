@@ -17,10 +17,13 @@ public class Constants {
 	public static final int intakeMotor1CanAddress = 8;
 	public static final int intakeMotor2CanAddress = 9;
 	public static final int climbMotorCanAddress = 10;
+	public static final int gyroControllerCanAddress = 12;
 	
     public static double turnDegrees = -60.0;
     public static double driveInches = 48;
     public static double straightDriveDutyCycle = 0.4;
+    public static double armDownMaxDriveDutyCycle = 0.6;
+    public static double armUpMaxDriveDutyCycle = 0.4;
     
     public static double gyroPidKp = 0.05;
     public static double gyroPidKi = 0.0;
@@ -88,7 +91,8 @@ public class Constants {
 		SmartDashboard.putNumber("Inches to drive", driveInches);
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive duty cycle", straightDriveDutyCycle);
-		SmartDashboard.putNumber("Max Drive DutyCycle",1.0);
+		SmartDashboard.putNumber("Arm Up Max Drive DutyCycle",armUpMaxDriveDutyCycle);
+		SmartDashboard.putNumber("Arm Down Max Drive DutyCycle",armDownMaxDriveDutyCycle);
 		SmartDashboard.putNumber("Right Encoder Count", Robot._driveTrain.getRightEncoderCount());
 		SmartDashboard.putNumber("Left Encoder Count", Robot._driveTrain.getLeftEncoderCount());
 		SmartDashboard.putNumber("Gyro PID output value", Robot._driveTrain.getPidOutput());
@@ -141,6 +145,7 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge Motor CAN Address", hingeMotorCanAddress);   
     	SmartDashboard.putNumber("Arm Motor CAN Address", armMotorCanAddress);   
     	SmartDashboard.putNumber("Climb Motor CAN Address", climbMotorCanAddress);   
+    	SmartDashboard.putNumber("Gyro Controller CAN Address", gyroControllerCanAddress);   
 		
 	}
 }

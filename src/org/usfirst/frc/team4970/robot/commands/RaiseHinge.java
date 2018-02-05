@@ -3,7 +3,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 
 import utils.Constants;
@@ -13,8 +12,6 @@ import utils.Constants;
  */
 public class RaiseHinge extends Command {
 
-	private boolean _cancelCommand = false;
-	
 	public RaiseHinge() {
         requires(Robot._hingeMotor);
     }
