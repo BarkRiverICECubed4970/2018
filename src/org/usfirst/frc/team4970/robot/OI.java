@@ -60,7 +60,11 @@ public class OI {
     
     public OI() {
 
-        joystickButton1 = new JoystickButton(joystick, 4);
+    	/* test button... take out for competition */
+        joystickButton1 = new JoystickButton(joystick, 1);
+        joystickButton1.whenPressed(new ArmToScalePosition());        
+    	
+    	joystickButton1 = new JoystickButton(joystick, 4);
         joystickButton1.whenPressed(new LowerHinge());
         
         joystickButton1 = new JoystickButton(joystick, 5);
