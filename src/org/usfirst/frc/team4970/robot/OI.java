@@ -85,11 +85,11 @@ public class OI {
 //        joystickButton1 = new JoystickButton(joystick, 7);
 //        joystickButton1.whileHeld(new CubeOutput());
         
-        joystickButton1 = new JoystickButton(joystick, 6);
-        joystickButton1.whileHeld(new ExtendTape());
+//        joystickButton1 = new JoystickButton(joystick, 6);
+  //      joystickButton1.whileHeld(new ExtendTape());
         
-        joystickButton1 = new JoystickButton(joystick, 7);
-        joystickButton1.whileHeld(new ReelTape());
+    //    joystickButton1 = new JoystickButton(joystick, 7);
+      //  joystickButton1.whileHeld(new ReelTape());
         
     	// SmartDashboard Buttons
     	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive", Constants.driveInches)));

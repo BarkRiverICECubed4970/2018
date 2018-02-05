@@ -16,6 +16,7 @@ public class IntakeMotor extends Subsystem {
 	WPI_TalonSRX m_intake2 = new WPI_TalonSRX(Constants.intakeMotor2CanAddress);
 	
 	public IntakeMotor() {
+		m_intake2.setInverted(true);
 		m_intake2.follow(m_intake1);
 	}
 	
@@ -23,7 +24,7 @@ public class IntakeMotor extends Subsystem {
     }
     
     public void intakeCube(double maxDutyCycle) {
-    	intakeDc = Robot.m_oi.joystick.getRawAxis(3);
+    	intakeDc = Robot.m_oi.joystick.getRawAxis(4);
     	if (intakeDc > maxDutyCycle)
     	{
     		intakeDc = maxDutyCycle;
@@ -32,7 +33,7 @@ public class IntakeMotor extends Subsystem {
     }
     
     public void outputCube(double maxDutyCycle) {
-    	outputDc = Robot.m_oi.joystick.getRawAxis(2);
+    	outputDc = Robot.m_oi.joystick.getRawAxis(3);
  
     	if (outputDc > maxDutyCycle)
     	{

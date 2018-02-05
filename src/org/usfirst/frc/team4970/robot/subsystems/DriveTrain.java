@@ -72,6 +72,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	m_leftFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     	m_rightFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     	
+    	m_leftFront.setInverted(true);
+    	m_rightFront.setInverted(true);
+    	m_leftRear.setInverted(true);
+    	m_rightRear.setInverted(true);
     	
 	}
 	
