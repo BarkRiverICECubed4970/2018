@@ -69,6 +69,9 @@ public class Constants {
     public static final int timeoutMs = 10;
     
     public Constants() {
+    	
+    	postConstants();
+    	
 	    new Thread(() -> {
 		   	while (true) {
 		   		updateSmartDashboard();
@@ -77,25 +80,15 @@ public class Constants {
 		}).start();
     }
     
-	private void updateSmartDashboard() {
-
-		/* joystick */
-		SmartDashboard.putNumber("Joystick forward", Robot.m_oi.joystick.getRawAxis(1));
-		SmartDashboard.putNumber("Joystick rotate", Robot.m_oi.joystick.getRawAxis(0));
-
+    /* post the constants to the shuffleboard */
+	private void postConstants() {
 		/* drive train */
-		SmartDashboard.putNumber("Pigeon fused heading", Robot._driveTrain.getGyroHeading());
-		SmartDashboard.putData(Robot._driveTrain._gyro);
-		SmartDashboard.putData(Robot._driveTrain._gyroPid);
 		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Inches to drive", driveInches);
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive duty cycle", straightDriveDutyCycle);
 		SmartDashboard.putNumber("Arm Up Max Drive DutyCycle",armUpMaxDriveDutyCycle);
 		SmartDashboard.putNumber("Arm Down Max Drive DutyCycle",armDownMaxDriveDutyCycle);
-		SmartDashboard.putNumber("Right Encoder Count", Robot._driveTrain.getRightEncoderCount());
-		SmartDashboard.putNumber("Left Encoder Count", Robot._driveTrain.getLeftEncoderCount());
-		SmartDashboard.putNumber("Gyro PID output value", Robot._driveTrain.getPidOutput());
     	SmartDashboard.putNumber("Gyro PID KP", gyroPidKp);
     	SmartDashboard.putNumber("Gyro PID KI", gyroPidKi);
     	SmartDashboard.putNumber("Gyro PID KD", gyroPidKd);
@@ -113,7 +106,6 @@ public class Constants {
     	SmartDashboard.putNumber("Arm PID KI", armMotorPidKi);
     	SmartDashboard.putNumber("Arm PID KD", armMotorPidKd);
     	SmartDashboard.putNumber("Arm PID Allowable Error", armMotorAllowableClosedLoopError);
-    	SmartDashboard.putNumber("Arm Encoder Count", Robot._armMotor.getEncoderCount());
     	SmartDashboard.putNumber("Intake Position Arm PID Setpoint", intakePositionArmPidSetpoint);
     	SmartDashboard.putNumber("Switch Position Arm PID Set Point", switchPositionArmPidSetpoint);
     	SmartDashboard.putNumber("Scale Position Arm PID Set Point", scalePositionArmPidSetpoint);   
@@ -129,7 +121,6 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge PID Allowable Error", hingeMotorAllowableClosedLoopError);
     	SmartDashboard.putNumber("Raise Hinge PID Set Point", raiseHingePidSetpoint);
     	SmartDashboard.putNumber("Lower Hinge PID Set Point", lowerHingePidSetpoint);   
-    	SmartDashboard.putNumber("Hinge Encoder Count", Robot._hingeMotor.getEncoderCount());
 
     	/* Climbing */
     	SmartDashboard.putNumber("Extend Tape Duty Cycle", extendTapeDutyCycle);   
@@ -146,6 +137,29 @@ public class Constants {
     	SmartDashboard.putNumber("Arm Motor CAN Address", armMotorCanAddress);   
     	SmartDashboard.putNumber("Climb Motor CAN Address", climbMotorCanAddress);   
     	SmartDashboard.putNumber("Gyro Controller CAN Address", gyroControllerCanAddress);   
-		
+	}
+    
+	/* periodically publish outputs */
+    private void updateSmartDashboard() {
+
+		/* joystick */
+		SmartDashboard.putNumber("Joystick forward", Robot.m_oi.joystick.getRawAxis(1));
+		SmartDashboard.putNumber("Joystick rotate", Robot.m_oi.joystick.getRawAxis(0));
+
+		/* drive train */
+		SmartDashboard.putNumber("Pigeon fused heading", Robot._driveTrain.getGyroHeading());
+		SmartDashboard.putData(Robot._driveTrain._gyro);
+		SmartDashboard.putData(Robot._driveTrain._gyroPid);
+
+		SmartDashboard.putNumber("Right Encoder Count", Robot._driveTrain.getRightEncoderCount());
+		SmartDashboard.putNumber("Left Encoder Count", Robot._driveTrain.getLeftEncoderCount());
+		SmartDashboard.putNumber("Gyro PID output value", Robot._driveTrain.getPidOutput());
+    	SmartDashboard.putNumber("Drive Encoder Counts Per Inch", driveEncoderCountsPerInch);
+
+    	/* Arm motor */
+    	SmartDashboard.putNumber("Arm Encoder Count", Robot._armMotor.getEncoderCount());
+    	
+		/* Hinge motor */
+    	SmartDashboard.putNumber("Hinge Encoder Count", Robot._hingeMotor.getEncoderCount());
 	}
 }

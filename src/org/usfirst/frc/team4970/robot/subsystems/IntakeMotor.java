@@ -29,7 +29,9 @@ public class IntakeMotor extends Subsystem {
     	{
     		intakeDc = maxDutyCycle;
     	}
+    	intakeDc = maxDutyCycle;
     	m_intake1.set(intakeDc);
+    	m_intake2.set(intakeDc);
     }
     
     public void outputCube(double maxDutyCycle) {
@@ -40,16 +42,21 @@ public class IntakeMotor extends Subsystem {
     		outputDc = maxDutyCycle;
     	}
     	
-    	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN)
+    	outputDc = maxDutyCycle;
+
+    	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
     	{
     		m_intake1.set(-1.0*outputDc);
+    		m_intake2.set(-1.0*outputDc);
     	} else {
     		m_intake1.set(outputDc);    		
+    		m_intake2.set(outputDc);    		
     	}
     }
     
     public void stop() {
     	m_intake1.set(0.0);
+    	m_intake2.set(0.0);
     }
     
 }
