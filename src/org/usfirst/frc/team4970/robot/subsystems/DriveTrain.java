@@ -92,7 +92,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	
 	    	case JOYSTICK:
     			forward = Robot.m_oi.joystick.getRawAxis(1);
-	    		rotate = Robot.m_oi.joystick.getRawAxis(0);
+	    		rotate = -Robot.m_oi.joystick.getRawAxis(0);
 	    		break;
 
 	    	case TURN_DEGREES:

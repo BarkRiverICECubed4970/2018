@@ -26,8 +26,9 @@ public class LowerHinge extends Command {
     	Constants.lowerHingePidSetpoint = SmartDashboard.getNumber("Lower Hinge PID Setpoint", Constants.lowerHingePidSetpoint);
 
     	/* do not lower hinge unless arm is at switch height, start height, or intake height */
-    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
-   			(ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT))
+//    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
+//       			(ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT))
+       	if (true)
    		{
    			/* as soon as this command is invoked, consider the hinge down in case the
    			 * command is interrupted before it can finish */
@@ -39,13 +40,16 @@ public class LowerHinge extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._hingeMotor.moveHinge(Constants.lowerHingePidSetpoint);
+    	System.out.println("Lower Hinge");
+//    	Robot._hingeMotor.moveHinge(Constants.lowerHingePidSetpoint);
+    	Robot._hingeMotor.lowerHinge(Constants.lowerHingePidSetpoint);
     }
 
     protected boolean isFinished() {
-   		return ((_cancelCommand) || 
-   				(Robot._armMotor.getClosedLoopError() <= (int)Constants.armMotorAllowableClosedLoopError));
-    }
+//   		return ((_cancelCommand) || 
+ //  				(Robot._armMotor.getClosedLoopError() <= (int)Constants.armMotorAllowableClosedLoopError));
+   		return false;
+   	}
 
     // Called once after isFinished returns true
     protected void end() {

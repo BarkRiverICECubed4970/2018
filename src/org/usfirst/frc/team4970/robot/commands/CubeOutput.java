@@ -21,7 +21,6 @@ public class CubeOutput extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("outputCube being called here!");
     	Robot._intakeMotor.outputCube(Constants.outputCubeDutyCycle);
     }
 

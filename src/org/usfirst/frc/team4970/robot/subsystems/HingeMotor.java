@@ -16,16 +16,16 @@ public class HingeMotor extends Subsystem {
 	
 	public static HingeState _hingeState = HingeState.HINGE_UP;
 	
-	WPI_TalonSRX m_hinge = new WPI_TalonSRX(Constants.hingeMotorCanAddress);
+	public WPI_TalonSRX m_hinge = new WPI_TalonSRX(Constants.hingeMotorCanAddress);
 	
 	public HingeMotor() {
 	   	m_hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Constants.timeoutMs);
-
+	   	
 	   	m_hinge.config_kP(0, Constants.hingeMotorPidKp, Constants.timeoutMs);
 	   	m_hinge.config_kI(0, Constants.hingeMotorPidKi, Constants.timeoutMs);
 	   	m_hinge.config_kD(0, Constants.hingeMotorPidKd, Constants.timeoutMs);
 	   	
-	   	m_hinge.configAllowableClosedloopError(0, 0, Constants.timeoutMs);	   	
+	   	m_hinge.configAllowableClosedloopError(0, (int)Constants.hingeMotorAllowableClosedLoopError, Constants.timeoutMs);	   	
 	}
 	
     public void initDefaultCommand() {
@@ -33,6 +33,14 @@ public class HingeMotor extends Subsystem {
     
     public void moveHinge(double setPoint) {
     	m_hinge.set(ControlMode.Position, setPoint);
+    }
+    
+    public void raiseHinge(double dutyCycle) {
+    	m_hinge.set(-dutyCycle);
+    }
+    
+    public void lowerHinge(double dutyCycle) {
+    	m_hinge.set(dutyCycle);
     }
     
     public void stop() {

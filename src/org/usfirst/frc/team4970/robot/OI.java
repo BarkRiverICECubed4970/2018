@@ -61,25 +61,25 @@ public class OI {
     public OI() {
 
     	/* test button... take out for competition */
-        joystickButton1 = new JoystickButton(joystick, 1);
-        joystickButton1.whenPressed(new ArmToScalePosition());        
+//        joystickButton1 = new JoystickButton(joystick, 4);
+ //       joystickButton1.whenPressed(new ArmToScaleGroup());        
     	
-    	joystickButton1 = new JoystickButton(joystick, 4);
+    	joystickButton1 = new JoystickButton(joystick, 9);
         joystickButton1.whenPressed(new LowerHinge());
         
-        joystickButton1 = new JoystickButton(joystick, 5);
+        joystickButton1 = new JoystickButton(joystick, 10);
         joystickButton1.whenPressed(new RaiseHinge());
         
-        joystickButton1 = new JoystickButton(joystick, 0);
+        joystickButton1 = new JoystickButton(joystick, 2);
         joystickButton1.whenPressed(new ArmToIntakeGroup());
         
-        joystickButton1 = new JoystickButton(joystick, 2);
+        joystickButton1 = new JoystickButton(joystick, 1);
         joystickButton1.whenPressed(new ArmToSwitchGroup());
         
-        joystickButton1 = new JoystickButton(joystick, 3);
+        joystickButton1 = new JoystickButton(joystick, 4);
         joystickButton1.whenPressed(new ArmToScaleGroup());
         
-        joystickButton1 = new JoystickButton(joystick, 6);
+        joystickButton1 = new JoystickButton(joystick, 8);
         joystickButton1.whileHeld(new CubeIntake());
         
         joystickButton1 = new JoystickButton(joystick, 7);

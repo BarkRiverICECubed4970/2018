@@ -38,9 +38,11 @@ public class Constants {
     public static double hingeMotorPidKp = 0.001;
     public static double hingeMotorPidKi = 0.0;
     public static double hingeMotorPidKd = 0.0;
-    public static double hingeMotorAllowableClosedLoopError = 5;
-    public static double raiseHingePidSetpoint = 0.0;
-    public static double lowerHingePidSetpoint = 100.0;
+    public static double hingeMotorAllowableClosedLoopError = 100;
+    public static double raiseHingePidSetpoint = -2000;
+//    public static double lowerHingePidSetpoint = 100.0;
+//    public static double raiseHingePidSetpoint = 0.3;
+    public static double lowerHingePidSetpoint = 0.3;
     
     public static double armMotorPidKp = 0.001;
     public static double armMotorPidKi = 0.0;
@@ -61,8 +63,8 @@ public class Constants {
 
     public static double turnDegreesTimeout = 3.0;
 
-    public static double intakeCubeDutyCycle = 0.3;
-    public static double outputCubeDutyCycle = 0.3;
+    public static double intakeCubeDutyCycle = 1.0;
+    public static double outputCubeDutyCycle = 1.0;
     public static double extendTapeDutyCycle = 0.3;
     public static double reelTapeDutyCycle = 0.3;
 
@@ -161,5 +163,7 @@ public class Constants {
     	
 		/* Hinge motor */
     	SmartDashboard.putNumber("Hinge Encoder Count", Robot._hingeMotor.getEncoderCount());
+    	SmartDashboard.putNumber("Hinge Closed Loop Error", Robot._hingeMotor.getClosedLoopError());
+    	
 	}
 }

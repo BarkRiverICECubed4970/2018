@@ -24,27 +24,29 @@ public class IntakeMotor extends Subsystem {
     }
     
     public void intakeCube(double maxDutyCycle) {
-    	intakeDc = Robot.m_oi.joystick.getRawAxis(4);
+    	intakeDc = Math.max(0.0, Robot.m_oi.joystick.getRawAxis(4));
     	if (intakeDc > maxDutyCycle)
     	{
     		intakeDc = maxDutyCycle;
     	}
-    	intakeDc = maxDutyCycle;
+    	
+    	System.out.println("Intake");
+    	System.out.println(Robot.m_oi.joystick.getRawAxis(4));
+
     	m_intake1.set(intakeDc);
     	m_intake2.set(intakeDc);
     }
     
     public void outputCube(double maxDutyCycle) {
-    	outputDc = Robot.m_oi.joystick.getRawAxis(3);
+    	outputDc = Math.max(0.0, Robot.m_oi.joystick.getRawAxis(3));
  
     	if (outputDc > maxDutyCycle)
     	{
     		outputDc = maxDutyCycle;
     	}
     	
-    	outputDc = maxDutyCycle;
-
-    	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
+//    	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
+        if (true) 
     	{
     		m_intake1.set(-1.0*outputDc);
     		m_intake2.set(-1.0*outputDc);
