@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team4970.robot.Robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import utils.Constants;
 
@@ -18,6 +19,9 @@ public class IntakeMotor extends Subsystem {
 	public IntakeMotor() {
 		m_intake2.setInverted(true);
 		m_intake2.follow(m_intake1);
+		
+		m_intake1.setNeutralMode(NeutralMode.Brake);
+		m_intake2.setNeutralMode(NeutralMode.Brake);
 	}
 	
     public void initDefaultCommand() {
@@ -30,9 +34,7 @@ public class IntakeMotor extends Subsystem {
     		intakeDc = maxDutyCycle;
     	}
     	
-    	System.out.println("Intake");
-    	System.out.println(Robot.m_oi.joystick.getRawAxis(4));
-
+    	intakeDc = 1.0;
     	m_intake1.set(intakeDc);
     	m_intake2.set(intakeDc);
     }
@@ -45,6 +47,7 @@ public class IntakeMotor extends Subsystem {
     		outputDc = maxDutyCycle;
     	}
     	
+    	outputDc = 1.0;
 //    	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
         if (true) 
     	{

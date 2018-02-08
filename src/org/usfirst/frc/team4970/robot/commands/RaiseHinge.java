@@ -22,30 +22,25 @@ public class RaiseHinge extends Command {
     protected void initialize() {
     	Constants.raiseHingePidSetpoint = SmartDashboard.getNumber("Raise Hinge PID Set Point", Constants.raiseHingePidSetpoint);
     	Robot._hingeMotor.moveHinge(Constants.raiseHingePidSetpoint);
-
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Raise Hinge");
-    	
-//    	Robot._hingeMotor.raiseHinge(Constants.raiseHingePidSetpoint);
     }
 
     protected boolean isFinished() {
-//    	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
-//    	{
+    	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
+    	{
     		/* don't consider the hinge up until command completes */
-//    		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_UP;
-//    		return true;
-//    	} else {
+    		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_UP;
+    		return true;
+    	} else {
     		return false;
- //   	}    	
+    	}    	
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._hingeMotor.stop();
     }
 
     // Called when another command which requires one or more of the same

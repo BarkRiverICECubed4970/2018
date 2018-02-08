@@ -96,8 +96,12 @@ public class OI {
     	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
     	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
     	SmartDashboard.putData("Lower Hinge", new LowerHinge());
-    	SmartDashboard.putData("Raise Arm", new ArmToScalePosition());
-    	SmartDashboard.putData("Lower Arm", new ArmToIntakePosition());
+    	SmartDashboard.putData("Arm to Scale", new ArmToScaleGroup());
+    	SmartDashboard.putData("Arm to Switch", new ArmToSwitchGroup());
+    	SmartDashboard.putData("Arm to Intake", new ArmToIntakeGroup());
+    	SmartDashboard.putData("Arm to Scale Position", new ArmToScalePosition());
+    	SmartDashboard.putData("Arm to Switch Position", new ArmToSwitchPosition());
+    	SmartDashboard.putData("Arm to Intake Position", new ArmToIntakePosition());
     	SmartDashboard.putData("Intake Cube", new CubeIntake());
     	SmartDashboard.putData("Output Cube", new CubeOutput());
     	SmartDashboard.putData("Extend Tape", new ExtendTape());

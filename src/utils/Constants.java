@@ -35,14 +35,14 @@ public class Constants {
     public static double gyroPidTolerance = 4.0;
     public static double gyroPidMaxSetpoint = 8;
     
-    public static double hingeMotorPidKp = 0.001;
+    public static double hingeMotorPidKp = 0.005;
     public static double hingeMotorPidKi = 0.0;
     public static double hingeMotorPidKd = 0.0;
     public static double hingeMotorAllowableClosedLoopError = 100;
     public static double raiseHingePidSetpoint = -2000;
-//    public static double lowerHingePidSetpoint = 100.0;
+    public static double lowerHingePidSetpoint = 100.0;
 //    public static double raiseHingePidSetpoint = 0.3;
-    public static double lowerHingePidSetpoint = 0.3;
+//    public static double lowerHingePidSetpoint = 0.3;
     
     public static double armMotorPidKp = 0.001;
     public static double armMotorPidKi = 0.0;
@@ -108,9 +108,9 @@ public class Constants {
     	SmartDashboard.putNumber("Arm PID KI", armMotorPidKi);
     	SmartDashboard.putNumber("Arm PID KD", armMotorPidKd);
     	SmartDashboard.putNumber("Arm PID Allowable Error", armMotorAllowableClosedLoopError);
-    	SmartDashboard.putNumber("Intake Position Arm PID Setpoint", intakePositionArmPidSetpoint);
-    	SmartDashboard.putNumber("Switch Position Arm PID Set Point", switchPositionArmPidSetpoint);
-    	SmartDashboard.putNumber("Scale Position Arm PID Set Point", scalePositionArmPidSetpoint);   
+    	SmartDashboard.putNumber("Arm Intake PID Setpoint", intakePositionArmPidSetpoint);
+    	SmartDashboard.putNumber("Arm Switch PID Setpoint", switchPositionArmPidSetpoint);
+    	SmartDashboard.putNumber("Arm Scale PID Set Point", scalePositionArmPidSetpoint);   
     	
     	/* Intake motor */
     	SmartDashboard.putNumber("Intake Cube Duty Cycle", intakeCubeDutyCycle);
@@ -160,10 +160,15 @@ public class Constants {
 
     	/* Arm motor */
     	SmartDashboard.putNumber("Arm Encoder Count", Robot._armMotor.getEncoderCount());
+    	SmartDashboard.putNumber("Arm Closed Loop Error", Robot._armMotor.getClosedLoopError());
+    	SmartDashboard.putString("Arm State", Robot._armMotor.getState());
     	
 		/* Hinge motor */
     	SmartDashboard.putNumber("Hinge Encoder Count", Robot._hingeMotor.getEncoderCount());
     	SmartDashboard.putNumber("Hinge Closed Loop Error", Robot._hingeMotor.getClosedLoopError());
+    	SmartDashboard.putNumber("Hinge Motor Output Voltage", Robot._hingeMotor.getMotorOutputVoltage());
+    	SmartDashboard.putString("Hinge State", Robot._hingeMotor.getState());
+    	
     	
 	}
 }

@@ -22,7 +22,7 @@ public class ArmToIntakePosition extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	_cancelCommand = false;
-    	Constants.intakePositionArmPidSetpoint = SmartDashboard.getNumber("Intake Position Arm PID Setpoint", Constants.intakePositionArmPidSetpoint);
+    	Constants.intakePositionArmPidSetpoint = SmartDashboard.getNumber("Arm Intake PID Setpoint", Constants.intakePositionArmPidSetpoint);
 
     	/* don't attempt to move the arm up or down when the hinge is not closed */
     	if (HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP)
@@ -31,12 +31,12 @@ public class ArmToIntakePosition extends Command {
     	} else {
         	/* indicate that the arm is about to move, so the hinge cannot */
         	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
+        	Robot._armMotor.moveArm(Constants.intakePositionArmPidSetpoint);
     	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._armMotor.moveArm(Constants.intakePositionArmPidSetpoint);
     }
 
     protected boolean isFinished() {
@@ -55,7 +55,7 @@ public class ArmToIntakePosition extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._armMotor.stop();
+//    	Robot._armMotor.stop();
     }
 
     // Called when another command which requires one or more of the same

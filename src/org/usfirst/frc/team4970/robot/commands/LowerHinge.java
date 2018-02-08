@@ -33,27 +33,30 @@ public class LowerHinge extends Command {
    			/* as soon as this command is invoked, consider the hinge down in case the
    			 * command is interrupted before it can finish */
    			HingeMotor._hingeState = HingeMotor.HingeState.HINGE_DOWN;
+
+   	    	Robot._hingeMotor.moveHinge(Constants.lowerHingePidSetpoint);
    		} else {
     		_cancelCommand = true;
    		}
-   	}
+    }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Lower Hinge");
-//    	Robot._hingeMotor.moveHinge(Constants.lowerHingePidSetpoint);
-    	Robot._hingeMotor.lowerHinge(Constants.lowerHingePidSetpoint);
     }
 
     protected boolean isFinished() {
-//   		return ((_cancelCommand) || 
- //  				(Robot._armMotor.getClosedLoopError() <= (int)Constants.armMotorAllowableClosedLoopError));
-   		return false;
+    	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
+    	{
+    		/* don't consider the hinge up until command completes */
+    		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_UP;
+    		return true;
+    	} else {
+    		return false;
+    	}    	
    	}
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._hingeMotor.stop();
     }
 
     // Called when another command which requires one or more of the same
