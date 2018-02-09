@@ -32,7 +32,10 @@ public class HingeMotor extends Subsystem {
 	   	
 		m_hinge.setNeutralMode(NeutralMode.Brake);
 		
-	   	/*
+		Constants.hingeSecondsFromNeutral = SmartDashboard.getNumber("Hinge PID Ramp", Constants.hingeSecondsFromNeutral);
+		m_hinge.configClosedloopRamp(Constants.hingeSecondsFromNeutral, Constants.timeoutMs);
+
+		/*
 		 * lets grab the 360 degree position of the MagEncoder's absolute
 		 * position, and intitally set the relative sensor to match.
 		 */
@@ -49,6 +52,10 @@ public class HingeMotor extends Subsystem {
     }
     
     public void moveHinge(double setPoint) {
+    	m_hinge.set(ControlMode.Position, setPoint);
+    }
+    
+    public void raiseHinge(double setPoint) {
     	Constants.hingeMotorPidKp = SmartDashboard.getNumber("Hinge PID KP", Constants.hingeMotorPidKp);
     	Constants.hingeMotorPidKi = SmartDashboard.getNumber("Hinge PID KI", Constants.hingeMotorPidKi);
     	Constants.hingeMotorPidKd = SmartDashboard.getNumber("Hinge PID KD", Constants.hingeMotorPidKd);
@@ -59,15 +66,21 @@ public class HingeMotor extends Subsystem {
 	   	m_hinge.config_kD(0, Constants.hingeMotorPidKd, Constants.timeoutMs);	   	
 	   	m_hinge.configAllowableClosedloopError(0, (int)Constants.hingeMotorAllowableClosedLoopError, Constants.timeoutMs);	   	
 
-    	m_hinge.set(ControlMode.Position, setPoint);
+    	moveHinge(setPoint);
     }
     
-    public void raiseHinge(double dutyCycle) {
-    	m_hinge.set(ControlMode.PercentOutput, -dutyCycle);
-    }
-    
-    public void lowerHinge(double dutyCycle) {
-    	m_hinge.set(ControlMode.PercentOutput, dutyCycle);
+    public void lowerHinge(double setPoint) {
+    	Constants.lowerHingeMotorPidKp = SmartDashboard.getNumber("Hinge Lower PID KP", Constants.lowerHingeMotorPidKp);
+    	Constants.hingeMotorPidKi = SmartDashboard.getNumber("Hinge PID KI", Constants.hingeMotorPidKi);
+    	Constants.hingeMotorPidKd = SmartDashboard.getNumber("Hinge PID KD", Constants.hingeMotorPidKd);
+    	Constants.hingeMotorAllowableClosedLoopError = SmartDashboard.getNumber("Hinge PID Allowable Error", Constants.hingeMotorAllowableClosedLoopError);
+    	
+    	m_hinge.config_kP(0, Constants.lowerHingeMotorPidKp, Constants.timeoutMs);
+	   	m_hinge.config_kI(0, Constants.hingeMotorPidKi, Constants.timeoutMs);	  
+	   	m_hinge.config_kD(0, Constants.hingeMotorPidKd, Constants.timeoutMs);	   	
+	   	m_hinge.configAllowableClosedloopError(0, (int)Constants.hingeMotorAllowableClosedLoopError, Constants.timeoutMs);	   	
+
+    	moveHinge(setPoint);
     }
     
     public void stop() {
@@ -88,13 +101,6 @@ public class HingeMotor extends Subsystem {
     
     public String getState() {
     	return _hingeState.toString();
-    }
-    
-    public void calibrateAbsolutePosition() {
-    	m_hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Constants.timeoutMs);
-    	m_hinge.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
-    	m_hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.timeoutMs);
-    	m_hinge.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     }
 }
 

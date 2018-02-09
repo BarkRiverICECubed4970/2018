@@ -1,26 +1,27 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
+import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
+import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
+
+import utils.Constants;
 
 /**
  *
  */
-public class CalibrateEncoders extends Command {
+public class StopHinge extends Command {
 
-	boolean isComplete;
+	private boolean _cancelCommand = false;
 	
-	public CalibrateEncoders() {
+	public StopHinge() {
         requires(Robot._hingeMotor);
-        requires(Robot._armMotor);
     }
-	
+
     // Called just before this Command runs the first time
     protected void initialize() {
-    	isComplete = false;
-    	Robot._armMotor.calibrateAbsolutePosition();
-    	Robot._hingeMotor.calibrateAbsolutePosition();
-    	isComplete = true;
+   	    Robot._hingeMotor.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,11 +29,12 @@ public class CalibrateEncoders extends Command {
     }
 
     protected boolean isFinished() {
-    	return isComplete;
+    	return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot._hingeMotor.stop();
     }
 
     // Called when another command which requires one or more of the same

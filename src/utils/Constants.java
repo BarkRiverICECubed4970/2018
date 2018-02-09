@@ -35,22 +35,29 @@ public class Constants {
     public static double gyroPidTolerance = 4.0;
     public static double gyroPidMaxSetpoint = 8;
     
-    public static double hingeMotorPidKp = 0.005;
+    public static double hingeMotorPidKp = 0.5;
+    public static double lowerHingeMotorPidKp = 0.1;
     public static double hingeMotorPidKi = 0.0;
     public static double hingeMotorPidKd = 0.0;
-    public static double hingeMotorAllowableClosedLoopError = 100;
-    public static double raiseHingePidSetpoint = -2000;
-    public static double lowerHingePidSetpoint = 100.0;
+    public static double hingeMotorAllowableClosedLoopError = 10;
+    public static double raiseHingePidSetpoint = -1475;
+    public static double lowerHingePidSetpoint = 1825.0;
+    public static double hingeSecondsFromNeutral = 0.5;
 //    public static double raiseHingePidSetpoint = 0.3;
 //    public static double lowerHingePidSetpoint = 0.3;
-    
-    public static double armMotorPidKp = 0.001;
+
+    public static double intakeMotorPidKp = 0.5;
+    public static double intakeMotorPidKi = 0.0;
+    public static double intakeMotorPidKd = 0.0;
+    public static double intakeMotorAllowableClosedLoopError = 10;
+
+    public static double armMotorPidKp = 1.0;
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
-    public static double armMotorAllowableClosedLoopError = 5;
-    public static double intakePositionArmPidSetpoint = 0.0;
-    public static double switchPositionArmPidSetpoint = 100.0;
-    public static double scalePositionArmPidSetpoint = 200.0;
+    public static double armMotorAllowableClosedLoopError = 10;
+    public static double intakePositionArmPidSetpoint = -1500.0;
+    public static double switchPositionArmPidSetpoint = -1000.0;
+    public static double scalePositionArmPidSetpoint = -500.0;
     
     /* counts per revolution on output shaft * inches per revolution from tires
      * 
@@ -115,14 +122,20 @@ public class Constants {
     	/* Intake motor */
     	SmartDashboard.putNumber("Intake Cube Duty Cycle", intakeCubeDutyCycle);
     	SmartDashboard.putNumber("Output Cube Duty Cycle", outputCubeDutyCycle);   
+    	SmartDashboard.putNumber("Intake PID KP", intakeMotorPidKp);
+    	SmartDashboard.putNumber("Intake PID KI", intakeMotorPidKi);
+    	SmartDashboard.putNumber("Intake PID KD", intakeMotorPidKd);
+    	SmartDashboard.putNumber("Intake PID Allowable Error", intakeMotorAllowableClosedLoopError);
 		
 		/* Hinge motor */
     	SmartDashboard.putNumber("Hinge PID KP", hingeMotorPidKp);
+    	SmartDashboard.putNumber("Hinge Lower PID KP", lowerHingeMotorPidKp);
     	SmartDashboard.putNumber("Hinge PID KI", hingeMotorPidKi);
     	SmartDashboard.putNumber("Hinge PID KD", hingeMotorPidKd);
     	SmartDashboard.putNumber("Hinge PID Allowable Error", hingeMotorAllowableClosedLoopError);
     	SmartDashboard.putNumber("Raise Hinge PID Setpoint", raiseHingePidSetpoint);
-    	SmartDashboard.putNumber("Lower Hinge PID Setpoint", lowerHingePidSetpoint);   
+    	SmartDashboard.putNumber("Lower Hinge PID Setpoint", lowerHingePidSetpoint);  
+    	SmartDashboard.putNumber("Hinge PID Ramp", hingeSecondsFromNeutral);
 
     	/* Climbing */
     	SmartDashboard.putNumber("Extend Tape Duty Cycle", extendTapeDutyCycle);   
@@ -169,6 +182,11 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge Closed Loop Error", Robot._hingeMotor.getClosedLoopError());
     	SmartDashboard.putNumber("Hinge Motor Output Voltage", Robot._hingeMotor.getMotorOutputVoltage());
     	SmartDashboard.putString("Hinge State", Robot._hingeMotor.getState());
+    	
+    	SmartDashboard.putNumber("Intake Encoder Count", Robot._intakeMotor.getEncoderCount());
+    	SmartDashboard.putNumber("Intake Closed Loop Error", Robot._intakeMotor.getClosedLoopError());
+    	SmartDashboard.putNumber("Intake Motor Output Voltage", Robot._intakeMotor.getMotorOutputVoltage());
+
     	
 	}
 }

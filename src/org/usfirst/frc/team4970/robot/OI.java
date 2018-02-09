@@ -96,6 +96,7 @@ public class OI {
     	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
     	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
     	SmartDashboard.putData("Lower Hinge", new LowerHinge());
+    	SmartDashboard.putData("Stop Hinge", new StopHinge());
     	SmartDashboard.putData("Arm to Scale", new ArmToScaleGroup());
     	SmartDashboard.putData("Arm to Switch", new ArmToSwitchGroup());
     	SmartDashboard.putData("Arm to Intake", new ArmToIntakeGroup());
@@ -106,7 +107,6 @@ public class OI {
     	SmartDashboard.putData("Output Cube", new CubeOutput());
     	SmartDashboard.putData("Extend Tape", new ExtendTape());
     	SmartDashboard.putData("Reel Tape", new ReelTape());
-		SmartDashboard.putData("Calibrate Absolute Position Encoders", new CalibrateEncoders());		
 
     }
 }

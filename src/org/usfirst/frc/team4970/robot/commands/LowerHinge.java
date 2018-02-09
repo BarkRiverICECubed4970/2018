@@ -34,7 +34,7 @@ public class LowerHinge extends Command {
    			 * command is interrupted before it can finish */
    			HingeMotor._hingeState = HingeMotor.HingeState.HINGE_DOWN;
 
-   	    	Robot._hingeMotor.moveHinge(Constants.lowerHingePidSetpoint);
+   	    	Robot._hingeMotor.lowerHinge(Constants.lowerHingePidSetpoint);
  //  		} else {
   //  		_cancelCommand = true;
    //		}
@@ -55,7 +55,7 @@ public class LowerHinge extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot._hingeMotor.stop();
+//    	Robot._hingeMotor.stop();
     }
 
     // Called when another command which requires one or more of the same
