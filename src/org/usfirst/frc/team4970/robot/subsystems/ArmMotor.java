@@ -21,7 +21,7 @@ public class ArmMotor extends Subsystem {
 	WPI_TalonSRX m_arm = new WPI_TalonSRX(Constants.armMotorCanAddress);
 
 	public ArmMotor() {
-		m_arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Constants.timeoutMs);
+		m_arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.timeoutMs);
 
 //		m_arm.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
 		
@@ -33,6 +33,20 @@ public class ArmMotor extends Subsystem {
 	   	m_arm.setSensorPhase(true);
 	   	
 	   	m_arm.setNeutralMode(NeutralMode.Brake);
+	   	
+	   	/*
+		 * lets grab the 360 degree position of the MagEncoder's absolute
+		 * position, and intitally set the relative sensor to match.
+		 */
+		int absolutePosition = m_arm.getSensorCollection().getPulseWidthPosition();
+		/* mask out overflows, keep bottom 12 bits */
+		absolutePosition &= 0xFFF;
+		
+		/* sensor phase inverted */
+		absolutePosition *= -1;
+
+		/* set the quadrature (relative) sensor to match absolute */
+		m_arm.setSelectedSensorPosition(absolutePosition, 0, Constants.timeoutMs);
 	}
 	
     public void initDefaultCommand() {
@@ -41,13 +55,13 @@ public class ArmMotor extends Subsystem {
     public void moveArm(double setpoint) {
     	
     	Constants.armMotorPidKp = SmartDashboard.getNumber("Arm PID KP", Constants.armMotorPidKp);
-    	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KP", Constants.armMotorPidKi);
-    	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KP", Constants.armMotorPidKd);
+    	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
+    	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
     	Constants.armMotorAllowableClosedLoopError = SmartDashboard.getNumber("Arm PID Allowable Error", Constants.armMotorAllowableClosedLoopError);
 
-	   	m_arm.config_kP(0, Constants.hingeMotorPidKp, Constants.timeoutMs);
-	   	m_arm.config_kI(0, Constants.hingeMotorPidKi, Constants.timeoutMs);
-	   	m_arm.config_kD(0, Constants.hingeMotorPidKd, Constants.timeoutMs);
+	   	m_arm.config_kP(0, Constants.armMotorPidKp, Constants.timeoutMs);
+	   	m_arm.config_kI(0, Constants.armMotorPidKi, Constants.timeoutMs);
+	   	m_arm.config_kD(0, Constants.armMotorPidKd, Constants.timeoutMs);
 	   	
 	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
@@ -74,6 +88,10 @@ public class ArmMotor extends Subsystem {
     	return m_arm.getClosedLoopError(0);
     }
 
+    public double getMotorOutputVoltage() {
+    	return m_arm.getMotorOutputVoltage();
+    }
+    
     public String getState() {
     	return _armState.toString();
     }

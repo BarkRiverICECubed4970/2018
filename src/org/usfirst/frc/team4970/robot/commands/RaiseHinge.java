@@ -20,7 +20,7 @@ public class RaiseHinge extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Constants.raiseHingePidSetpoint = SmartDashboard.getNumber("Raise Hinge PID Set Point", Constants.raiseHingePidSetpoint);
+    	Constants.raiseHingePidSetpoint = SmartDashboard.getNumber("Raise Hinge PID Setpoint", Constants.raiseHingePidSetpoint);
     	Robot._hingeMotor.moveHinge(Constants.raiseHingePidSetpoint);
     }
 

@@ -28,16 +28,16 @@ public class LowerHinge extends Command {
     	/* do not lower hinge unless arm is at switch height, start height, or intake height */
 //    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
 //       			(ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT))
-       	if (true)
-   		{
+//       	if (true)
+//   		{
    			/* as soon as this command is invoked, consider the hinge down in case the
    			 * command is interrupted before it can finish */
    			HingeMotor._hingeState = HingeMotor.HingeState.HINGE_DOWN;
 
    	    	Robot._hingeMotor.moveHinge(Constants.lowerHingePidSetpoint);
-   		} else {
-    		_cancelCommand = true;
-   		}
+ //  		} else {
+  //  		_cancelCommand = true;
+   //		}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -47,8 +47,6 @@ public class LowerHinge extends Command {
     protected boolean isFinished() {
     	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
     	{
-    		/* don't consider the hinge up until command completes */
-    		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_UP;
     		return true;
     	} else {
     		return false;
@@ -57,6 +55,7 @@ public class LowerHinge extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot._hingeMotor.stop();
     }
 
     // Called when another command which requires one or more of the same

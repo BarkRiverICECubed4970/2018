@@ -21,14 +21,28 @@ public class HingeMotor extends Subsystem {
 	public WPI_TalonSRX m_hinge = new WPI_TalonSRX(Constants.hingeMotorCanAddress);
 	
 	public HingeMotor() {
-	   	m_hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Constants.timeoutMs);
+	   	m_hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.timeoutMs);
 	   	
 	   	m_hinge.configNominalOutputForward(0, Constants.timeoutMs);
 	   	m_hinge.configNominalOutputReverse(0, Constants.timeoutMs);
 	   	m_hinge.configPeakOutputForward(1.0, Constants.timeoutMs);
 	   	m_hinge.configPeakOutputReverse(-1.0, Constants.timeoutMs);
 	   	
+//	   	m_hinge.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+	   	
 		m_hinge.setNeutralMode(NeutralMode.Brake);
+		
+	   	/*
+		 * lets grab the 360 degree position of the MagEncoder's absolute
+		 * position, and intitally set the relative sensor to match.
+		 */
+		int absolutePosition = m_hinge.getSensorCollection().getPulseWidthPosition();
+		/* mask out overflows, keep bottom 12 bits */
+		absolutePosition &= 0xFFF;
+		
+		/* set the quadrature (relative) sensor to match absolute */
+		m_hinge.setSelectedSensorPosition(absolutePosition, 0, Constants.timeoutMs);
+
 	}
 	
     public void initDefaultCommand() {
@@ -36,8 +50,8 @@ public class HingeMotor extends Subsystem {
     
     public void moveHinge(double setPoint) {
     	Constants.hingeMotorPidKp = SmartDashboard.getNumber("Hinge PID KP", Constants.hingeMotorPidKp);
-    	Constants.hingeMotorPidKi = SmartDashboard.getNumber("Hinge PID KP", Constants.hingeMotorPidKi);
-    	Constants.hingeMotorPidKd = SmartDashboard.getNumber("Hinge PID KP", Constants.hingeMotorPidKd);
+    	Constants.hingeMotorPidKi = SmartDashboard.getNumber("Hinge PID KI", Constants.hingeMotorPidKi);
+    	Constants.hingeMotorPidKd = SmartDashboard.getNumber("Hinge PID KD", Constants.hingeMotorPidKd);
     	Constants.hingeMotorAllowableClosedLoopError = SmartDashboard.getNumber("Hinge PID Allowable Error", Constants.hingeMotorAllowableClosedLoopError);
     	
     	m_hinge.config_kP(0, Constants.hingeMotorPidKp, Constants.timeoutMs);

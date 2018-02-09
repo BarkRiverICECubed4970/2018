@@ -110,7 +110,7 @@ public class Constants {
     	SmartDashboard.putNumber("Arm PID Allowable Error", armMotorAllowableClosedLoopError);
     	SmartDashboard.putNumber("Arm Intake PID Setpoint", intakePositionArmPidSetpoint);
     	SmartDashboard.putNumber("Arm Switch PID Setpoint", switchPositionArmPidSetpoint);
-    	SmartDashboard.putNumber("Arm Scale PID Set Point", scalePositionArmPidSetpoint);   
+    	SmartDashboard.putNumber("Arm Scale PID Setpoint", scalePositionArmPidSetpoint);   
     	
     	/* Intake motor */
     	SmartDashboard.putNumber("Intake Cube Duty Cycle", intakeCubeDutyCycle);
@@ -121,8 +121,8 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge PID KI", hingeMotorPidKi);
     	SmartDashboard.putNumber("Hinge PID KD", hingeMotorPidKd);
     	SmartDashboard.putNumber("Hinge PID Allowable Error", hingeMotorAllowableClosedLoopError);
-    	SmartDashboard.putNumber("Raise Hinge PID Set Point", raiseHingePidSetpoint);
-    	SmartDashboard.putNumber("Lower Hinge PID Set Point", lowerHingePidSetpoint);   
+    	SmartDashboard.putNumber("Raise Hinge PID Setpoint", raiseHingePidSetpoint);
+    	SmartDashboard.putNumber("Lower Hinge PID Setpoint", lowerHingePidSetpoint);   
 
     	/* Climbing */
     	SmartDashboard.putNumber("Extend Tape Duty Cycle", extendTapeDutyCycle);   
@@ -161,6 +161,7 @@ public class Constants {
     	/* Arm motor */
     	SmartDashboard.putNumber("Arm Encoder Count", Robot._armMotor.getEncoderCount());
     	SmartDashboard.putNumber("Arm Closed Loop Error", Robot._armMotor.getClosedLoopError());
+    	SmartDashboard.putNumber("Arm Motor Output Voltage", Robot._armMotor.getMotorOutputVoltage());
     	SmartDashboard.putString("Arm State", Robot._armMotor.getState());
     	
 		/* Hinge motor */
@@ -168,7 +169,6 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge Closed Loop Error", Robot._hingeMotor.getClosedLoopError());
     	SmartDashboard.putNumber("Hinge Motor Output Voltage", Robot._hingeMotor.getMotorOutputVoltage());
     	SmartDashboard.putString("Hinge State", Robot._hingeMotor.getState());
-    	
     	
 	}
 }
