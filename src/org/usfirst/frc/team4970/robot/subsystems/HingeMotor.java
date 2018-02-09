@@ -89,5 +89,12 @@ public class HingeMotor extends Subsystem {
     public String getState() {
     	return _hingeState.toString();
     }
+    
+    public void calibrateAbsolutePosition() {
+    	m_hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Constants.timeoutMs);
+    	m_hinge.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+    	m_hinge.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.timeoutMs);
+    	m_hinge.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+    }
 }
 

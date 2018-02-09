@@ -106,5 +106,7 @@ public class OI {
     	SmartDashboard.putData("Output Cube", new CubeOutput());
     	SmartDashboard.putData("Extend Tape", new ExtendTape());
     	SmartDashboard.putData("Reel Tape", new ReelTape());
+		SmartDashboard.putData("Calibrate Absolute Position Encoders", new CalibrateEncoders());		
+
     }
 }

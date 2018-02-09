@@ -95,5 +95,12 @@ public class ArmMotor extends Subsystem {
     public String getState() {
     	return _armState.toString();
     }
+    
+    public void calibrateAbsolutePosition() {
+    	m_arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, Constants.timeoutMs);
+		m_arm.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+		m_arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, Constants.timeoutMs);
+		m_arm.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+    }
 }
 
