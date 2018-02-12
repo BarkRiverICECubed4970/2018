@@ -20,11 +20,28 @@ public class Constants {
 	public static final int gyroControllerCanAddress = 12;
 	
     public static double turnDegrees = -60.0;
-    public static double driveInches = 48;
+    public static double switchDegrees = 90.0;
+    public static double driveInchesForTest = 60.0;
+    public static double autoDriveStraightAutoInches = 72.0;
+    public static double autoDriveToCloseSwitchInches = 36.0;
+    public static double autoDrivePastSwitchInches = 36.0;
+    public static double autoDriveAcrossSwitchInches = 36.0;
+    public static double scaleInches = 100.0;
     public static double straightDriveDutyCycle = 0.4;
     public static double armDownMaxDriveDutyCycle = 0.6;
     public static double armUpMaxDriveDutyCycle = 0.4;
+    /* counts per revolution on output shaft * inches per revolution from tires
+     * 
+     *  6 inch diameter wheels. 
+     *  inches/rotation = 6 * pi = 18.849555
+     *  counts/inch = counts/rotation / inches/rotation
+     *  
+     *  */
+    public static double driveEncoderCountsPerInch = 53.05;
     
+    
+    public static double turnDegreesTimeout = 3.0;
+
     public static double gyroPidKp = 0.05;
     public static double gyroPidKi = 0.0;
     public static double gyroPidKd = 0.0;
@@ -50,7 +67,9 @@ public class Constants {
     public static double intakeMotorPidKi = 0.0;
     public static double intakeMotorPidKd = 0.0;
     public static double intakeMotorAllowableClosedLoopError = 10;
-
+    public static double cubeOutputAutoTimeout = 1.0;
+    
+    
     public static double armMotorPidKp = 1.0;
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
@@ -59,17 +78,6 @@ public class Constants {
     public static double switchPositionArmPidSetpoint = -1000.0;
     public static double scalePositionArmPidSetpoint = -500.0;
     
-    /* counts per revolution on output shaft * inches per revolution from tires
-     * 
-     *  6 inch diameter wheels. 
-     *  inches/rotation = 6 * pi = 18.849555
-     *  counts/inch = counts/rotation / inches/rotation
-     *  
-     *  */
-    public static double driveEncoderCountsPerInch = 53.05;
-
-    public static double turnDegreesTimeout = 3.0;
-
     public static double intakeCubeDutyCycle = 1.0;
     public static double outputCubeDutyCycle = 1.0;
     public static double extendTapeDutyCycle = 0.3;
@@ -93,7 +101,12 @@ public class Constants {
 	private void postConstants() {
 		/* drive train */
 		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
-		SmartDashboard.putNumber("Inches to drive", driveInches);
+		SmartDashboard.putNumber("Inches to drive for test", driveInchesForTest);
+		SmartDashboard.putNumber("Autonomous drive inches", autoDriveStraightAutoInches);
+		SmartDashboard.putNumber("Autonomous drive to close switch inches", autoDriveToCloseSwitchInches);
+		SmartDashboard.putNumber("Autonomous drive past switch inches", autoDrivePastSwitchInches);
+		SmartDashboard.putNumber("Autonomous drive across switch inches", autoDriveAcrossSwitchInches);
+
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive duty cycle", straightDriveDutyCycle);
 		SmartDashboard.putNumber("Arm Up Max Drive DutyCycle",armUpMaxDriveDutyCycle);
@@ -126,6 +139,7 @@ public class Constants {
     	SmartDashboard.putNumber("Intake PID KI", intakeMotorPidKi);
     	SmartDashboard.putNumber("Intake PID KD", intakeMotorPidKd);
     	SmartDashboard.putNumber("Intake PID Allowable Error", intakeMotorAllowableClosedLoopError);
+    	SmartDashboard.putNumber("Cube Output Auto Timeout", cubeOutputAutoTimeout);
 		
 		/* Hinge motor */
     	SmartDashboard.putNumber("Hinge PID KP", hingeMotorPidKp);

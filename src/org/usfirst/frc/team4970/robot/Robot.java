@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team4970.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -15,6 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
+import org.usfirst.frc.team4970.robot.commands.DriveStraight;
+import org.usfirst.frc.team4970.robot.commands.EitherSwitch;
+import org.usfirst.frc.team4970.robot.commands.TestAutoCommand;
 import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
 import org.usfirst.frc.team4970.robot.subsystems.ClimbMotor;
 import utils.Constants;
@@ -36,6 +40,8 @@ public class Robot extends TimedRobot {
 
 	public static OI m_oi;
 
+	public static String gameData;
+	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -52,8 +58,27 @@ public class Robot extends TimedRobot {
 
 		_calibrationManager = new Constants();
 		
-//		m_chooser.addDefault("Default Auto", new DriveWithJoystick());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		m_chooser.addDefault("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches));
+		m_chooser.addObject("Left Position: Switch Either Side", new EitherSwitch('L'));
+		
+		m_chooser.addObject("Left Position: Scale Either Side", new TestAutoCommand());
+		m_chooser.addObject("Left Position: Switch, Scale, Forward", new TestAutoCommand());
+		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new TestAutoCommand());
+		m_chooser.addObject("Left Position: Switch, Scale, Opposite Switch", new TestAutoCommand());
+
+		m_chooser.addObject("Right Position: Switch Either Side", new EitherSwitch('R'));
+
+		m_chooser.addObject("Right Position: Scale Either Side", new TestAutoCommand());
+		m_chooser.addObject("Right Position: Switch, Scale, Forward", new TestAutoCommand());
+		m_chooser.addObject("Right Position: Switch, Scale, Opposite Scale", new TestAutoCommand());
+		m_chooser.addObject("Right Position: Switch, Scale, Opposite Switch", new TestAutoCommand());
+
+		m_chooser.addObject("Center Position: Switch", new TestAutoCommand());
+
+		m_chooser.addObject("Display Position and Game Data", new TestAutoCommand());
+        m_chooser.addObject("Do Nothing", null);
+        // instantiate the command used for the autonomous period
+
 		SmartDashboard.putData("Auto mode", m_chooser);	
 		
 	}
@@ -94,6 +119,8 @@ public class Robot extends TimedRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
+		
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {

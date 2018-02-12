@@ -92,7 +92,7 @@ public class OI {
       //  joystickButton1.whileHeld(new ReelTape());
         
     	// SmartDashboard Buttons
-    	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive", Constants.driveInches)));
+    	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest)));
     	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
     	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
     	SmartDashboard.putData("Lower Hinge", new LowerHinge());
@@ -107,6 +107,8 @@ public class OI {
     	SmartDashboard.putData("Output Cube", new CubeOutput());
     	SmartDashboard.putData("Extend Tape", new ExtendTape());
     	SmartDashboard.putData("Reel Tape", new ReelTape());
+    	SmartDashboard.putData("Get Game Data", new TestAutoCommand());
 
+    	
     }
 }
