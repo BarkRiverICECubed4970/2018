@@ -31,7 +31,7 @@ public class ArmToIntakePosition extends Command {
     	} else {
         	/* indicate that the arm is about to move, so the hinge cannot */
         	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
-        	Robot._armMotor.moveArm(Constants.intakePositionArmPidSetpoint);
+        	Robot._armMotor.lowerArm(Constants.intakePositionArmPidSetpoint);
     	}
     }
 

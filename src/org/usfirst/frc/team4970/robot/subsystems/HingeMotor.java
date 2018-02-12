@@ -70,12 +70,12 @@ public class HingeMotor extends Subsystem {
     }
     
     public void lowerHinge(double setPoint) {
-    	Constants.lowerHingeMotorPidKp = SmartDashboard.getNumber("Hinge Lower PID KP", Constants.lowerHingeMotorPidKp);
+    	Constants.hingeMotorLowerPidKp = SmartDashboard.getNumber("Hinge Lower PID KP", Constants.hingeMotorLowerPidKp);
     	Constants.hingeMotorPidKi = SmartDashboard.getNumber("Hinge PID KI", Constants.hingeMotorPidKi);
     	Constants.hingeMotorPidKd = SmartDashboard.getNumber("Hinge PID KD", Constants.hingeMotorPidKd);
     	Constants.hingeMotorAllowableClosedLoopError = SmartDashboard.getNumber("Hinge PID Allowable Error", Constants.hingeMotorAllowableClosedLoopError);
     	
-    	m_hinge.config_kP(0, Constants.lowerHingeMotorPidKp, Constants.timeoutMs);
+    	m_hinge.config_kP(0, Constants.hingeMotorLowerPidKp, Constants.timeoutMs);
 	   	m_hinge.config_kI(0, Constants.hingeMotorPidKi, Constants.timeoutMs);	  
 	   	m_hinge.config_kD(0, Constants.hingeMotorPidKd, Constants.timeoutMs);	   	
 	   	m_hinge.configAllowableClosedloopError(0, (int)Constants.hingeMotorAllowableClosedLoopError, Constants.timeoutMs);	   	

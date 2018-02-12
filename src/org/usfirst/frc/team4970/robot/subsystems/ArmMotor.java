@@ -54,7 +54,10 @@ public class ArmMotor extends Subsystem {
     }
     
     public void moveArm(double setpoint) {
-    	
+    	m_arm.set(ControlMode.Position, setpoint);
+    }
+    
+    public void raiseArm(double setPoint) {    	
     	Constants.armMotorPidKp = SmartDashboard.getNumber("Arm PID KP", Constants.armMotorPidKp);
     	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
     	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
@@ -66,15 +69,22 @@ public class ArmMotor extends Subsystem {
 	   	
 	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
-    	m_arm.set(ControlMode.Position, setpoint);
+	   	moveArm(setPoint);
     }
     
-    public void raiseArm(double dutyCycle) {
-    	m_arm.set(ControlMode.PercentOutput, -dutyCycle);
-    }
-    
-    public void lowerArm(double dutyCycle) {
-    	m_arm.set(ControlMode.PercentOutput, dutyCycle);
+    public void lowerArm(double setPoint) {
+    	Constants.armMotorLowerPidKp = SmartDashboard.getNumber("Arm Lower PID KP", Constants.armMotorLowerPidKp);
+    	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
+    	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
+    	Constants.armMotorAllowableClosedLoopError = SmartDashboard.getNumber("Arm PID Allowable Error", Constants.armMotorAllowableClosedLoopError);
+
+	   	m_arm.config_kP(0, Constants.armMotorLowerPidKp, Constants.timeoutMs);
+	   	m_arm.config_kI(0, Constants.armMotorPidKi, Constants.timeoutMs);
+	   	m_arm.config_kD(0, Constants.armMotorPidKd, Constants.timeoutMs);
+	   	
+	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
+
+	   	moveArm(setPoint);
     }
     
     public void stop() {

@@ -53,7 +53,7 @@ public class Constants {
     public static double gyroPidMaxSetpoint = 8;
     
     public static double hingeMotorPidKp = 0.5;
-    public static double lowerHingeMotorPidKp = 0.1;
+    public static double hingeMotorLowerPidKp = 0.1;
     public static double hingeMotorPidKi = 0.0;
     public static double hingeMotorPidKd = 0.0;
     public static double hingeMotorAllowableClosedLoopError = 10;
@@ -70,13 +70,14 @@ public class Constants {
     public static double cubeOutputAutoTimeout = 1.0;
     
     
-    public static double armMotorPidKp = 1.0;
+    public static double armMotorPidKp = 3.0;
+    public static double armMotorLowerPidKp = 1.0;
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
     public static double armMotorAllowableClosedLoopError = 10;
-    public static double intakePositionArmPidSetpoint = -1500.0;
-    public static double switchPositionArmPidSetpoint = -1000.0;
-    public static double scalePositionArmPidSetpoint = -500.0;
+    public static double intakePositionArmPidSetpoint = -2800.0;
+    public static double switchPositionArmPidSetpoint = -2200.0;
+    public static double scalePositionArmPidSetpoint = -1200.0;
     
     public static double intakeCubeDutyCycle = 1.0;
     public static double outputCubeDutyCycle = 1.0;
@@ -125,6 +126,7 @@ public class Constants {
 
     	/* Arm motor */
     	SmartDashboard.putNumber("Arm PID KP", armMotorPidKp);
+    	SmartDashboard.putNumber("Arm Lower PID KP", armMotorLowerPidKp);
     	SmartDashboard.putNumber("Arm PID KI", armMotorPidKi);
     	SmartDashboard.putNumber("Arm PID KD", armMotorPidKd);
     	SmartDashboard.putNumber("Arm PID Allowable Error", armMotorAllowableClosedLoopError);
@@ -143,7 +145,7 @@ public class Constants {
 		
 		/* Hinge motor */
     	SmartDashboard.putNumber("Hinge PID KP", hingeMotorPidKp);
-    	SmartDashboard.putNumber("Hinge Lower PID KP", lowerHingeMotorPidKp);
+    	SmartDashboard.putNumber("Hinge Lower PID KP", hingeMotorLowerPidKp);
     	SmartDashboard.putNumber("Hinge PID KI", hingeMotorPidKi);
     	SmartDashboard.putNumber("Hinge PID KD", hingeMotorPidKd);
     	SmartDashboard.putNumber("Hinge PID Allowable Error", hingeMotorAllowableClosedLoopError);

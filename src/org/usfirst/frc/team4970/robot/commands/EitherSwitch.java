@@ -24,24 +24,24 @@ public class EitherSwitch extends CommandGroup {
     	
     	addParallel(new ArmToSwitchGroup());
     	
-    	if (Robot.gameData.length() > 0)
-    	{
-	    	if (robotLocation == Robot.gameData.charAt(0))
-	    	{
+//    	if (Robot.gameData.length() > 0)
+//    	{
+//	    	if (robotLocation == Robot.gameData.charAt(0))
+//	    	{
 	    		/* switch is on our side... place the cube there */
-	    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to close switch inches", Constants.autoDriveToCloseSwitchInches)));
-	   			addSequential(new TurnDegrees(degreeMultiplier * Constants.switchDegrees));
-	    		addSequential(new CubeOutputTimed());	   			
-	    	} else {
+//	    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to close switch inches", Constants.autoDriveToCloseSwitchInches)));
+//	   			addSequential(new TurnDegrees(degreeMultiplier * Constants.switchDegrees));
+//	    		addSequential(new CubeOutputTimed());	   			
+//	    	} else {
 	    		/* switch is not on our side... need to drive around the other side */
-	    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches)));
-	   			addSequential(new TurnDegrees(degreeMultiplier * Constants.switchDegrees));
-	    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across switch inches", Constants.autoDriveAcrossSwitchInches)));
-	   			addSequential(new TurnDegrees(degreeMultiplier * Constants.switchDegrees));
-	    		addSequential(new CubeOutputTimed());	   				    		
-	    	}
-    	} else {
-    		addSequential(new DriveStraight(Constants.autoDriveStraightAutoInches));
-    	}
+//	    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches)));
+//	   			addSequential(new TurnDegrees(degreeMultiplier * Constants.switchDegrees));
+//	    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across switch inches", Constants.autoDriveAcrossSwitchInches)));
+//	   			addSequential(new TurnDegrees(degreeMultiplier * Constants.switchDegrees));
+//	    		addSequential(new CubeOutputTimed());	   				    		
+//	    	}
+ //   	} else {
+  //  		addSequential(new DriveStraight(Constants.autoDriveStraightAutoInches));
+   // 	}
     }
 }

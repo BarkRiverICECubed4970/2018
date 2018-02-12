@@ -29,9 +29,14 @@ public class ArmToSwitchPosition extends Command {
     	{
     		_cancelCommand = true;
     	} else {
+    		if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
+    		{
+        		Robot._armMotor.lowerArm(Constants.switchPositionArmPidSetpoint);
+    		} else {
+        		Robot._armMotor.raiseArm(Constants.switchPositionArmPidSetpoint);    			
+    		}
         	/* indicate that the arm is about to move, so the hinge cannot */
         	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
-        	Robot._armMotor.moveArm(Constants.switchPositionArmPidSetpoint);
     	}
     }
 
