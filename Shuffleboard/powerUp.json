@@ -282,7 +282,7 @@
               "_title": "SmartDashboard/Arm Intake PID Setpoint"
             }
           },
-          "6,3": {
+          "6,4": {
             "size": [
               2,
               1
@@ -375,7 +375,7 @@
               "_title": "SmartDashboard/Arm Lower PID KP"
             }
           },
-          "6,5": {
+          "0,6": {
             "size": [
               2,
               1
@@ -492,7 +492,7 @@
               "numTickMarks": 5.0
             }
           },
-          "0,0": {
+          "0,6": {
             "size": [
               3,
               1
@@ -503,7 +503,7 @@
               "_title": "SmartDashboard/Left Encoder Count"
             }
           },
-          "0,1": {
+          "10,6": {
             "size": [
               3,
               1
@@ -514,7 +514,7 @@
               "_title": "SmartDashboard/Right Encoder Count"
             }
           },
-          "0,2": {
+          "0,0": {
             "size": [
               2,
               1
@@ -525,7 +525,7 @@
               "_title": "SmartDashboard/Drive Straight"
             }
           },
-          "0,4": {
+          "2,0": {
             "size": [
               2,
               1
@@ -536,7 +536,7 @@
               "_title": "SmartDashboard/Turn Degrees"
             }
           },
-          "0,5": {
+          "0,4": {
             "size": [
               2,
               1
@@ -547,7 +547,7 @@
               "_title": "SmartDashboard/Degrees to turn"
             }
           },
-          "0,3": {
+          "0,2": {
             "size": [
               3,
               1
@@ -569,7 +569,7 @@
               "_title": "SmartDashboard/Pigeon fused heading"
             }
           },
-          "6,3": {
+          "6,4": {
             "size": [
               3,
               4
@@ -580,7 +580,7 @@
               "_title": "SmartDashboard/Gyro PID"
             }
           },
-          "3,3": {
+          "3,4": {
             "size": [
               3,
               3
@@ -668,7 +668,7 @@
               "blockIncrement": 0.0625
             }
           },
-          "4,3": {
+          "4,2": {
             "size": [
               2,
               1
