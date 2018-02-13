@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.Robot;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import utils.Constants;
 
 /**

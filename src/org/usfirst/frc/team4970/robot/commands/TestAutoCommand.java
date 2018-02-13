@@ -1,4 +1,5 @@
 package org.usfirst.frc.team4970.robot.commands;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,19 +17,7 @@ public class TestAutoCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if(Robot.gameData.length() > 0)
-        {
-          SmartDashboard.putString("Game Data", Robot.gameData);
-//		  if(Robot.gameData.charAt(0) == 'L')
-//		  {
-			//Put left auto code here
-//		  } else {
-			//Put right auto code here
-//		  }
-        }
-
-
-    	Constants.extendTapeDutyCycle = SmartDashboard.getNumber("Extend Tape Duty Cycle", Constants.extendTapeDutyCycle);
+		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage();
     }
 
     // Called repeatedly when this Command is scheduled to run

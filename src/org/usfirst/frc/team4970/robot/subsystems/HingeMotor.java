@@ -39,13 +39,19 @@ public class HingeMotor extends Subsystem {
 		 * lets grab the 360 degree position of the MagEncoder's absolute
 		 * position, and intitally set the relative sensor to match.
 		 */
-		int absolutePosition = m_hinge.getSensorCollection().getPulseWidthPosition();
+//		int absolutePosition = m_hinge.getSensorCollection().getPulseWidthPosition();
 		/* mask out overflows, keep bottom 12 bits */
-		absolutePosition &= 0xFFF;
+//		absolutePosition &= 0xFFF;
 		
 		/* set the quadrature (relative) sensor to match absolute */
-		m_hinge.setSelectedSensorPosition(absolutePosition, 0, Constants.timeoutMs);
+//		m_hinge.setSelectedSensorPosition(absolutePosition, 0, Constants.timeoutMs);
 
+		/* 
+		 * for now, forget about the absolute position, just set the relative position
+		 * to 0 upon startup. This means the robot must be in the same position each
+		 * time it's powered up!!
+		 */
+		m_hinge.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
 	}
 	
     public void initDefaultCommand() {

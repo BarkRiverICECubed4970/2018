@@ -34,20 +34,30 @@ public class ArmMotor extends Subsystem {
 	   	m_arm.setInverted(true);
 	   	
 	   	m_arm.setNeutralMode(NeutralMode.Brake);
-	   	
+
+		Constants.armSecondsFromNeutral = SmartDashboard.getNumber("Arm PID Ramp", Constants.armSecondsFromNeutral);
+		m_arm.configClosedloopRamp(Constants.armSecondsFromNeutral, Constants.timeoutMs);
+
 	   	/*
 		 * lets grab the 360 degree position of the MagEncoder's absolute
 		 * position, and intitally set the relative sensor to match.
 		 */
-		int absolutePosition = m_arm.getSensorCollection().getPulseWidthPosition();
+//		int absolutePosition = m_arm.getSensorCollection().getPulseWidthPosition();
 		/* mask out overflows, keep bottom 12 bits */
-		absolutePosition &= 0xFFF;
+//		absolutePosition &= 0xFFF;
 		
 		/* sensor phase inverted */
-		absolutePosition *= -1;
+//		absolutePosition *= -1;
 
 		/* set the quadrature (relative) sensor to match absolute */
-		m_arm.setSelectedSensorPosition(absolutePosition, 0, Constants.timeoutMs);
+//		m_arm.setSelectedSensorPosition(absolutePosition, 0, Constants.timeoutMs);
+
+		/* 
+		 * for now, forget about the absolute position, just set the relative position
+		 * to 0 upon startup. This means the robot must be in the same position each
+		 * time it's powered up!!
+		 */
+		m_arm.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
 	}
 	
     public void initDefaultCommand() {

@@ -1,20 +1,14 @@
 package org.usfirst.frc.team4970.robot.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
-import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
-
-import utils.Constants;
 
 /**
  *
  */
 public class StopHinge extends Command {
 
-	private boolean _cancelCommand = false;
-	
 	public StopHinge() {
         requires(Robot._hingeMotor);
     }

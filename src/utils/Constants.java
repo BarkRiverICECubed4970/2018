@@ -57,8 +57,9 @@ public class Constants {
     public static double hingeMotorPidKi = 0.0;
     public static double hingeMotorPidKd = 0.0;
     public static double hingeMotorAllowableClosedLoopError = 10;
-    public static double raiseHingePidSetpoint = -1475;
-    public static double lowerHingePidSetpoint = 1825.0;
+    public static double raiseHingePidSetpoint = 0.0;
+    public static double hingeToScalePidSetpoint = 1500.0;
+    public static double lowerHingePidSetpoint = 3300.0;
     public static double hingeSecondsFromNeutral = 0.5;
 //    public static double raiseHingePidSetpoint = 0.3;
 //    public static double lowerHingePidSetpoint = 0.3;
@@ -75,9 +76,10 @@ public class Constants {
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
     public static double armMotorAllowableClosedLoopError = 10;
-    public static double intakePositionArmPidSetpoint = -2800.0;
-    public static double switchPositionArmPidSetpoint = -2200.0;
-    public static double scalePositionArmPidSetpoint = -1200.0;
+    public static double armSecondsFromNeutral = 0.5;
+    public static double intakePositionArmPidSetpoint = 0.0;
+    public static double switchPositionArmPidSetpoint = 600.0;
+    public static double scalePositionArmPidSetpoint = 1000.0;
     
     public static double intakeCubeDutyCycle = 1.0;
     public static double outputCubeDutyCycle = 1.0;
@@ -133,6 +135,7 @@ public class Constants {
     	SmartDashboard.putNumber("Arm Intake PID Setpoint", intakePositionArmPidSetpoint);
     	SmartDashboard.putNumber("Arm Switch PID Setpoint", switchPositionArmPidSetpoint);
     	SmartDashboard.putNumber("Arm Scale PID Setpoint", scalePositionArmPidSetpoint);   
+    	SmartDashboard.putNumber("Arm PID Ramp", armSecondsFromNeutral);
     	
     	/* Intake motor */
     	SmartDashboard.putNumber("Intake Cube Duty Cycle", intakeCubeDutyCycle);
@@ -151,6 +154,7 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge PID Allowable Error", hingeMotorAllowableClosedLoopError);
     	SmartDashboard.putNumber("Raise Hinge PID Setpoint", raiseHingePidSetpoint);
     	SmartDashboard.putNumber("Lower Hinge PID Setpoint", lowerHingePidSetpoint);  
+    	SmartDashboard.putNumber("Hinge To Scale PID Setpoint", hingeToScalePidSetpoint);  
     	SmartDashboard.putNumber("Hinge PID Ramp", hingeSecondsFromNeutral);
 
     	/* Climbing */
@@ -173,6 +177,12 @@ public class Constants {
 	/* periodically publish outputs */
     private void updateSmartDashboard() {
 
+    	/* game data */
+    	if (Robot.gameData != null)
+    	{
+    		SmartDashboard.putString("Game Data", Robot.gameData);    		
+    	}
+    	
 		/* joystick */
 		SmartDashboard.putNumber("Joystick forward", Robot.m_oi.joystick.getRawAxis(1));
 		SmartDashboard.putNumber("Joystick rotate", Robot.m_oi.joystick.getRawAxis(0));

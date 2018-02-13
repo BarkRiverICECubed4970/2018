@@ -29,7 +29,8 @@ public class ArmToSwitchPosition extends Command {
     	{
     		_cancelCommand = true;
     	} else {
-    		if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
+    		// determine if we have to go up or down, then use the appropriate PID terms
+    		if (Robot._armMotor.getEncoderCount() > Constants.switchPositionArmPidSetpoint)
     		{
         		Robot._armMotor.lowerArm(Constants.switchPositionArmPidSetpoint);
     		} else {

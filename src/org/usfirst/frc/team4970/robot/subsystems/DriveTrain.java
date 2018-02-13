@@ -61,7 +61,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
 	public Gyro _gyro = new Gyro(m_gyro);
 	
-    public final PIDController _gyroPid = new PIDController(0.010, 0, 0, _gyro, this);
+    public final PIDController _gyroPid = new PIDController(Constants.gyroPidKp, Constants.gyroPidKi, Constants.gyroPidKd, _gyro, this);
 	
 	public DriveTrain()
 	{
@@ -77,6 +77,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	m_leftRear.setInverted(true);
     	m_rightRear.setInverted(true);
     	
+    	_gyroPid.setName("Gyro PID");
+    	_gyro.setName("Pigeon");
 	}
 	
 	public void initDefaultCommand() {

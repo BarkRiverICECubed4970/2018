@@ -1,0 +1,689 @@
+{
+  "dividerPosition": 0.2076215505913272,
+  "tabPane": [
+    {
+      "title": "Hinge",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 64.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "9,6": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge State",
+              "_title": "SmartDashboard/Hinge State"
+            }
+          },
+          "8,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge PID Ramp",
+              "_title": "SmartDashboard/Hinge PID Ramp"
+            }
+          },
+          "10,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge PID KP",
+              "_title": "SmartDashboard/Hinge PID KP"
+            }
+          },
+          "10,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge PID KI",
+              "_title": "SmartDashboard/Hinge PID KI"
+            }
+          },
+          "11,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge PID KD",
+              "_title": "SmartDashboard/Hinge PID KD"
+            }
+          },
+          "6,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge PID Allowable Error",
+              "_title": "SmartDashboard/Hinge PID Allowable Error"
+            }
+          },
+          "8,2": {
+            "size": [
+              2,
+              3
+            ],
+            "content": {
+              "_type": "Voltage View",
+              "_source0": "network_table:///SmartDashboard/Hinge Motor Output Voltage",
+              "_title": "SmartDashboard/Hinge Motor Output Voltage",
+              "min": -16.0,
+              "max": 16.0,
+              "center": 0.0,
+              "orientation": "VERTICAL",
+              "numTickMarks": 5.0
+            }
+          },
+          "6,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge Encoder Count",
+              "_title": "SmartDashboard/Hinge Encoder Count"
+            }
+          },
+          "6,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge Closed Loop Error",
+              "_title": "SmartDashboard/Hinge Closed Loop Error"
+            }
+          },
+          "2,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lower Hinge PID Setpoint",
+              "_title": "SmartDashboard/Lower Hinge PID Setpoint"
+            }
+          },
+          "2,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Raise Hinge PID Setpoint",
+              "_title": "SmartDashboard/Raise Hinge PID Setpoint"
+            }
+          },
+          "0,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Raise Hinge",
+              "_title": "SmartDashboard/Raise Hinge"
+            }
+          },
+          "6,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Stop Hinge",
+              "_title": "SmartDashboard/Stop Hinge"
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Lower Hinge",
+              "_title": "SmartDashboard/Lower Hinge"
+            }
+          },
+          "10,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge Lower PID KP",
+              "_title": "SmartDashboard/Hinge Lower PID KP"
+            }
+          },
+          "2,4": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge To Scale PID Setpoint",
+              "_title": "SmartDashboard/Hinge To Scale PID Setpoint"
+            }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Hinge to Scale",
+              "_title": "SmartDashboard/Hinge to Scale"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Arm",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 64.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Arm to Scale Position",
+              "_title": "SmartDashboard/Arm to Scale Position"
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Arm to Switch Position",
+              "_title": "SmartDashboard/Arm to Switch Position"
+            }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Arm to Intake Position",
+              "_title": "SmartDashboard/Arm to Intake Position"
+            }
+          },
+          "2,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Switch PID Setpoint",
+              "_title": "SmartDashboard/Arm Switch PID Setpoint"
+            }
+          },
+          "2,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Scale PID Setpoint",
+              "_title": "SmartDashboard/Arm Scale PID Setpoint"
+            }
+          },
+          "2,4": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Intake PID Setpoint",
+              "_title": "SmartDashboard/Arm Intake PID Setpoint"
+            }
+          },
+          "6,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Closed Loop Error",
+              "_title": "SmartDashboard/Arm Closed Loop Error"
+            }
+          },
+          "6,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Encoder Count",
+              "_title": "SmartDashboard/Arm Encoder Count"
+            }
+          },
+          "8,2": {
+            "size": [
+              2,
+              3
+            ],
+            "content": {
+              "_type": "Voltage View",
+              "_source0": "network_table:///SmartDashboard/Arm Motor Output Voltage",
+              "_title": "SmartDashboard/Arm Motor Output Voltage",
+              "min": -16.0,
+              "max": 16.0,
+              "center": 0.0,
+              "orientation": "VERTICAL",
+              "numTickMarks": 5.0
+            }
+          },
+          "11,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm PID KD",
+              "_title": "SmartDashboard/Arm PID KD"
+            }
+          },
+          "10,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm PID KI",
+              "_title": "SmartDashboard/Arm PID KI"
+            }
+          },
+          "10,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm PID KP",
+              "_title": "SmartDashboard/Arm PID KP"
+            }
+          },
+          "6,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm PID Allowable Error",
+              "_title": "SmartDashboard/Arm PID Allowable Error"
+            }
+          },
+          "10,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Lower PID KP",
+              "_title": "SmartDashboard/Arm Lower PID KP"
+            }
+          },
+          "6,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Stop Arm",
+              "_title": "SmartDashboard/Stop Arm"
+            }
+          },
+          "9,5": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm State",
+              "_title": "SmartDashboard/Arm State"
+            }
+          },
+          "8,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm PID Ramp",
+              "_title": "SmartDashboard/Arm PID Ramp"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Drive Train",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 64.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "10,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Max Input",
+              "_title": "SmartDashboard/Gyro PID Max Input"
+            }
+          },
+          "7,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Max Output",
+              "_title": "SmartDashboard/Gyro PID Max Output"
+            }
+          },
+          "10,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Max Setpoint",
+              "_title": "SmartDashboard/Gyro PID Max Setpoint"
+            }
+          },
+          "7,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Min Output",
+              "_title": "SmartDashboard/Gyro PID Min Output"
+            }
+          },
+          "10,4": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID Tolerance",
+              "_title": "SmartDashboard/Gyro PID Tolerance"
+            }
+          },
+          "4,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Voltage View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID output value",
+              "_title": "SmartDashboard/Gyro PID output value",
+              "min": -1.0,
+              "max": 1.0,
+              "center": 0.0,
+              "orientation": "HORIZONTAL",
+              "numTickMarks": 5.0
+            }
+          },
+          "0,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Encoder Count",
+              "_title": "SmartDashboard/Left Encoder Count"
+            }
+          },
+          "0,1": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Encoder Count",
+              "_title": "SmartDashboard/Right Encoder Count"
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive Straight",
+              "_title": "SmartDashboard/Drive Straight"
+            }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Turn Degrees",
+              "_title": "SmartDashboard/Turn Degrees"
+            }
+          },
+          "0,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Degrees to turn",
+              "_title": "SmartDashboard/Degrees to turn"
+            }
+          },
+          "0,3": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Inches to drive for test",
+              "_title": "SmartDashboard/Inches to drive for test"
+            }
+          },
+          "4,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Pigeon fused heading",
+              "_title": "SmartDashboard/Pigeon fused heading"
+            }
+          },
+          "6,3": {
+            "size": [
+              3,
+              4
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/Gyro PID",
+              "_title": "SmartDashboard/Gyro PID"
+            }
+          },
+          "3,3": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Gyro",
+              "_source0": "network_table:///LiveWindow/Ungrouped/Pigeon",
+              "_title": "LiveWindow/Ungrouped/Pigeon",
+              "majorTickSpace": 45.0,
+              "startAngle": 180.0,
+              "tickMarkRingVisible": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "General",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 64.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              4,
+              2
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auto mode",
+              "_title": "SmartDashboard/Auto mode"
+            }
+          },
+          "8,0": {
+            "size": [
+              4,
+              2
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Get Game Data",
+              "_title": "SmartDashboard/Get Game Data"
+            }
+          },
+          "8,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Game Data",
+              "_title": "/SmartDashboard/Game Data"
+            }
+          },
+          "0,2": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Gyro",
+              "_source0": "network_table:///LiveWindow/Ungrouped/Pigeon",
+              "_title": "LiveWindow/Ungrouped/Pigeon",
+              "majorTickSpace": 45.0,
+              "startAngle": 180.0,
+              "tickMarkRingVisible": true
+            }
+          },
+          "4,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Number Slider",
+              "_source0": "network_table:///SmartDashboard/Joystick rotate",
+              "_title": "SmartDashboard/Joystick rotate",
+              "min": -1.0,
+              "max": 1.0,
+              "blockIncrement": 0.0625
+            }
+          },
+          "4,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Number Slider",
+              "_source0": "network_table:///SmartDashboard/Joystick forward",
+              "_title": "SmartDashboard/Joystick forward",
+              "min": -1.0,
+              "max": 1.0,
+              "blockIncrement": 0.0625
+            }
+          }
+        }
+      }
+    }
+  ]
+}
