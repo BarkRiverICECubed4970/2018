@@ -52,7 +52,7 @@ public class IntakeMotor extends Subsystem {
     		intakeDc = maxDutyCycle;
     	}
     	
-    	intakeDc = 1.0;
+//    	intakeDc = 1.0;
     	m_intake1.set(ControlMode.PercentOutput, intakeDc);
     	m_intake2.set(intakeDc);
     }
@@ -65,9 +65,8 @@ public class IntakeMotor extends Subsystem {
     		outputDc = maxDutyCycle;
     	}
     	
-    	outputDc = 1.0;
-//    	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
-        if (true) 
+//    	outputDc = 1.0;
+    	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
     	{
     		m_intake1.set(ControlMode.PercentOutput, -1.0*outputDc);
     		m_intake2.set(-1.0*outputDc);
