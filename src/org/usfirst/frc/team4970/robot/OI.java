@@ -111,6 +111,7 @@ public class OI {
     	SmartDashboard.putData("Extend Tape", new ExtendTape());
     	SmartDashboard.putData("Reel Tape", new ReelTape());
     	SmartDashboard.putData("Get Game Data", new TestAutoCommand());
+    	SmartDashboard.putData("Reset Encoders", new ResetEncoders());
 
     	
     }

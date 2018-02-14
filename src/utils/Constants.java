@@ -62,6 +62,8 @@ public class Constants {
     public static double hingeToScalePidSetpoint = 1500.0;
     public static double lowerHingePidSetpoint = 3300.0;
     public static double hingeSecondsFromNeutral = 0.5;
+    public static double hingeMotorPeakVoltage = 0.7;
+
 //    public static double raiseHingePidSetpoint = 0.3;
 //    public static double lowerHingePidSetpoint = 0.3;
 
@@ -73,14 +75,16 @@ public class Constants {
     
     
     public static double armMotorPidKp = 3.0;
-    public static double armMotorLowerPidKp = 1.0;
+    public static double armMotorLowerPidKp = 0.3;
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
     public static double armMotorAllowableClosedLoopError = 10;
     public static double armSecondsFromNeutral = 0.5;
     public static double intakePositionArmPidSetpoint = 0.0;
-    public static double switchPositionArmPidSetpoint = 600.0;
-    public static double scalePositionArmPidSetpoint = 1000.0;
+    public static double switchPositionArmPidSetpoint = 500.0;
+    public static double scalePositionArmPidSetpoint = 1300.0;
+    public static double armMotorPeakRaiseVoltage = 0.7;
+    public static double armMotorPeakLowerVoltage = 0.1;
     
     public static double intakeCubeDutyCycle = 1.0;
     public static double outputCubeDutyCycle = 1.0;
@@ -138,6 +142,9 @@ public class Constants {
     	SmartDashboard.putNumber("Arm Switch PID Setpoint", switchPositionArmPidSetpoint);
     	SmartDashboard.putNumber("Arm Scale PID Setpoint", scalePositionArmPidSetpoint);   
     	SmartDashboard.putNumber("Arm PID Ramp", armSecondsFromNeutral);
+    	SmartDashboard.putNumber("Arm Raise Peak Voltage", armMotorPeakRaiseVoltage);
+    	SmartDashboard.putNumber("Arm Lower Peak Voltage", armMotorPeakLowerVoltage);
+    	
     	
     	/* Intake motor */
     	SmartDashboard.putNumber("Intake Cube Duty Cycle", intakeCubeDutyCycle);
@@ -158,6 +165,7 @@ public class Constants {
     	SmartDashboard.putNumber("Lower Hinge PID Setpoint", lowerHingePidSetpoint);  
     	SmartDashboard.putNumber("Hinge To Scale PID Setpoint", hingeToScalePidSetpoint);  
     	SmartDashboard.putNumber("Hinge PID Ramp", hingeSecondsFromNeutral);
+    	SmartDashboard.putNumber("Hinge Peak Voltage", hingeMotorPeakVoltage);
 
     	/* Climbing */
     	SmartDashboard.putNumber("Extend Tape Duty Cycle", extendTapeDutyCycle);   

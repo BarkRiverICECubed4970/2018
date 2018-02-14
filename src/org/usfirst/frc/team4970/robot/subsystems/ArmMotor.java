@@ -27,10 +27,10 @@ public class ArmMotor extends Subsystem {
 		
 	   	m_arm.configNominalOutputForward(0, Constants.timeoutMs);
 	   	m_arm.configNominalOutputReverse(0, Constants.timeoutMs);
-	   	m_arm.configPeakOutputForward(1.0, Constants.timeoutMs);
-	   	m_arm.configPeakOutputReverse(-1.0, Constants.timeoutMs);
+	   	m_arm.configPeakOutputForward(Constants.armMotorPeakRaiseVoltage, Constants.timeoutMs);
+	   	m_arm.configPeakOutputReverse(-Constants.armMotorPeakRaiseVoltage, Constants.timeoutMs);
 
-	   	m_arm.setSensorPhase(true);
+	   	m_arm.setSensorPhase(false);
 	   	m_arm.setInverted(true);
 	   	
 	   	m_arm.setNeutralMode(NeutralMode.Brake);
@@ -76,7 +76,11 @@ public class ArmMotor extends Subsystem {
 	   	m_arm.config_kP(0, Constants.armMotorPidKp, Constants.timeoutMs);
 	   	m_arm.config_kI(0, Constants.armMotorPidKi, Constants.timeoutMs);
 	   	m_arm.config_kD(0, Constants.armMotorPidKd, Constants.timeoutMs);
-	   	
+
+	   	Constants.armMotorPeakRaiseVoltage = SmartDashboard.getNumber("Arm Raise Peak Voltage", Constants.armMotorPeakRaiseVoltage);
+	   	m_arm.configPeakOutputForward(Constants.armMotorPeakRaiseVoltage, Constants.timeoutMs);
+	   	m_arm.configPeakOutputReverse(-Constants.armMotorPeakRaiseVoltage, Constants.timeoutMs);
+
 	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
 	   	moveArm(setPoint);
@@ -91,7 +95,11 @@ public class ArmMotor extends Subsystem {
 	   	m_arm.config_kP(0, Constants.armMotorLowerPidKp, Constants.timeoutMs);
 	   	m_arm.config_kI(0, Constants.armMotorPidKi, Constants.timeoutMs);
 	   	m_arm.config_kD(0, Constants.armMotorPidKd, Constants.timeoutMs);
-	   	
+
+	   	Constants.armMotorPeakLowerVoltage = SmartDashboard.getNumber("Arm Lower Peak Voltage", Constants.armMotorPeakLowerVoltage);
+	   	m_arm.configPeakOutputForward(Constants.armMotorPeakLowerVoltage, Constants.timeoutMs);
+	   	m_arm.configPeakOutputReverse(-Constants.armMotorPeakLowerVoltage, Constants.timeoutMs);
+
 	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
 	   	moveArm(setPoint);
@@ -115,6 +123,10 @@ public class ArmMotor extends Subsystem {
     
     public String getState() {
     	return _armState.toString();
+    }
+    
+    public void resetEncoder() {
+    	m_arm.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     }
 }
 

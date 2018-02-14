@@ -202,6 +202,17 @@
               "_source0": "network_table:///SmartDashboard/Hinge to Scale",
               "_title": "SmartDashboard/Hinge to Scale"
             }
+          },
+          "12,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge Peak Voltage",
+              "_title": "/SmartDashboard/Hinge Peak Voltage"
+            }
           }
         }
       }
@@ -406,6 +417,39 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Arm PID Ramp",
               "_title": "SmartDashboard/Arm PID Ramp"
+            }
+          },
+          "8,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Motor Output Voltage",
+              "_title": "/SmartDashboard/Arm Motor Output Voltage"
+            }
+          },
+          "12,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Raise Peak Voltage",
+              "_title": "/SmartDashboard/Arm Raise Peak Voltage"
+            }
+          },
+          "12,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Lower Peak Voltage",
+              "_title": "/SmartDashboard/Arm Lower Peak Voltage"
             }
           }
         }
@@ -680,6 +724,17 @@
               "min": -1.0,
               "max": 1.0,
               "blockIncrement": 0.0625
+            }
+          },
+          "8,4": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Reset Encoders",
+              "_title": "/SmartDashboard/Reset Encoders"
             }
           }
         }

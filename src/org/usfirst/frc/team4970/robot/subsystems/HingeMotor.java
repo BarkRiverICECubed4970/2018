@@ -72,6 +72,10 @@ public class HingeMotor extends Subsystem {
 	   	m_hinge.config_kD(0, Constants.hingeMotorPidKd, Constants.timeoutMs);	   	
 	   	m_hinge.configAllowableClosedloopError(0, (int)Constants.hingeMotorAllowableClosedLoopError, Constants.timeoutMs);	   	
 
+	   	Constants.hingeMotorPeakVoltage = SmartDashboard.getNumber("Hinge Peak Voltage", Constants.hingeMotorPeakVoltage);
+	   	m_hinge.configPeakOutputForward(Constants.hingeMotorPeakVoltage, Constants.timeoutMs);
+	   	m_hinge.configPeakOutputReverse(-Constants.hingeMotorPeakVoltage, Constants.timeoutMs);
+
     	moveHinge(setPoint);
     }
     
@@ -85,6 +89,10 @@ public class HingeMotor extends Subsystem {
 	   	m_hinge.config_kI(0, Constants.hingeMotorPidKi, Constants.timeoutMs);	  
 	   	m_hinge.config_kD(0, Constants.hingeMotorPidKd, Constants.timeoutMs);	   	
 	   	m_hinge.configAllowableClosedloopError(0, (int)Constants.hingeMotorAllowableClosedLoopError, Constants.timeoutMs);	   	
+
+	   	Constants.hingeMotorPeakVoltage = SmartDashboard.getNumber("Hinge Peak Voltage", Constants.hingeMotorPeakVoltage);
+	   	m_hinge.configPeakOutputForward(Constants.hingeMotorPeakVoltage, Constants.timeoutMs);
+	   	m_hinge.configPeakOutputReverse(-Constants.hingeMotorPeakVoltage, Constants.timeoutMs);
 
     	moveHinge(setPoint);
     }
@@ -107,6 +115,10 @@ public class HingeMotor extends Subsystem {
     
     public String getState() {
     	return _hingeState.toString();
+    }
+    
+    public void resetEncoder() {
+    	m_hinge.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     }
 }
 
