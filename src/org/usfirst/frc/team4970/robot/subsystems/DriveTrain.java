@@ -33,14 +33,17 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
 	public enum DriveTrainControl
 	{
-		STOP, JOYSTICK, DRIVE_STRAIGHT, TURN_DEGREES
+		STOP, JOYSTICK, DRIVE_STRAIGHT, DRIVE_STRAIGHT_REVERSE, TURN_DEGREES
 	};
 	
 	private DriveTrainControl _driveTrainControl = DriveTrainControl.STOP;
     private static double PID_rotateValue;
     private static double forward;
     private static double rotate;
+    /* used for ramp up in autonomous to prevent lurching */
+    private static double prevForward;
     private static double dutyCycleLimit;
+    private static boolean squaredInputs = true;
     
     private double gyroAngle;
     private double potentialError;
@@ -79,6 +82,9 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	
     	_gyroPid.setName("Gyro PID");
     	_gyro.setName("Pigeon");
+    	
+    	// just in case
+    	prevForward = 0;
 	}
 	
 	public void initDefaultCommand() {
@@ -93,49 +99,67 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	switch (_driveTrainControl) {
     	
 	    	case JOYSTICK:
+	    		squaredInputs = true;
     			forward = Robot.m_oi.joystick.getRawAxis(1);
 	    		rotate = -Robot.m_oi.joystick.getRawAxis(0);
+	    		prevForward = 0;
 	    		break;
 
 	    	case TURN_DEGREES:
+	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = PID_rotateValue;	    		
+	    		prevForward = 0;
 	    		break;
 	    		
 	    	case DRIVE_STRAIGHT:
-	    		forward = Constants.straightDriveDutyCycle;
+	    		squaredInputs = false;
+    			forward = Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
 	    		rotate = PID_rotateValue;
+	    		prevForward = forward;
 	    		break;
 	    		
+	    	case DRIVE_STRAIGHT_REVERSE:
+	    		squaredInputs = false;
+    			forward = Math.max((prevForward - Constants.straightDriveRateLimit), -Constants.straightDriveDutyCycle);	    		
+	    		rotate = PID_rotateValue;
+	    		prevForward = forward;
+	    		break;
+	    			
 	    	case STOP:
+	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = 0.0;
+	    		prevForward = 0;
 	    		break;
 
 	    	default:
+	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = 0.0;
+	    		prevForward = 0;
 	    		break;
     	}
 
 		if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
 			(ArmMotor._armState == ArmMotor.ArmState.ARM_MOVING))	
 		{
-			dutyCycleLimit = SmartDashboard.getNumber("Arm Up Max Drive DutyCycle",1.0);
+			dutyCycleLimit = Constants.armUpMaxDriveDutyCycle;
 		} else {
-			dutyCycleLimit = SmartDashboard.getNumber("Arm Down Max Drive DutyCycle",1.0);			
+			dutyCycleLimit = Constants.armDownMaxDriveDutyCycle;			
 		}
 			
-		if (Math.abs(forward) > dutyCycleLimit)
-    	{
-    		forward = Math.copySign(dutyCycleLimit, forward);    	
-    	}
+//		if (Math.abs(forward) > dutyCycleLimit)
+//		{
+//			forward = Math.copySign(dutyCycleLimit, forward);    	
+//		}
 		
-		if (Math.abs(rotate) > dutyCycleLimit)
-    	{
-    		rotate = Math.copySign(dutyCycleLimit, rotate);    	
-    	}
- 
+//		if (Math.abs(rotate) > dutyCycleLimit)
+//		{
+//			rotate = Math.copySign(dutyCycleLimit, rotate);    	
+//		}
+		_robotDrive.setMaxOutput(dutyCycleLimit);
+
 		/* try this to potentially turn better with only high gear */
 //		if (_driveTrainControl == DriveTrainControl.Turn_Degrees)
 //		{
@@ -148,7 +172,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 //			}
 //		} else
 		{
-			_robotDrive.arcadeDrive(forward, rotate, false);
+			_robotDrive.arcadeDrive(forward, rotate, squaredInputs);
 		}
     }
     

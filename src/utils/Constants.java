@@ -30,6 +30,7 @@ public class Constants {
     public static double straightDriveDutyCycle = 0.4;
     public static double armDownMaxDriveDutyCycle = 0.6;
     public static double armUpMaxDriveDutyCycle = 0.4;
+    public static double straightDriveRateLimit = 0.01;
     /* counts per revolution on output shaft * inches per revolution from tires
      * 
      *  6 inch diameter wheels. 
@@ -112,6 +113,7 @@ public class Constants {
 
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive duty cycle", straightDriveDutyCycle);
+		SmartDashboard.putNumber("Straight drive rate limit", straightDriveRateLimit);
 		SmartDashboard.putNumber("Arm Up Max Drive DutyCycle",armUpMaxDriveDutyCycle);
 		SmartDashboard.putNumber("Arm Down Max Drive DutyCycle",armDownMaxDriveDutyCycle);
     	SmartDashboard.putNumber("Gyro PID KP", gyroPidKp);
@@ -213,6 +215,7 @@ public class Constants {
     	SmartDashboard.putNumber("Intake Closed Loop Error", Robot._intakeMotor.getClosedLoopError());
     	SmartDashboard.putNumber("Intake Motor Output Voltage", Robot._intakeMotor.getMotorOutputVoltage());
 
-    	
+    	Constants.armUpMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Up Max Drive DutyCycle",Constants.armUpMaxDriveDutyCycle);
+    	Constants.armDownMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Down Max Drive DutyCycle",Constants.armDownMaxDriveDutyCycle);
 	}
 }

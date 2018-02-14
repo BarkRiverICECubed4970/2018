@@ -93,6 +93,7 @@ public class OI {
         
     	// SmartDashboard Buttons
     	SmartDashboard.putData("Drive Straight", new DriveStraight(SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest)));
+    	SmartDashboard.putData("Drive Straight Reverse", new DriveStraightReverse(SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest)));
     	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
     	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
     	SmartDashboard.putData("Lower Hinge", new LowerHinge());
