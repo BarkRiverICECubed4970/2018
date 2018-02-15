@@ -8,6 +8,6 @@ public class ArmToScaleGroup extends CommandGroup {
     public ArmToScaleGroup() {
     	addSequential(new RaiseHinge());
    		addSequential(new ArmToScalePosition());
-//   		addSequential(new LowerHinge());
+   		addSequential(new HingeToLoadScale());
     }
 }

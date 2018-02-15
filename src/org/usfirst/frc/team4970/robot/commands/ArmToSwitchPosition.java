@@ -14,6 +14,7 @@ import utils.Constants;
 public class ArmToSwitchPosition extends Command {
 
 	private boolean _cancelCommand = false;
+	private boolean _raiseArm = true;
 	
 	public ArmToSwitchPosition() {
         requires(Robot._armMotor);
@@ -30,12 +31,15 @@ public class ArmToSwitchPosition extends Command {
     		_cancelCommand = true;
     	} else {
     		// determine if we have to go up or down, then use the appropriate PID terms
-    		if (Robot._armMotor.getEncoderCount() > Constants.switchPositionArmPidSetpoint)
-    		{
-        		Robot._armMotor.lowerArm(Constants.switchPositionArmPidSetpoint);
-    		} else {
-        		Robot._armMotor.raiseArm(Constants.switchPositionArmPidSetpoint);    			
-    		}
+//    		if (Robot._armMotor.getEncoderCount() > Constants.switchPositionArmPidSetpoint)
+//    		{
+    			_raiseArm = false;
+        		Robot._armMotor.lowerArmInit();
+//    		} else {
+//    			_raiseArm = true;
+ //       		Robot._armMotor.raiseArm(Constants.switchPositionArmPidSetpoint);    			
+  //  		}
+        		
         	/* indicate that the arm is about to move, so the hinge cannot */
         	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
     	}
@@ -43,6 +47,10 @@ public class ArmToSwitchPosition extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (_raiseArm == false)
+    	{
+    		Robot._armMotor.lowerArm(Constants.switchPositionArmPidSetpoint);    		
+    	}
     }
 
     protected boolean isFinished() {

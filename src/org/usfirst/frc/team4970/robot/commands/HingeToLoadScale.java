@@ -3,8 +3,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
+import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 
 import utils.Constants;
 
@@ -25,17 +25,18 @@ public class HingeToLoadScale extends Command {
     	
     	Constants.hingeToScalePidSetpoint = SmartDashboard.getNumber("Hinge To Scale PID Setpoint", Constants.hingeToScalePidSetpoint);
 
-    	/* do not lower hinge unless arm is at switch height, start height, or intake height */
-    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
-   		/* as soon as this command is invoked, consider the hinge out at this position in case the
-   		 * command is interrupted before it can finish */
-   		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_LOAD_SCALE;
-
-		/* use the raise hinge command, so the P term is strong enough */
+    	/* do not move hinge into scale position unless arm is at scale height */
+    	if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
+    	{
+	   		/* as soon as this command is invoked, consider the hinge out at this position in case the
+	   		 * command is interrupted before it can finish */
+	   		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_LOAD_SCALE;
+	
+			/* use the raise hinge command, so the P term is strong enough */
    	    	Robot._hingeMotor.raiseHinge(Constants.hingeToScalePidSetpoint);
   		} else {
-  		_cancelCommand = true;
-	}
+  			_cancelCommand = true;
+  		}
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -43,7 +44,7 @@ public class HingeToLoadScale extends Command {
     }
 
     protected boolean isFinished() {
-    	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
+    	if ((_cancelCommand) || (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError))
     	{
     		return true;
     	} else {

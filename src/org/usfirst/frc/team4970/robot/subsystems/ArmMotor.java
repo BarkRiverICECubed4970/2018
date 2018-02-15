@@ -66,16 +66,18 @@ public class ArmMotor extends Subsystem {
     public void moveArm(double setpoint) {
     	m_arm.set(ControlMode.Position, setpoint);
     }
-    
+
     public void raiseArm(double setPoint) {    	
     	Constants.armMotorPidKp = SmartDashboard.getNumber("Arm PID KP", Constants.armMotorPidKp);
     	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
     	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
+    	Constants.armMotorRaisePidKf = SmartDashboard.getNumber("Arm Raise PID KF", Constants.armMotorRaisePidKf);
     	Constants.armMotorAllowableClosedLoopError = SmartDashboard.getNumber("Arm PID Allowable Error", Constants.armMotorAllowableClosedLoopError);
 
 	   	m_arm.config_kP(0, Constants.armMotorPidKp, Constants.timeoutMs);
 	   	m_arm.config_kI(0, Constants.armMotorPidKi, Constants.timeoutMs);
 	   	m_arm.config_kD(0, Constants.armMotorPidKd, Constants.timeoutMs);
+	   	m_arm.config_kF(0, Constants.armMotorRaisePidKf, Constants.timeoutMs);
 
 	   	Constants.armMotorPeakRaiseVoltage = SmartDashboard.getNumber("Arm Raise Peak Voltage", Constants.armMotorPeakRaiseVoltage);
 	   	m_arm.configPeakOutputForward(Constants.armMotorPeakRaiseVoltage, Constants.timeoutMs);
@@ -86,25 +88,29 @@ public class ArmMotor extends Subsystem {
 	   	moveArm(setPoint);
     }
     
-    public void lowerArm(double setPoint) {
-
-	if (m_arm.getSelectedSensorPosition(0) < armMotorLowerArmPidEntryPoint) {
-	 
-	    	Constants.armMotorLowerPidKp = SmartDashboard.getNumber("Arm Lower PID KP", Constants.armMotorLowerPidKp);
-	    	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
-	    	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
+    public void lowerArmInit()
+    {
+    	Constants.armMotorLowerPidKp = SmartDashboard.getNumber("Arm Lower PID KP", Constants.armMotorLowerPidKp);
+    	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
+    	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
+    	Constants.armMotorLowerPidKf = SmartDashboard.getNumber("Arm Lower PID KF", Constants.armMotorLowerPidKf);
  	   	Constants.armMotorAllowableClosedLoopError = SmartDashboard.getNumber("Arm PID Allowable Error", Constants.armMotorAllowableClosedLoopError);
 	   	m_arm.config_kP(0, Constants.armMotorLowerPidKp, Constants.timeoutMs);
 	   	m_arm.config_kI(0, Constants.armMotorPidKi, Constants.timeoutMs);
 	   	m_arm.config_kD(0, Constants.armMotorPidKd, Constants.timeoutMs);
-
+	   	m_arm.config_kF(0, Constants.armMotorLowerPidKf, Constants.timeoutMs);
+	   	
 	   	Constants.armMotorPeakLowerVoltage = SmartDashboard.getNumber("Arm Lower Peak Voltage", Constants.armMotorPeakLowerVoltage);
 	   	m_arm.configPeakOutputForward(Constants.armMotorPeakLowerVoltage, Constants.timeoutMs);
 	   	m_arm.configPeakOutputReverse(-Constants.armMotorPeakLowerVoltage, Constants.timeoutMs);
 
 	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
+    }
+    
+    public void lowerArm(double setPoint) {
 
-	   	moveArm(setPoint);
+	if (m_arm.getSelectedSensorPosition(0) < Constants.armMotorLowerArmPidEntryPoint) {	
+		   	moveArm(setPoint);
 	} else {
 		stop();
 	}
