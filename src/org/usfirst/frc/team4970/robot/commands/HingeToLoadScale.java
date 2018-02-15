@@ -44,7 +44,8 @@ public class HingeToLoadScale extends Command {
     }
 
     protected boolean isFinished() {
-    	if ((_cancelCommand) || (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError))
+    	if ((_cancelCommand) || ((Math.abs(Robot._hingeMotor.getEncoderCount() - Constants.hingeToScalePidSetpoint))
+    			<= (int)Constants.hingeMotorAllowableClosedLoopError))
     	{
     		return true;
     	} else {

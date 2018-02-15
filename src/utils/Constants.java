@@ -54,14 +54,14 @@ public class Constants {
     public static double gyroPidMaxSetpoint = 8;
     
     public static double hingeMotorPidKp = 0.75;
-    public static double hingeMotorLowerPidKp = 0.1;
+    public static double hingeMotorLowerPidKp = 0.3;
     public static double hingeMotorPidKi = 0.0;
     public static double hingeMotorPidKd = 0.0;
     public static double hingeMotorAllowableClosedLoopError = 10;
     public static double raiseHingePidSetpoint = 0.0;
     public static double hingeToScalePidSetpoint = 1500.0;
-    public static double lowerHingePidSetpoint = 2000.0;
-    public static double lowerHingeTimeout = 3.0;
+    public static double lowerHingePidSetpoint = 1400.0;
+    public static double lowerHingeTimeout = 1.0;
     public static double hingeSecondsFromNeutral = 0.5;
     public static double hingeMotorPeakVoltage = 0.7;
 
@@ -76,7 +76,7 @@ public class Constants {
     
     
     public static double armMotorPidKp = 3.0;
-    public static double armMotorLowerPidKp = 0.3;
+    public static double armMotorLowerPidKp = 2.0;
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
     public static double armMotorRaisePidKf = 0.0;
@@ -85,10 +85,10 @@ public class Constants {
     public static double armSecondsFromNeutral = 0.5;
     public static double intakePositionArmPidSetpoint = 0.0;
     public static double switchPositionArmPidSetpoint = 500.0;
-    public static double armMotorLowerArmPidEntryPoint = 700.0;
-    public static double scalePositionArmPidSetpoint = 1300.0;
+    public static double armMotorLowerArmPidEntryPoint = 200.0;
+    public static double scalePositionArmPidSetpoint = 1200.0;
     public static double armMotorPeakRaiseVoltage = 0.7;
-    public static double armMotorPeakLowerVoltage = 0.1;
+    public static double armMotorPeakLowerVoltage = 0.5;
     
     public static double intakeCubeDutyCycle = 1.0;
     public static double outputCubeDutyCycle = 1.0;

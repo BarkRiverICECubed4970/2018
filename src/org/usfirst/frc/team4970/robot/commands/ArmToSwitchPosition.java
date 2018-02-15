@@ -31,14 +31,14 @@ public class ArmToSwitchPosition extends Command {
     		_cancelCommand = true;
     	} else {
     		// determine if we have to go up or down, then use the appropriate PID terms
-//    		if (Robot._armMotor.getEncoderCount() > Constants.switchPositionArmPidSetpoint)
-//    		{
+    		if (Robot._armMotor.getEncoderCount() > Constants.switchPositionArmPidSetpoint)
+    		{
     			_raiseArm = false;
         		Robot._armMotor.lowerArmInit();
-//    		} else {
-//    			_raiseArm = true;
- //       		Robot._armMotor.raiseArm(Constants.switchPositionArmPidSetpoint);    			
-  //  		}
+    		} else {
+    			_raiseArm = true;
+        		Robot._armMotor.raiseArm(Constants.switchPositionArmPidSetpoint);    			
+    		}
         		
         	/* indicate that the arm is about to move, so the hinge cannot */
         	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
@@ -54,7 +54,8 @@ public class ArmToSwitchPosition extends Command {
     }
 
     protected boolean isFinished() {
-    	if (Robot._armMotor.getClosedLoopError() <= (int)Constants.armMotorAllowableClosedLoopError)
+    	if ((Math.abs(Robot._armMotor.getEncoderCount() - Constants.switchPositionArmPidSetpoint))
+    			<= (int)Constants.armMotorAllowableClosedLoopError)
     	{
     		/* don't consider the hinge up until command completes */
     		ArmMotor._armState = ArmMotor.ArmState.ARM_SWITCH_HEIGHT;

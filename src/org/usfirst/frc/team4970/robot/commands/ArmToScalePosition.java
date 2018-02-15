@@ -40,7 +40,8 @@ public class ArmToScalePosition extends Command {
     }
 
     protected boolean isFinished() {
-    	if (Robot._armMotor.getClosedLoopError() <= (int)Constants.armMotorAllowableClosedLoopError)
+    	if ((Math.abs(Robot._armMotor.getEncoderCount() - Constants.scalePositionArmPidSetpoint))
+    			<= (int)Constants.armMotorAllowableClosedLoopError)
     	{
     		/* don't consider the hinge up until command completes */
     		ArmMotor._armState = ArmMotor.ArmState.ARM_SCALE_HEIGHT;

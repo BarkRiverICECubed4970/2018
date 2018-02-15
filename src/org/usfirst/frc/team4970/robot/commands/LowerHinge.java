@@ -29,7 +29,8 @@ public class LowerHinge extends Command {
     	setTimeout(Constants.lowerHingeTimeout);
     	
     	/* do not lower hinge unless arm is at intake height */
-    	if (ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT)
+    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT) ||
+   			(ArmMotor._armState == ArmMotor.ArmState.ARM_START_HEIGHT))
    		{
    			/* as soon as this command is invoked, consider the hinge down in case the
    			 * command is interrupted before it can finish */

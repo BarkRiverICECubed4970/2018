@@ -148,7 +148,7 @@
               "_title": "SmartDashboard/Raise Hinge"
             }
           },
-          "6,6": {
+          "0,6": {
             "size": [
               2,
               1
@@ -397,7 +397,7 @@
               "_title": "SmartDashboard/Stop Arm"
             }
           },
-          "9,6": {
+          "3,6": {
             "size": [
               3,
               1

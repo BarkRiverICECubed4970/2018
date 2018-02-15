@@ -109,11 +109,13 @@ public class ArmMotor extends Subsystem {
     
     public void lowerArm(double setPoint) {
 
-	if (m_arm.getSelectedSensorPosition(0) < Constants.armMotorLowerArmPidEntryPoint) {	
-		   	moveArm(setPoint);
-	} else {
-		stop();
-	}
+		if ((m_arm.getSelectedSensorPosition(0) < Constants.armMotorLowerArmPidEntryPoint) ||
+			(m_arm.getSelectedSensorPosition(0) < setPoint))
+		{	
+			   	moveArm(setPoint);
+		} else {
+			stop();
+		}
     }
     
     public void stop() {

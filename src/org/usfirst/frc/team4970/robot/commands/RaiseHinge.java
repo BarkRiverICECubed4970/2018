@@ -27,7 +27,8 @@ public class RaiseHinge extends Command {
     }
 
     protected boolean isFinished() {
-    	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
+    	if (Robot._hingeMotor.getEncoderCount() <= (Constants.raiseHingePidSetpoint + Constants.hingeMotorAllowableClosedLoopError))
+//        	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
     	{
     		/* don't consider the hinge up until command completes */
     		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_UP;
