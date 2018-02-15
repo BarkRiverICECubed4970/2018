@@ -26,18 +26,16 @@ public class HingeToLoadScale extends Command {
     	Constants.hingeToScalePidSetpoint = SmartDashboard.getNumber("Hinge To Scale PID Setpoint", Constants.hingeToScalePidSetpoint);
 
     	/* do not lower hinge unless arm is at switch height, start height, or intake height */
-//    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
-//       			(ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT))
-//       	if (true)
-//   		{
-   			/* as soon as this command is invoked, consider the hinge down in case the
-   			 * command is interrupted before it can finish */
-   			HingeMotor._hingeState = HingeMotor.HingeState.HINGE_DOWN;
+    	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
+   		/* as soon as this command is invoked, consider the hinge out at this position in case the
+   		 * command is interrupted before it can finish */
+   		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_LOAD_SCALE;
 
-   	    	Robot._hingeMotor.lowerHinge(Constants.hingeToScalePidSetpoint);
- //  		} else {
-  //  		_cancelCommand = true;
-   //		}
+		/* use the raise hinge command, so the P term is strong enough */
+   	    	Robot._hingeMotor.raiseHinge(Constants.hingeToScalePidSetpoint);
+  		} else {
+  		_cancelCommand = true;
+	}
     }
 
     // Called repeatedly when this Command is scheduled to run

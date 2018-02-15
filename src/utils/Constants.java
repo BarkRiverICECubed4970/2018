@@ -82,6 +82,7 @@ public class Constants {
     public static double armSecondsFromNeutral = 0.5;
     public static double intakePositionArmPidSetpoint = 0.0;
     public static double switchPositionArmPidSetpoint = 500.0;
+    public static double armMotorLowerArmPidEntryPoint = 700.0;
     public static double scalePositionArmPidSetpoint = 1300.0;
     public static double armMotorPeakRaiseVoltage = 0.7;
     public static double armMotorPeakLowerVoltage = 0.1;
@@ -144,6 +145,7 @@ public class Constants {
     	SmartDashboard.putNumber("Arm PID Ramp", armSecondsFromNeutral);
     	SmartDashboard.putNumber("Arm Raise Peak Voltage", armMotorPeakRaiseVoltage);
     	SmartDashboard.putNumber("Arm Lower Peak Voltage", armMotorPeakLowerVoltage);
+    	SmartDashboard.putNumber("Arm Lower PID Entry Point", armMotorLowerArmPidEntryPoint);
     	
     	
     	/* Intake motor */

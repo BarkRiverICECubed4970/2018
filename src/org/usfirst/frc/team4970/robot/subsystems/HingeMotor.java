@@ -13,7 +13,7 @@ public class HingeMotor extends Subsystem {
 
 	public enum HingeState
 	{
-		HINGE_UP, HINGE_DOWN
+		HINGE_UP, HINGE_DOWN, HINGE_LOAD_SCALE
 	};
 	
 	public static HingeState _hingeState = HingeState.HINGE_UP;

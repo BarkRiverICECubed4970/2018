@@ -87,11 +87,13 @@ public class ArmMotor extends Subsystem {
     }
     
     public void lowerArm(double setPoint) {
-    	Constants.armMotorLowerPidKp = SmartDashboard.getNumber("Arm Lower PID KP", Constants.armMotorLowerPidKp);
-    	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
-    	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
-    	Constants.armMotorAllowableClosedLoopError = SmartDashboard.getNumber("Arm PID Allowable Error", Constants.armMotorAllowableClosedLoopError);
 
+	if (m_arm.getSelectedSensorPosition(0) < armMotorLowerArmPidEntryPoint) {
+	 
+	    	Constants.armMotorLowerPidKp = SmartDashboard.getNumber("Arm Lower PID KP", Constants.armMotorLowerPidKp);
+	    	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
+	    	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
+ 	   	Constants.armMotorAllowableClosedLoopError = SmartDashboard.getNumber("Arm PID Allowable Error", Constants.armMotorAllowableClosedLoopError);
 	   	m_arm.config_kP(0, Constants.armMotorLowerPidKp, Constants.timeoutMs);
 	   	m_arm.config_kI(0, Constants.armMotorPidKi, Constants.timeoutMs);
 	   	m_arm.config_kD(0, Constants.armMotorPidKd, Constants.timeoutMs);
@@ -103,6 +105,9 @@ public class ArmMotor extends Subsystem {
 	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
 	   	moveArm(setPoint);
+	} else {
+		stop();
+	}
     }
     
     public void stop() {
