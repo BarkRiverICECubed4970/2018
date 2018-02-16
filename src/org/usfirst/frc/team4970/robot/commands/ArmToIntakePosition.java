@@ -25,9 +25,13 @@ public class ArmToIntakePosition extends Command {
     	Constants.intakePositionArmPidSetpoint = SmartDashboard.getNumber("Arm Intake PID Setpoint", Constants.intakePositionArmPidSetpoint);
     	Constants.armMotorLowerArmPidEntryPoint = SmartDashboard.getNumber("Arm Lower PID Entry Point", Constants.armMotorLowerArmPidEntryPoint);
 
+		Constants.armToIntakeTimeout = SmartDashboard.getNumber("Arm To Intake Timeout", Constants.armToIntakeTimeout);
+
+    	setTimeout(Constants.armToIntakeTimeout);
     	
     	/* don't attempt to move the arm up or down when the hinge is not closed */
-    	if (HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP)
+    	if ((HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP) ||
+    		(ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT))
     	{
     		_cancelCommand = true;
     	} else {
@@ -43,8 +47,9 @@ public class ArmToIntakePosition extends Command {
     }
 
     protected boolean isFinished() {
-    	if ((Math.abs(Robot._armMotor.getEncoderCount() - Constants.intakePositionArmPidSetpoint))
-    			<= (int)Constants.armMotorAllowableClosedLoopError)
+    	if ((isTimedOut()) || 
+    		((Math.abs(Robot._armMotor.getEncoderCount() - Constants.intakePositionArmPidSetpoint))
+    			<= (int)Constants.armMotorAllowableClosedLoopError))
     	{
     		/* don't consider the hinge up until command completes */
     		ArmMotor._armState = ArmMotor.ArmState.ARM_INTAKE_HEIGHT;

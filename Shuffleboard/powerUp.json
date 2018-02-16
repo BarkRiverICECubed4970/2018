@@ -213,6 +213,28 @@
               "_source0": "network_table:///SmartDashboard/Hinge Peak Voltage",
               "_title": "/SmartDashboard/Hinge Peak Voltage"
             }
+          },
+          "6,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hinge Motor Output Voltage",
+              "_title": "/SmartDashboard/Hinge Motor Output Voltage"
+            }
+          },
+          "3,6": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Lower Hinge Timeout",
+              "_title": "/SmartDashboard/Lower Hinge Timeout"
+            }
           }
         }
       }
@@ -236,17 +258,6 @@
               "_type": "Command",
               "_source0": "network_table:///SmartDashboard/Arm to Scale Position",
               "_title": "SmartDashboard/Arm to Scale Position"
-            }
-          },
-          "0,2": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/Arm to Switch Position",
-              "_title": "SmartDashboard/Arm to Switch Position"
             }
           },
           "0,4": {
@@ -331,9 +342,9 @@
               "numTickMarks": 5.0
             }
           },
-          "11,4": {
+          "10,6": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -344,8 +355,8 @@
           },
           "10,4": {
             "size": [
-              1,
-              1
+              2,
+              2
             ],
             "content": {
               "_type": "Text View",
@@ -450,6 +461,28 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Arm Lower Peak Voltage",
               "_title": "/SmartDashboard/Arm Lower Peak Voltage"
+            }
+          },
+          "7,7": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Lower PID Entry Point",
+              "_title": "/SmartDashboard/Arm Lower PID Entry Point"
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Arm to Switch",
+              "_title": "/SmartDashboard/Arm to Switch"
             }
           }
         }

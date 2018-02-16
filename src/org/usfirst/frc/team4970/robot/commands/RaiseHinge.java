@@ -19,6 +19,10 @@ public class RaiseHinge extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Constants.raiseHingePidSetpoint = SmartDashboard.getNumber("Raise Hinge PID Setpoint", Constants.raiseHingePidSetpoint);
+		Constants.raiseHingeTimeout = SmartDashboard.getNumber("Raise Hinge Timeout", Constants.raiseHingeTimeout);
+
+    	setTimeout(Constants.raiseHingeTimeout);
+    	
     	Robot._hingeMotor.raiseHinge(Constants.raiseHingePidSetpoint);
     }
 
@@ -27,7 +31,8 @@ public class RaiseHinge extends Command {
     }
 
     protected boolean isFinished() {
-    	if (Robot._hingeMotor.getEncoderCount() <= (Constants.raiseHingePidSetpoint + Constants.hingeMotorAllowableClosedLoopError))
+    	if ((isTimedOut()) ||
+    		(Robot._hingeMotor.getEncoderCount() <= (Constants.raiseHingePidSetpoint + Constants.hingeMotorAllowableClosedLoopError)))
 //        	if (Robot._hingeMotor.getClosedLoopError() <= (int)Constants.hingeMotorAllowableClosedLoopError)
     	{
     		/* don't consider the hinge up until command completes */

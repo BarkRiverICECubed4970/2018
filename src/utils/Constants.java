@@ -28,7 +28,7 @@ public class Constants {
     public static double autoDriveAcrossSwitchInches = 36.0;
     public static double scaleInches = 100.0;
     public static double straightDriveDutyCycle = 0.4;
-    public static double armDownMaxDriveDutyCycle = 0.6;
+    public static double armDownMaxDriveDutyCycle = 1.0;
     public static double armUpMaxDriveDutyCycle = 0.4;
     public static double straightDriveRateLimit = 0.01;
     /* counts per revolution on output shaft * inches per revolution from tires
@@ -53,15 +53,16 @@ public class Constants {
     public static double gyroPidTolerance = 4.0;
     public static double gyroPidMaxSetpoint = 8;
     
-    public static double hingeMotorPidKp = 0.65;
+    public static double hingeMotorPidKp = 0.75;
     public static double hingeMotorLowerPidKp = 0.3;
     public static double hingeMotorPidKi = 0.0;
     public static double hingeMotorPidKd = 0.0;
     public static double hingeMotorAllowableClosedLoopError = 50;
     public static double raiseHingePidSetpoint = 0.0;
     public static double hingeToScalePidSetpoint = 1500.0;
-    public static double lowerHingePidSetpoint = 1400.0;
+    public static double lowerHingePidSetpoint = 2000.0;
     public static double lowerHingeTimeout = 1.0;
+    public static double raiseHingeTimeout = 1.0;
     public static double hingeSecondsFromNeutral = 0.5;
     public static double hingeMotorPeakVoltage = 0.7;
 
@@ -83,7 +84,7 @@ public class Constants {
     public static double armMotorLowerPidKf = 0.0;
     public static double armMotorAllowableClosedLoopError = 10;
     public static double armSecondsFromNeutral = 0.5;
-    public static double intakePositionArmPidSetpoint = 0.0;
+    public static double intakePositionArmPidSetpoint = 100.0;
     public static double switchPositionArmPidSetpoint = 500.0;
     public static double armMotorLowerArmPidEntryPoint = 300.0;
     public static double scalePositionArmPidSetpoint = 1200.0;
@@ -91,10 +92,11 @@ public class Constants {
     public static double armMotorPeakLowerVoltage = 0.5;
     public static double armToSwitchTimeout = 2.0;
     public static double armToScaleTimeout = 3.0;
+    public static double armToIntakeTimeout = 5.0;
 
     
-    public static double intakeCubeDutyCycle = 1.0;
-    public static double outputCubeDutyCycle = 1.0;
+    public static double intakeCubeDutyCycle = 0.3;
+    public static double outputCubeDutyCycle = 0.3;
     public static double extendTapeDutyCycle = 0.3;
     public static double reelTapeDutyCycle = 0.3;
 
@@ -156,6 +158,7 @@ public class Constants {
     	SmartDashboard.putNumber("Arm Lower PID Entry Point", armMotorLowerArmPidEntryPoint);
 		SmartDashboard.putNumber("Arm To Switch Timeout", Constants.armToSwitchTimeout);
 		SmartDashboard.putNumber("Arm To Scale Timeout", Constants.armToScaleTimeout);
+		SmartDashboard.putNumber("Arm To Intake Timeout", Constants.armToIntakeTimeout);
 
     	
     	/* Intake motor */
@@ -179,6 +182,7 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge PID Ramp", hingeSecondsFromNeutral);
     	SmartDashboard.putNumber("Hinge Peak Voltage", hingeMotorPeakVoltage);
     	SmartDashboard.putNumber("Lower Hinge Timeout", lowerHingeTimeout);
+    	SmartDashboard.putNumber("Raise Hinge Timeout", raiseHingeTimeout);
 
 
     	/* Climbing */

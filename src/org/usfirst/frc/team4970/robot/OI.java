@@ -80,12 +80,21 @@ public class OI {
         joystickButton1 = new JoystickButton(joystick, 4);
         joystickButton1.whenPressed(new ArmToScaleGroup());
         
+        joystickButton1 = new JoystickButton(joystick, 3);
+        joystickButton1.whenPressed(new ToggleHinge());
+        
         joystickButton1 = new JoystickButton(joystick, 8);
         joystickButton1.whileHeld(new CubeIntake());
         
         joystickButton1 = new JoystickButton(joystick, 7);
         joystickButton1.whileHeld(new CubeOutput());
-        
+
+        joystickButton1 = new JoystickButton(joystick, 5);
+        joystickButton1.whileHeld(new CubeOutputSlow());
+
+        joystickButton1 = new JoystickButton(joystick, 6);
+        joystickButton1.whileHeld(new CubeIntakeSlow());
+
 //        joystickButton1 = new JoystickButton(joystick, 6);
   //      joystickButton1.whileHeld(new ExtendTape());
         

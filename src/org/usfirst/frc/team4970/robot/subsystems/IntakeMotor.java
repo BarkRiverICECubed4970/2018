@@ -47,23 +47,28 @@ public class IntakeMotor extends Subsystem {
     
     public void intakeCube(double maxDutyCycle) {
     	intakeDc = Math.max(0.0, Robot.m_oi.joystick.getRawAxis(4));
-    	if (intakeDc > maxDutyCycle)
-    	{
-    		intakeDc = maxDutyCycle;
-    	}
+
+//    	if (intakeDc > maxDutyCycle)
+//    	{
+//    		intakeDc = maxDutyCycle;
+//    	}
     	
 //    	intakeDc = 1.0;
     	m_intake1.set(ControlMode.PercentOutput, intakeDc);
     	m_intake2.set(intakeDc);
     }
     
+    public void intakeCubeSlow(double dutyCycle) {
+    	m_intake1.set(ControlMode.PercentOutput, dutyCycle);
+    	m_intake2.set(dutyCycle);
+    }
     public void outputCube(double maxDutyCycle) {
     	outputDc = Math.max(0.0, Robot.m_oi.joystick.getRawAxis(3));
  
-    	if (outputDc > maxDutyCycle)
-    	{
-    		outputDc = maxDutyCycle;
-    	}
+//    	if (outputDc > maxDutyCycle)
+//    	{
+//    		outputDc = maxDutyCycle;
+//    	}
     	
 //    	outputDc = 1.0;
     	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
@@ -75,7 +80,18 @@ public class IntakeMotor extends Subsystem {
     		m_intake2.set(outputDc);    		
     	}
     }
-    
+ 
+    public void outputCubeSlow(double dutyCycle) {
+    	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
+    	{
+    		m_intake1.set(ControlMode.PercentOutput, -1.0*dutyCycle);
+    		m_intake2.set(-1.0*dutyCycle);
+    	} else {
+    		m_intake1.set(ControlMode.PercentOutput, dutyCycle);    		
+    		m_intake2.set(dutyCycle);    		
+    	}
+    }
+ 
     public void stop() {
     	m_intake1.set(ControlMode.PercentOutput, 0.0);
     	m_intake2.set(ControlMode.PercentOutput, 0.0);

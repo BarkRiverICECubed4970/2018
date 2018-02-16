@@ -29,7 +29,8 @@ public class ArmToScalePosition extends Command {
     	setTimeout(Constants.armToScaleTimeout);
 
     	/* don't attempt to move the arm up or down when the hinge is not closed */
-    	if (HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP)
+    	if ((HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP) ||
+    		(ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT))
     	{
     		_cancelCommand = true;
     	} else {
