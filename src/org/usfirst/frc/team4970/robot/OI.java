@@ -9,6 +9,7 @@ package org.usfirst.frc.team4970.robot;
 
 
 import org.usfirst.frc.team4970.robot.commands.*;
+import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -97,6 +98,7 @@ public class OI {
     	SmartDashboard.putData("Turn Degrees", new TurnDegrees(SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
     	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
     	SmartDashboard.putData("Lower Hinge", new LowerHinge());
+    	SmartDashboard.putData("Toggle Hinge", new ToggleHinge());
     	SmartDashboard.putData("Hinge to Scale", new HingeToLoadScale());
     	SmartDashboard.putData("Stop Hinge", new StopHinge());
     	SmartDashboard.putData("Arm to Scale", new ArmToScaleGroup());

@@ -81,7 +81,12 @@ public class ArmMotor extends Subsystem {
 
 	   	Constants.armMotorPeakRaiseVoltage = SmartDashboard.getNumber("Arm Raise Peak Voltage", Constants.armMotorPeakRaiseVoltage);
 	   	m_arm.configPeakOutputForward(Constants.armMotorPeakRaiseVoltage, Constants.timeoutMs);
-	   	m_arm.configPeakOutputReverse(-Constants.armMotorPeakRaiseVoltage, Constants.timeoutMs);
+	   	/* 
+	   	 * no reason to try and push the arm down, let gravity do its job.
+	   	 * except for the intake position, where the arm motor is working 
+	   	 * against the shock (but this is handled in a different function)
+	   	 */
+	   	m_arm.configPeakOutputReverse(0, Constants.timeoutMs);
 
 	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
 
@@ -101,7 +106,12 @@ public class ArmMotor extends Subsystem {
 	   	m_arm.config_kF(0, Constants.armMotorLowerPidKf, Constants.timeoutMs);
 	   	
 	   	Constants.armMotorPeakLowerVoltage = SmartDashboard.getNumber("Arm Lower Peak Voltage", Constants.armMotorPeakLowerVoltage);
-	   	m_arm.configPeakOutputForward(Constants.armMotorPeakLowerVoltage, Constants.timeoutMs);
+
+	   	/*
+	   	 * we are fighting a shock to press down to intake position... no need to 
+	   	 * ever go up with the arm motor
+	   	 */
+	   	m_arm.configPeakOutputForward(0, Constants.timeoutMs);
 	   	m_arm.configPeakOutputReverse(-Constants.armMotorPeakLowerVoltage, Constants.timeoutMs);
 
 	   	m_arm.configAllowableClosedloopError(0, (int)Constants.armMotorAllowableClosedLoopError, Constants.timeoutMs);	   		   	
@@ -112,7 +122,7 @@ public class ArmMotor extends Subsystem {
 		if ((m_arm.getSelectedSensorPosition(0) < Constants.armMotorLowerArmPidEntryPoint) ||
 			(m_arm.getSelectedSensorPosition(0) < setPoint))
 		{	
-			   	moveArm(setPoint);
+			moveArm(setPoint);
 		} else {
 			stop();
 		}

@@ -24,6 +24,10 @@ public class ArmToScalePosition extends Command {
     	_cancelCommand = false;
     	Constants.scalePositionArmPidSetpoint = SmartDashboard.getNumber("Arm Scale PID Setpoint", Constants.scalePositionArmPidSetpoint);
 
+		Constants.armToScaleTimeout = SmartDashboard.getNumber("Arm To Scale Timeout", Constants.armToScaleTimeout);
+
+    	setTimeout(Constants.armToScaleTimeout);
+
     	/* don't attempt to move the arm up or down when the hinge is not closed */
     	if (HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP)
     	{
@@ -40,8 +44,9 @@ public class ArmToScalePosition extends Command {
     }
 
     protected boolean isFinished() {
-    	if ((Math.abs(Robot._armMotor.getEncoderCount() - Constants.scalePositionArmPidSetpoint))
-    			<= (int)Constants.armMotorAllowableClosedLoopError)
+    	if ((isTimedOut()) || 
+    		((Math.abs(Robot._armMotor.getEncoderCount() - Constants.scalePositionArmPidSetpoint))
+    			<= (int)Constants.armMotorAllowableClosedLoopError))
     	{
     		/* don't consider the hinge up until command completes */
     		ArmMotor._armState = ArmMotor.ArmState.ARM_SCALE_HEIGHT;

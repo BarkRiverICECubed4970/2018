@@ -8,6 +8,6 @@ public class ArmToIntakeGroup extends CommandGroup {
     public ArmToIntakeGroup() {
     	addSequential(new RaiseHinge());
    		addSequential(new ArmToIntakePosition());
-   		addSequential(new LowerHinge());
+//   		addSequential(new LowerHinge());
     }
 }

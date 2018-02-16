@@ -23,7 +23,9 @@ public class ArmToIntakePosition extends Command {
     protected void initialize() {
     	_cancelCommand = false;
     	Constants.intakePositionArmPidSetpoint = SmartDashboard.getNumber("Arm Intake PID Setpoint", Constants.intakePositionArmPidSetpoint);
+    	Constants.armMotorLowerArmPidEntryPoint = SmartDashboard.getNumber("Arm Lower PID Entry Point", Constants.armMotorLowerArmPidEntryPoint);
 
+    	
     	/* don't attempt to move the arm up or down when the hinge is not closed */
     	if (HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP)
     	{

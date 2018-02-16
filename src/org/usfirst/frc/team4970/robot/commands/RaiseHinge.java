@@ -32,6 +32,7 @@ public class RaiseHinge extends Command {
     	{
     		/* don't consider the hinge up until command completes */
     		HingeMotor._hingeState = HingeMotor.HingeState.HINGE_UP;
+    		
     		return true;
     	} else {
     		return false;

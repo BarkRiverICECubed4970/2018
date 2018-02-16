@@ -53,11 +53,11 @@ public class Constants {
     public static double gyroPidTolerance = 4.0;
     public static double gyroPidMaxSetpoint = 8;
     
-    public static double hingeMotorPidKp = 0.75;
+    public static double hingeMotorPidKp = 0.65;
     public static double hingeMotorLowerPidKp = 0.3;
     public static double hingeMotorPidKi = 0.0;
     public static double hingeMotorPidKd = 0.0;
-    public static double hingeMotorAllowableClosedLoopError = 10;
+    public static double hingeMotorAllowableClosedLoopError = 50;
     public static double raiseHingePidSetpoint = 0.0;
     public static double hingeToScalePidSetpoint = 1500.0;
     public static double lowerHingePidSetpoint = 1400.0;
@@ -75,7 +75,7 @@ public class Constants {
     public static double cubeOutputAutoTimeout = 1.0;
     
     
-    public static double armMotorPidKp = 3.0;
+    public static double armMotorPidKp = 5.0;
     public static double armMotorLowerPidKp = 2.0;
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
@@ -85,10 +85,13 @@ public class Constants {
     public static double armSecondsFromNeutral = 0.5;
     public static double intakePositionArmPidSetpoint = 0.0;
     public static double switchPositionArmPidSetpoint = 500.0;
-    public static double armMotorLowerArmPidEntryPoint = 200.0;
+    public static double armMotorLowerArmPidEntryPoint = 300.0;
     public static double scalePositionArmPidSetpoint = 1200.0;
     public static double armMotorPeakRaiseVoltage = 0.7;
     public static double armMotorPeakLowerVoltage = 0.5;
+    public static double armToSwitchTimeout = 2.0;
+    public static double armToScaleTimeout = 3.0;
+
     
     public static double intakeCubeDutyCycle = 1.0;
     public static double outputCubeDutyCycle = 1.0;
@@ -151,7 +154,9 @@ public class Constants {
     	SmartDashboard.putNumber("Arm Raise Peak Voltage", armMotorPeakRaiseVoltage);
     	SmartDashboard.putNumber("Arm Lower Peak Voltage", armMotorPeakLowerVoltage);
     	SmartDashboard.putNumber("Arm Lower PID Entry Point", armMotorLowerArmPidEntryPoint);
-    	
+		SmartDashboard.putNumber("Arm To Switch Timeout", Constants.armToSwitchTimeout);
+		SmartDashboard.putNumber("Arm To Scale Timeout", Constants.armToScaleTimeout);
+
     	
     	/* Intake motor */
     	SmartDashboard.putNumber("Intake Cube Duty Cycle", intakeCubeDutyCycle);
