@@ -1,21 +1,41 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import utils.Constants;
 
 import org.usfirst.frc.team4970.robot.Robot;
 
 /**
  *
  */
-public class TestAutoCommand extends Command {
+public class Auto_EitherScale extends Command {
 
-	public TestAutoCommand() {
-
+	private char _location;
+	
+	public Auto_EitherScale(char robotLocation) {
+		_location = robotLocation;
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-		Robot.gameData = DriverStation.getInstance().getGameSpecificMessage();
+    protected void initialize() {   	
+    	if (Robot.gameData == null)
+		{
+			Robot.gameData = DriverStation.getInstance().getGameSpecificMessage();	
+		}
+
+    	if ((Robot.gameData != null) && (Robot.gameData.length() > 0))
+    	{
+    		if (_location == Robot.gameData.charAt(1))
+	    	{
+	    		new Auto_CloseScaleGroup(_location);
+	    	} else
+	    	{
+	    		new Auto_FarScaleGroup(_location);	    		
+	    	}
+    	} else
+    	{
+    		new DriveStraight(Constants.autoDriveStraightAutoInches);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -114,14 +114,14 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		
 	    	case DRIVE_STRAIGHT:
 	    		squaredInputs = false;
-    			forward = Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
+    			forward = -Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
 	    		rotate = PID_rotateValue;
 	    		prevForward = forward;
 	    		break;
 	    		
 	    	case DRIVE_STRAIGHT_REVERSE:
 	    		squaredInputs = false;
-    			forward = Math.max((prevForward - Constants.straightDriveRateLimit), -Constants.straightDriveDutyCycle);	    		
+    			forward = Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
 	    		rotate = PID_rotateValue;
 	    		prevForward = forward;
 	    		break;
@@ -174,6 +174,13 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		{
 			_robotDrive.arcadeDrive(forward, rotate, squaredInputs);
 		}
+    }
+    
+    public void resetEncoders()
+    {
+    	/* reset encoder counters */
+    	m_leftFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
+    	m_rightFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     }
     
     public int getRightEncoderCount()

@@ -37,6 +37,7 @@ public class DriveStraight extends Command {
 		Constants.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Constants.straightDriveDutyCycle);	
 		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
 		
+		Robot._driveTrain.resetEncoders();
 		
 		Robot._driveTrain.setupGyroPID();
 		/* redundant... the setup function should call this */

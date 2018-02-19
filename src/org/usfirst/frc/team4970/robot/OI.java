@@ -9,7 +9,6 @@ package org.usfirst.frc.team4970.robot;
 
 
 import org.usfirst.frc.team4970.robot.commands.*;
-import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

@@ -16,8 +16,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
+import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
+import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
+import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleForward;
+import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOScale;
+import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOSwitch;
 import org.usfirst.frc.team4970.robot.commands.DriveStraight;
-import org.usfirst.frc.team4970.robot.commands.EitherSwitch;
 import org.usfirst.frc.team4970.robot.commands.TestAutoCommand;
 import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
 import org.usfirst.frc.team4970.robot.subsystems.ClimbMotor;
@@ -59,21 +63,20 @@ public class Robot extends TimedRobot {
 		_calibrationManager = new Constants();
 		
 		m_chooser.addDefault("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches));
-		m_chooser.addObject("Left Position: Switch Either Side", new EitherSwitch('L'));
+
+		m_chooser.addObject("Left Position: Switch Either Side", new Auto_EitherSwitch('L'));
+		m_chooser.addObject("Right Position: Switch Either Side", new Auto_EitherSwitch('R'));
+		m_chooser.addObject("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
 		
-		m_chooser.addObject("Left Position: Scale Either Side", new TestAutoCommand());
-		m_chooser.addObject("Left Position: Switch, Scale, Forward", new TestAutoCommand());
-		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new TestAutoCommand());
-		m_chooser.addObject("Left Position: Switch, Scale, Opposite Switch", new TestAutoCommand());
+		m_chooser.addObject("Left Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('L'));
+		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('L'));
+		m_chooser.addObject("Left Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('L'));
+		m_chooser.addObject("Left Position: Scale Either Side", new Auto_EitherScale('L'));
 
-		m_chooser.addObject("Right Position: Switch Either Side", new EitherSwitch('R'));
-
-		m_chooser.addObject("Right Position: Scale Either Side", new TestAutoCommand());
-		m_chooser.addObject("Right Position: Switch, Scale, Forward", new TestAutoCommand());
-		m_chooser.addObject("Right Position: Switch, Scale, Opposite Scale", new TestAutoCommand());
-		m_chooser.addObject("Right Position: Switch, Scale, Opposite Switch", new TestAutoCommand());
-
-		m_chooser.addObject("Center Position: Switch", new TestAutoCommand());
+		m_chooser.addObject("Right Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('R'));
+		m_chooser.addObject("Right Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('R'));
+		m_chooser.addObject("Right Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('R'));
+		m_chooser.addObject("Right Position: Scale Either Side", new Auto_EitherScale('R'));
 
 		m_chooser.addObject("Display Position and Game Data", new TestAutoCommand());
         m_chooser.addObject("Do Nothing", null);
