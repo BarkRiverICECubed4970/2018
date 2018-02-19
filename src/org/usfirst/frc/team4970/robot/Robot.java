@@ -7,6 +7,10 @@
 
 package org.usfirst.frc.team4970.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
+import org.opencv.core.Mat;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleForward;
@@ -51,6 +56,8 @@ public class Robot extends TimedRobot {
 
 	public static Constants _calibrationManager;
 	
+	private static UsbCamera usbCamera;
+	
     /**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -59,7 +66,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		
 		m_oi = new OI();
-
+		
 		_calibrationManager = new Constants();
 		
 		m_chooser.addDefault("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches));
@@ -83,7 +90,28 @@ public class Robot extends TimedRobot {
         // instantiate the command used for the autonomous period
 
 		SmartDashboard.putData("Auto mode", m_chooser);	
-		
+
+		CameraServer.getInstance().startAutomaticCapture();
+/*
+		new Thread(() -> {
+
+        	usbCamera = CameraServer.getInstance().startAutomaticCapture(0);
+        	usbCamera.setResolution(320, 240);
+        	usbCamera.setExposureManual(100);
+        	
+        	CvSink cvSink1 = CameraServer.getInstance().getVideo(usbCamera);
+
+        	CvSource outputStream = CameraServer.getInstance().putVideo("Camera", 320, 240);
+        	
+        	Mat source = new Mat();
+        	
+                    cvSink1.setEnabled(true);
+                    cvSink1.grabFrame(source);
+        			
+
+        		outputStream.putFrame(source);
+        }).start();
+*/        
 	}
 
 	/**

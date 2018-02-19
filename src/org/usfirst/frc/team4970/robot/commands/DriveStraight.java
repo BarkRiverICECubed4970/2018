@@ -38,6 +38,7 @@ public class DriveStraight extends Command {
 		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
 		
 		Robot._driveTrain.resetEncoders();
+		encoderAvg = 0;
 		
 		Robot._driveTrain.setupGyroPID();
 		/* redundant... the setup function should call this */
@@ -53,9 +54,10 @@ public class DriveStraight extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		encoderAvg = ((double)Robot._driveTrain.getLeftEncoderCount() + (double)Robot._driveTrain.getRightEncoderCount())/2.0;
-		
-		return (encoderAvg >= (Constants.driveEncoderCountsPerInch * inchesToDrive));
+//		encoderAvg = (-(double)Robot._driveTrain.getLeftEncoderCount() + -(double)Robot._driveTrain.getRightEncoderCount())/2.0;
+//		return (encoderAvg = (Constants.driveEncoderCountsPerInch * inchesToDrive));
+
+		return (-1.0* Robot._driveTrain.getRightEncoderCount() > (Constants.driveEncoderCountsPerInch * inchesToDrive));
 	}
 
 	// Called once after isFinished returns true

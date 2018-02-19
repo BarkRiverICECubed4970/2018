@@ -20,7 +20,7 @@ public class Constants {
 	public static final int gyroControllerCanAddress = 12;
 	
     public static double turnDegrees = -60.0;
-    public static double driveInchesForTest = 60.0;
+    public static double driveInchesForTest = 18.0;
     public static double autoDriveStraightAutoInches = 72.0;
     public static double autoDriveToCloseSwitchInches = 36.0;
     public static double autoDriveToCloseScaleInches = 72.0;
@@ -44,7 +44,12 @@ public class Constants {
      *  counts/inch = counts/rotation / inches/rotation
      *  
      *  */
-    public static double driveEncoderCountsPerInch = 53.05;
+    
+	// -1408 counts on right encoder per forward rev
+	// 714 counts on left encoder per forward rev
+    // use left encoder for now
+    // 714 counts per 18.85 inches = 37.87
+    public static double driveEncoderCountsPerInch = 74.7;
     
     
     public static double turnDegreesTimeout = 3.0;

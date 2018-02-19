@@ -114,14 +114,16 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		
 	    	case DRIVE_STRAIGHT:
 	    		squaredInputs = false;
-    			forward = -Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
+//	   			forward = -Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
+	   			forward = -Constants.straightDriveDutyCycle;	    		
 	    		rotate = PID_rotateValue;
 	    		prevForward = forward;
 	    		break;
 	    		
 	    	case DRIVE_STRAIGHT_REVERSE:
 	    		squaredInputs = false;
-    			forward = Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
+//    			forward = Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
+	   			forward = Constants.straightDriveDutyCycle;	    		
 	    		rotate = PID_rotateValue;
 	    		prevForward = forward;
 	    		break;
@@ -161,16 +163,16 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		_robotDrive.setMaxOutput(dutyCycleLimit);
 
 		/* try this to potentially turn better with only high gear */
-//		if (_driveTrainControl == DriveTrainControl.Turn_Degrees)
-//		{
-//			if (rotate < 0.0)
-//			{
-//				_robotDrive.tankDrive(Math.abs(rotate), 0.0);
-//			} else
-//			{
-//				_robotDrive.tankDrive(0.0, Math.abs(rotate));				
-//			}
-//		} else
+		if (_driveTrainControl == DriveTrainControl.TURN_DEGREES)
+		{
+			if (rotate < 0.0)
+			{
+				_robotDrive.tankDrive(Math.abs(rotate), 0.0);
+			} else
+			{
+				_robotDrive.tankDrive(0.0, Math.abs(rotate));				
+			}
+		} else
 		{
 			_robotDrive.arcadeDrive(forward, rotate, squaredInputs);
 		}
