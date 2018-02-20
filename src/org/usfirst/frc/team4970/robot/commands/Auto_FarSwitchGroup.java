@@ -21,6 +21,8 @@ public class Auto_FarSwitchGroup extends CommandGroup {
     		degreeMultiplier = -1.0;
     	}
     	
+  //  	addParallel(new ReleaseArmSpring());
+    	
    		/* switch is on our side... place the cube there */
    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches)));
 		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));

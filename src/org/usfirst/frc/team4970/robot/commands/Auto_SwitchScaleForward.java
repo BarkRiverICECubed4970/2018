@@ -33,11 +33,11 @@ public class Auto_SwitchScaleForward extends Command {
 	    		new Auto_CloseScaleGroup(_location);
 	    	} else
 	    	{
-	    		new DriveStraight(Constants.autoDriveStraightAutoInches);	    		
+	    		new Auto_DriveForward();	    		
 	    	}
     	} else
     	{
-    		new DriveStraight(Constants.autoDriveStraightAutoInches);
+    		new Auto_DriveForward();
     	}
     }
 

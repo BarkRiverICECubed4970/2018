@@ -37,7 +37,7 @@ public class Auto_SwitchScaleOScale extends Command {
 	    	}
     	} else
     	{
-    		new DriveStraight(Constants.autoDriveStraightAutoInches);
+    		new Auto_DriveForward();
     	}
     }
 

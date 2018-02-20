@@ -21,6 +21,7 @@ public class Constants {
 	
     public static double turnDegrees = -60.0;
     public static double driveInchesForTest = 18.0;
+    public static double timedDriveTimeout = 1.0;
     public static double autoDriveStraightAutoInches = 72.0;
     public static double autoDriveToCloseSwitchInches = 36.0;
     public static double autoDriveToCloseScaleInches = 72.0;
@@ -104,7 +105,8 @@ public class Constants {
     public static double armToSwitchTimeout = 2.0;
     public static double armToScaleTimeout = 3.0;
     public static double armToIntakeTimeout = 5.0;
-
+    public static double armReleaseSpringDutyCycle = -0.3;
+    public static double armReleaseSpringTimeout = 0.1;
     
     public static double intakeCubeDutyCycle = 0.3;
     public static double outputCubeDutyCycle = 0.3;
@@ -130,6 +132,7 @@ public class Constants {
 		/* drive train */
 		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Inches to drive for test", driveInchesForTest);
+		SmartDashboard.putNumber("Timed Drive Timeout", timedDriveTimeout);
 		SmartDashboard.putNumber("Autonomous drive inches", autoDriveStraightAutoInches);
 		SmartDashboard.putNumber("Autonomous drive to close switch inches", autoDriveToCloseSwitchInches);
 		SmartDashboard.putNumber("Autonomous drive to close scale inches", autoDriveToCloseScaleInches);
@@ -177,6 +180,8 @@ public class Constants {
 		SmartDashboard.putNumber("Arm To Switch Timeout", Constants.armToSwitchTimeout);
 		SmartDashboard.putNumber("Arm To Scale Timeout", Constants.armToScaleTimeout);
 		SmartDashboard.putNumber("Arm To Intake Timeout", Constants.armToIntakeTimeout);
+		SmartDashboard.getNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
+		SmartDashboard.getNumber("Arm Release Spring Timeout", Constants.armReleaseSpringTimeout);
 
     	
     	/* Intake motor */
@@ -261,5 +266,6 @@ public class Constants {
 
     	Constants.armUpMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Up Max Drive DutyCycle",Constants.armUpMaxDriveDutyCycle);
     	Constants.armDownMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Down Max Drive DutyCycle",Constants.armDownMaxDriveDutyCycle);
+
 	}
 }

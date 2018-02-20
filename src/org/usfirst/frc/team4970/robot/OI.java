@@ -94,7 +94,11 @@ public class OI {
         joystickButton1 = new JoystickButton(joystick, 6);
         joystickButton1.whileHeld(new CubeIntakeSlow());
 
-//        joystickButton1 = new JoystickButton(joystick, 6);
+        joystickButton1 = new JoystickButton(joystick, x);
+        joystickButton1.whenPressed(new ReleaseArmSpring());
+
+
+        //        joystickButton1 = new JoystickButton(joystick, 6);
   //      joystickButton1.whileHeld(new ExtendTape());
         
     //    joystickButton1 = new JoystickButton(joystick, 7);
@@ -122,7 +126,6 @@ public class OI {
     	SmartDashboard.putData("Reel Tape", new ReelTape());
     	SmartDashboard.putData("Get Game Data", new TestAutoCommand());
     	SmartDashboard.putData("Reset Encoders", new ResetEncoders());
-
-    	
+    	SmartDashboard.putData("Arm Release Spring", new ReleaseArmSpring());    	
     }
 }

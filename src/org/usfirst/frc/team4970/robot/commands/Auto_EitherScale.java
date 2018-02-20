@@ -34,7 +34,7 @@ public class Auto_EitherScale extends Command {
 	    	}
     	} else
     	{
-    		new DriveStraight(Constants.autoDriveStraightAutoInches);
+    		new Auto_DriveForward();
     	}
     }
 

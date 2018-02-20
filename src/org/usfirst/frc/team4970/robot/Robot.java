@@ -21,12 +21,14 @@ import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 import org.opencv.core.Mat;
+import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOSwitch;
 import org.usfirst.frc.team4970.robot.commands.DriveStraight;
+import org.usfirst.frc.team4970.robot.commands.ReleaseArmSpring;
 import org.usfirst.frc.team4970.robot.commands.TestAutoCommand;
 import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
 import org.usfirst.frc.team4970.robot.subsystems.ClimbMotor;
@@ -69,7 +71,8 @@ public class Robot extends TimedRobot {
 		
 		_calibrationManager = new Constants();
 		
-		m_chooser.addDefault("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches));
+//		m_chooser.addDefault("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches));
+		m_chooser.addDefault("All Positions: Drive Forward", new Auto_DriveForward());
 
 		m_chooser.addObject("Left Position: Switch Either Side", new Auto_EitherSwitch('L'));
 		m_chooser.addObject("Right Position: Switch Either Side", new Auto_EitherSwitch('R'));
@@ -86,7 +89,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Right Position: Scale Either Side", new Auto_EitherScale('R'));
 
 		m_chooser.addObject("Display Position and Game Data", new TestAutoCommand());
-        m_chooser.addObject("Do Nothing", null);
+        m_chooser.addObject("Release Spring and Do Nothing", new ReleaseArmSpring());
         // instantiate the command used for the autonomous period
 
 		SmartDashboard.putData("Auto mode", m_chooser);	
@@ -142,6 +145,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
@@ -153,6 +157,9 @@ public class Robot extends TimedRobot {
 		
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
+		/* bump the arm down to release the spring */
+		new ReleaseArmSpring();
+		
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();

@@ -128,6 +128,11 @@ public class ArmMotor extends Subsystem {
 		}
     }
     
+    public void lowerArmPercentOutputMode(double percentOutput)
+    {
+    	m_arm.set(ControlMode.PercentOutput, percentOutput);    	
+    }
+    
     public void stop() {
     	m_arm.set(ControlMode.PercentOutput, 0.0);
     }

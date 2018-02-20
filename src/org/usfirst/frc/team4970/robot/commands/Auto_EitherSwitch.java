@@ -37,7 +37,7 @@ public class Auto_EitherSwitch extends Command {
 	    	}
     	} else
     	{
-    		new DriveStraight(Constants.autoDriveStraightAutoInches);
+    		new Auto_DriveForward();
     	}
     }
 
