@@ -108,6 +108,7 @@ public class IntakeMotor extends Subsystem {
     	m_intake1.config_kD(0, Constants.intakeMotorPidKd, Constants.timeoutMs);	   	
     	m_intake1.configAllowableClosedloopError(0, (int)Constants.intakeMotorAllowableClosedLoopError, Constants.timeoutMs);	   	
 
+    	m_intake1.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     	m_intake1.set(ControlMode.Position, m_intake1.getSelectedSensorPosition(0));
     	
     	m_intake2.config_kP(0, Constants.intakeMotorPidKp, Constants.timeoutMs);
@@ -115,6 +116,7 @@ public class IntakeMotor extends Subsystem {
     	m_intake2.config_kD(0, Constants.intakeMotorPidKd, Constants.timeoutMs);	   	
     	m_intake2.configAllowableClosedloopError(0, (int)Constants.intakeMotorAllowableClosedLoopError, Constants.timeoutMs);	   	
 
+    	m_intake2.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     	m_intake2.set(ControlMode.Position, m_intake2.getSelectedSensorPosition(0));
     }
     

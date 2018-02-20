@@ -94,7 +94,7 @@ public class OI {
         joystickButton1 = new JoystickButton(joystick, 6);
         joystickButton1.whileHeld(new CubeIntakeSlow());
 
-        joystickButton1 = new JoystickButton(joystick, x);
+        joystickButton1 = new JoystickButton(joystick, 13);
         joystickButton1.whenPressed(new ReleaseArmSpring());
 
 

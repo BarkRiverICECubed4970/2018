@@ -95,26 +95,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);	
 
 		CameraServer.getInstance().startAutomaticCapture();
-/*
-		new Thread(() -> {
 
-        	usbCamera = CameraServer.getInstance().startAutomaticCapture(0);
-        	usbCamera.setResolution(320, 240);
-        	usbCamera.setExposureManual(100);
-        	
-        	CvSink cvSink1 = CameraServer.getInstance().getVideo(usbCamera);
-
-        	CvSource outputStream = CameraServer.getInstance().putVideo("Camera", 320, 240);
-        	
-        	Mat source = new Mat();
-        	
-                    cvSink1.setEnabled(true);
-                    cvSink1.grabFrame(source);
-        			
-
-        		outputStream.putFrame(source);
-        }).start();
-*/        
 	}
 
 	/**

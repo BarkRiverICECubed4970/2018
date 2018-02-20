@@ -105,8 +105,8 @@ public class Constants {
     public static double armToSwitchTimeout = 2.0;
     public static double armToScaleTimeout = 3.0;
     public static double armToIntakeTimeout = 5.0;
-    public static double armReleaseSpringDutyCycle = -0.3;
-    public static double armReleaseSpringTimeout = 0.1;
+    public static double armReleaseSpringDutyCycle = -0.35;
+    public static double armReleaseSpringTimeout = 0.25;
     
     public static double intakeCubeDutyCycle = 0.3;
     public static double outputCubeDutyCycle = 0.3;
@@ -180,8 +180,8 @@ public class Constants {
 		SmartDashboard.putNumber("Arm To Switch Timeout", Constants.armToSwitchTimeout);
 		SmartDashboard.putNumber("Arm To Scale Timeout", Constants.armToScaleTimeout);
 		SmartDashboard.putNumber("Arm To Intake Timeout", Constants.armToIntakeTimeout);
-		SmartDashboard.getNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
-		SmartDashboard.getNumber("Arm Release Spring Timeout", Constants.armReleaseSpringTimeout);
+		SmartDashboard.putNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
+		SmartDashboard.putNumber("Arm Release Spring Timeout", Constants.armReleaseSpringTimeout);
 
     	
     	/* Intake motor */
