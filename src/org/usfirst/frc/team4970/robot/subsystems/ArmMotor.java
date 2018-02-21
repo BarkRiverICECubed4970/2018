@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4970.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,10 +14,10 @@ public class ArmMotor extends Subsystem {
 
 	public enum ArmState
 	{
-		ARM_START_HEIGHT, ARM_INTAKE_HEIGHT, ARM_SWITCH_HEIGHT, ARM_SCALE_HEIGHT, ARM_MOVING
+		ARM_LOCKED, ARM_INTAKE_HEIGHT, ARM_SWITCH_HEIGHT, ARM_SCALE_HEIGHT, ARM_MOVING
 	};
 	
-	public static ArmState _armState = ArmState.ARM_START_HEIGHT;
+	public static ArmState _armState = ArmState.ARM_LOCKED;
 	
 	WPI_TalonSRX m_arm = new WPI_TalonSRX(Constants.armMotorCanAddress);
 
@@ -67,7 +68,13 @@ public class ArmMotor extends Subsystem {
     	m_arm.set(ControlMode.Position, setpoint);
     }
 
-    public void raiseArm(double setPoint) {    	
+    public void raiseArm(double setPoint) {  
+    	
+    	if (_armState == ArmState.ARM_LOCKED)
+    	{
+    		unlockArm();
+    	}
+    	
     	Constants.armMotorPidKp = SmartDashboard.getNumber("Arm PID KP", Constants.armMotorPidKp);
     	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
     	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
@@ -95,6 +102,11 @@ public class ArmMotor extends Subsystem {
     
     public void lowerArmInit()
     {
+    	if (_armState == ArmState.ARM_LOCKED)
+    	{
+    		unlockArm();
+    	}
+    	
     	Constants.armMotorLowerPidKp = SmartDashboard.getNumber("Arm Lower PID KP", Constants.armMotorLowerPidKp);
     	Constants.armMotorPidKi = SmartDashboard.getNumber("Arm PID KI", Constants.armMotorPidKi);
     	Constants.armMotorPidKd = SmartDashboard.getNumber("Arm PID KD", Constants.armMotorPidKd);
@@ -131,6 +143,17 @@ public class ArmMotor extends Subsystem {
     public void lowerArmPercentOutputMode(double percentOutput)
     {
     	m_arm.set(ControlMode.PercentOutput, percentOutput);    	
+    }
+    
+    private void unlockArm()
+    {
+    	if (_armState == ArmState.ARM_LOCKED)
+    	{
+    		lowerArmPercentOutputMode(Constants.armReleaseSpringDutyCycle);
+    		Timer.delay(Constants.armReleaseSpringTimeout);
+    		stop();
+    		_armState = ArmState.ARM_INTAKE_HEIGHT;
+    	}
     }
     
     public void stop() {

@@ -7,9 +7,6 @@
 
 package org.usfirst.frc.team4970.robot;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -20,14 +17,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
-import org.opencv.core.Mat;
 import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOSwitch;
-import org.usfirst.frc.team4970.robot.commands.DriveStraight;
 import org.usfirst.frc.team4970.robot.commands.ReleaseArmSpring;
 import org.usfirst.frc.team4970.robot.commands.TestAutoCommand;
 import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
@@ -57,8 +52,6 @@ public class Robot extends TimedRobot {
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	public static Constants _calibrationManager;
-	
-	private static UsbCamera usbCamera;
 	
     /**
 	 * This function is run when the robot is first started up and should be
@@ -139,7 +132,7 @@ public class Robot extends TimedRobot {
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
 		/* bump the arm down to release the spring */
-		new ReleaseArmSpring();
+//		new ReleaseArmSpring();
 		
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {

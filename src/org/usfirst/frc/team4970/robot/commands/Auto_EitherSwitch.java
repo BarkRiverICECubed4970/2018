@@ -1,7 +1,6 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
-import utils.Constants;
 
 import org.usfirst.frc.team4970.robot.Robot;
 

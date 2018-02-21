@@ -20,7 +20,7 @@ import utils.Constants;
  */
 public class DriveStraight extends Command {
 	
-	private double encoderAvg;
+//	private double encoderAvg;
 	private double inchesToDrive;
 	
 	public DriveStraight(double inches) {
@@ -38,7 +38,7 @@ public class DriveStraight extends Command {
 		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
 		
 		Robot._driveTrain.resetEncoders();
-		encoderAvg = 0;
+//		encoderAvg = 0;
 		
 		Robot._driveTrain.setupGyroPID();
 		/* redundant... the setup function should call this */

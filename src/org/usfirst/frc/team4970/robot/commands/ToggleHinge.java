@@ -39,7 +39,7 @@ public class ToggleHinge extends Command {
         	
         	/* do not lower hinge unless arm is at intake height */
         	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT) ||
-       			(ArmMotor._armState == ArmMotor.ArmState.ARM_START_HEIGHT))
+       			(ArmMotor._armState == ArmMotor.ArmState.ARM_LOCKED))
        		{
        			/* as soon as this command is invoked, consider the hinge down in case the
        			 * command is interrupted before it can finish */

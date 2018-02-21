@@ -3,8 +3,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
-import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 
 import utils.Constants;
 
@@ -13,16 +11,12 @@ import utils.Constants;
  */
 public class ReleaseArmSpring extends Command {
 
-	private boolean _cancelCommand = false;
-	
 	public ReleaseArmSpring() {
         requires(Robot._armMotor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	_cancelCommand = false;
-    	
 		Constants.armReleaseSpringDutyCycle = SmartDashboard.getNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
 		Constants.armReleaseSpringTimeout = SmartDashboard.getNumber("Arm Release Spring Timeout", Constants.armReleaseSpringTimeout);
 

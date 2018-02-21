@@ -41,7 +41,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     private static double forward;
     private static double rotate;
     /* used for ramp up in autonomous to prevent lurching */
-    private static double prevForward;
+//    private static double prevForward;
     private static double dutyCycleLimit;
     private static boolean squaredInputs = true;
     
@@ -84,7 +84,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	_gyro.setName("Pigeon");
     	
     	// just in case
-    	prevForward = 0;
+//    	prevForward = 0;
 	}
 	
 	public void initDefaultCommand() {
@@ -102,14 +102,14 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		squaredInputs = true;
     			forward = Robot.m_oi.joystick.getRawAxis(1);
 	    		rotate = -Robot.m_oi.joystick.getRawAxis(0);
-	    		prevForward = 0;
+//	    		prevForward = 0;
 	    		break;
 
 	    	case TURN_DEGREES:
 	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = PID_rotateValue;	    		
-	    		prevForward = 0;
+//	    		prevForward = 0;
 	    		break;
 	    		
 	    	case DRIVE_STRAIGHT:
@@ -117,7 +117,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 //	   			forward = -Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
 	   			forward = -Constants.straightDriveDutyCycle;	    		
 	    		rotate = PID_rotateValue;
-	    		prevForward = forward;
+//	    		prevForward = forward;
 	    		break;
 	    		
 	    	case DRIVE_STRAIGHT_REVERSE:
@@ -125,21 +125,21 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 //    			forward = Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
 	   			forward = Constants.straightDriveDutyCycle;	    		
 	    		rotate = PID_rotateValue;
-	    		prevForward = forward;
+//	    		prevForward = forward;
 	    		break;
 	    			
 	    	case STOP:
 	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = 0.0;
-	    		prevForward = 0;
+//	    		prevForward = 0;
 	    		break;
 
 	    	default:
 	    		squaredInputs = false;
 	    		forward = 0.0;
 	    		rotate = 0.0;
-	    		prevForward = 0;
+//	    		prevForward = 0;
 	    		break;
     	}
 
