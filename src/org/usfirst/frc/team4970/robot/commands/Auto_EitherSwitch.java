@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc.team4970.robot.Robot;
 
@@ -10,6 +11,7 @@ import org.usfirst.frc.team4970.robot.Robot;
 public class Auto_EitherSwitch extends Command {
 
 	private char _location;
+	private CommandGroup _commandGroup;
 	
 	public Auto_EitherSwitch(char robotLocation) {
 		_location = robotLocation;
@@ -26,18 +28,20 @@ public class Auto_EitherSwitch extends Command {
     	{
     		if (_location == 'C')
     		{
-   				new Auto_SwitchFromCenter(Robot.gameData.charAt(0));
+   				_commandGroup = new Auto_SwitchFromCenter(Robot.gameData.charAt(0));
     		}	else if (_location == Robot.gameData.charAt(0))
 	    	{
-	    		new Auto_CloseSwitchGroup(_location);
+    			_commandGroup = new Auto_CloseSwitchGroup(_location);
 	    	} else
 	    	{
-	    		new Auto_FarSwitchGroup(_location);
+	    		_commandGroup = new Auto_FarSwitchGroup(_location);
 	    	}
     	} else
     	{
-    		new Auto_DriveForward();
+    		_commandGroup = new Auto_DriveForward();
     	}
+    	
+    	_commandGroup.start();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 import org.usfirst.frc.team4970.robot.Robot;
 
@@ -10,7 +11,8 @@ import org.usfirst.frc.team4970.robot.Robot;
 public class Auto_EitherScale extends Command {
 
 	private char _location;
-	
+	private CommandGroup _commandGroup;
+		
 	public Auto_EitherScale(char robotLocation) {
 		_location = robotLocation;
     }
@@ -26,15 +28,17 @@ public class Auto_EitherScale extends Command {
     	{
     		if (_location == Robot.gameData.charAt(1))
 	    	{
-	    		new Auto_CloseScaleGroup(_location);
+	    		_commandGroup = new Auto_CloseScaleGroup(_location);
 	    	} else
 	    	{
-	    		new Auto_FarScaleGroup(_location);	    		
+	    		_commandGroup = new Auto_FarScaleGroup(_location);	    		
 	    	}
     	} else
     	{
-    		new Auto_DriveForward();
+    		_commandGroup = new Auto_DriveForward();
     	}
+    	
+    	_commandGroup.start();
     }
 
     // Called repeatedly when this Command is scheduled to run

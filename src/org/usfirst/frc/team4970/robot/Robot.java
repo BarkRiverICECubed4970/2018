@@ -131,9 +131,6 @@ public class Robot extends TimedRobot {
 		
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-		/* bump the arm down to release the spring */
-//		new ReleaseArmSpring();
-		
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
