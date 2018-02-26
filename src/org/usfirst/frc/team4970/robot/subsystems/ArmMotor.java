@@ -140,7 +140,7 @@ public class ArmMotor extends Subsystem {
 		}
     }
     
-    public void lowerArmPercentOutputMode(double percentOutput)
+    public void moveArmPercentOutputMode(double percentOutput)
     {
     	m_arm.set(ControlMode.PercentOutput, percentOutput);    	
     }
@@ -149,7 +149,7 @@ public class ArmMotor extends Subsystem {
     {
     	if (_armState == ArmState.ARM_LOCKED)
     	{
-    		lowerArmPercentOutputMode(Constants.armReleaseSpringDutyCycle);
+    		moveArmPercentOutputMode(Constants.armReleaseSpringDutyCycle);
     		Timer.delay(Constants.armReleaseSpringTimeout);
     		stop();
     		_armState = ArmState.ARM_INTAKE_HEIGHT;
