@@ -140,7 +140,7 @@ public class ArmMotor extends Subsystem {
 		}
     }
     
-    public void moveArmPercentOutputMode(double percentOutput)
+    private void moveArmPercentOutputMode(double percentOutput)
     {
     	m_arm.set(ControlMode.PercentOutput, percentOutput);    	
     }
