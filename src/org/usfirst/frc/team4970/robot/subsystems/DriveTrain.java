@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import org.usfirst.frc.team4970.robot.commands.DriveWithJoystick;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc.team4970.robot.Robot;
@@ -151,15 +152,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 			dutyCycleLimit = Constants.armDownMaxDriveDutyCycle;			
 		}
 			
-//		if (Math.abs(forward) > dutyCycleLimit)
-//		{
-//			forward = Math.copySign(dutyCycleLimit, forward);    	
-//		}
-		
-//		if (Math.abs(rotate) > dutyCycleLimit)
-//		{
-//			rotate = Math.copySign(dutyCycleLimit, rotate);    	
-//		}
 		_robotDrive.setMaxOutput(dutyCycleLimit);
 
 		/* try this to potentially turn better with only high gear */
@@ -176,6 +168,22 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		{
 			_robotDrive.arcadeDrive(forward, rotate, squaredInputs);
 		}
+    }
+    
+    public void setDriveTrainBrakeMode(boolean enabled)
+    {
+    	if (enabled)
+    	{
+			m_leftFront.setNeutralMode(NeutralMode.Brake);
+	    	m_rightFront.setNeutralMode(NeutralMode.Brake);
+			m_leftRear.setNeutralMode(NeutralMode.Brake);
+	    	m_rightRear.setNeutralMode(NeutralMode.Brake);
+    	} else {
+			m_leftFront.setNeutralMode(NeutralMode.Coast);
+	    	m_rightFront.setNeutralMode(NeutralMode.Coast);
+			m_leftRear.setNeutralMode(NeutralMode.Coast);
+	    	m_rightRear.setNeutralMode(NeutralMode.Coast);
+    	}
     }
     
     public void resetEncoders()

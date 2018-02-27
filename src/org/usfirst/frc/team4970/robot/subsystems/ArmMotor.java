@@ -145,7 +145,7 @@ public class ArmMotor extends Subsystem {
     	m_arm.set(ControlMode.PercentOutput, percentOutput);    	
     }
     
-    private void unlockArm()
+    public void unlockArm()
     {
     	if (_armState == ArmState.ARM_LOCKED)
     	{

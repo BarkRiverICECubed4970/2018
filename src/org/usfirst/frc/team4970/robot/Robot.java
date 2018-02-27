@@ -9,6 +9,7 @@ package org.usfirst.frc.team4970.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -47,6 +48,8 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 
 	public static String gameData;
+	
+	public static PowerDistributionPanel pdp = new PowerDistributionPanel(); 
 	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();

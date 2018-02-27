@@ -62,7 +62,7 @@ public class Constants {
     public static double gyroPidMaxIn = 60.0;
     public static double gyroPidMinOut = -1.0;
     public static double gyroPidMaxOut = 1.0;
-    public static double gyroPidTolerance = 4.0;
+    public static double gyroPidTolerance = 2.0;
     public static double gyroPidMaxSetpoint = 8;
     
     public static double hingeMotorPidKp = 0.75;
@@ -234,6 +234,12 @@ public class Constants {
     		SmartDashboard.putString("Game Data", Robot.gameData);    		
     	}
     	
+    	/* 
+    	 * put an instance of the PDP to shuffleboard... this may help to see
+    	 * issues with motors, etc...
+    	 */
+    	SmartDashboard.putData("Power Distribution Panel", Robot.pdp);
+    	
 		/* joystick */
 		SmartDashboard.putNumber("Joystick forward", Robot.m_oi.joystick.getRawAxis(1));
 		SmartDashboard.putNumber("Joystick rotate", Robot.m_oi.joystick.getRawAxis(0));
@@ -267,5 +273,7 @@ public class Constants {
     	Constants.armUpMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Up Max Drive DutyCycle",Constants.armUpMaxDriveDutyCycle);
     	Constants.armDownMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Down Max Drive DutyCycle",Constants.armDownMaxDriveDutyCycle);
 
+		Constants.armReleaseSpringDutyCycle = SmartDashboard.getNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
+		Constants.armReleaseSpringTimeout = SmartDashboard.getNumber("Arm Release Spring Timeout", Constants.armReleaseSpringTimeout);
 	}
 }
