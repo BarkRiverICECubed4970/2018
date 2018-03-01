@@ -11,6 +11,6 @@ public class Auto_DriveForward extends CommandGroup {
     public Auto_DriveForward() {
 
  //   	addParallel(new ReleaseArmSpring());
-    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive inches", Constants.autoDriveStraightAutoInches)));    	
+    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive inches", Constants.autoDriveStraightAutoInches), false));    	
     }
 }

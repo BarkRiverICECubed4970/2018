@@ -22,11 +22,16 @@ public class TurnDegrees extends Command {
 
 	private double desiredAngle;
 	
-	public TurnDegrees(double degrees) {
+	public TurnDegrees(double degrees, boolean testOverride) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
-		
-		desiredAngle = degrees;
+
+		if (testOverride == true)
+		{
+			desiredAngle = SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees);
+		} else {
+			desiredAngle = degrees;
+		}
 	}
 
 	// Called just before this Command runs the first time

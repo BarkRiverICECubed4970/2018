@@ -20,9 +20,9 @@ public class Auto_SwitchFromCenter extends CommandGroup {
     	}
     	
   //  	addParallel(new ReleaseArmSpring());
-		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous turn degrees from center", Constants.autoTurnDegreesFromCenter)));
+		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous turn degrees from center", Constants.autoTurnDegreesFromCenter), false));
     	addParallel(new ArmToSwitchGroup());
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to fence from center", Constants.autoDriveToFenceFromCenter)));
+   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to fence from center", Constants.autoDriveToFenceFromCenter), false));
 		
 		addSequential(new CubeOutputTimed());
    		addSequential(new StopArm());

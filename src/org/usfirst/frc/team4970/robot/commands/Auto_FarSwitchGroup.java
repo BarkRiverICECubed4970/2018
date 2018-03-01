@@ -24,16 +24,16 @@ public class Auto_FarSwitchGroup extends CommandGroup {
   //  	addParallel(new ReleaseArmSpring());
     	
    		/* switch is on our side... place the cube there */
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches)));
-		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across switch inches", Constants.autoDriveAcrossSwitchInches)));
-		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to opposite switch zone", Constants.autoDriveToOppositeSwitchZone)));
+   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches), false));
+		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees), false));
+   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across switch inches", Constants.autoDriveAcrossSwitchInches), false));
+		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees), false));
+   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to opposite switch zone", Constants.autoDriveToOppositeSwitchZone), false));
 
    		addParallel(new ArmToSwitchGroup());
 
-   		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees)));
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to fence from switch zone", Constants.autoDriveToFenceFromSwitchZone)));
+   		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees), false));
+   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to fence from switch zone", Constants.autoDriveToFenceFromSwitchZone), false));
    		
 		addSequential(new CubeOutputTimed());
    		addSequential(new StopArm());

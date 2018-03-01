@@ -23,11 +23,16 @@ public class DriveStraight extends Command {
 //	private double encoderAvg;
 	private double inchesToDrive;
 	
-	public DriveStraight(double inches) {
+	public DriveStraight(double inches, boolean testOverride) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 		
-		inchesToDrive = inches;
+		if (testOverride == true)
+		{
+			inchesToDrive = SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest);
+		} else {
+			inchesToDrive = inches;
+		}
 	}
 
 	// Called just before this Command runs the first time
