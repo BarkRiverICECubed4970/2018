@@ -19,20 +19,24 @@ public class Constants {
 	public static final int climbMotorCanAddress = 10;
 	public static final int gyroControllerCanAddress = 12;
 	
-    public static double turnDegrees = -60.0;
+    public static double autoClosSwitchTurnDegrees = -30.0;
+    public static double autoScaleTurnDegrees = -45.0;
+    public static double autoNinetyDegrees = -90.0;
     public static double driveInchesForTest = 18.0;
     public static double timedDriveTimeout = 1.0;
-    public static double autoDriveStraightAutoInches = 72.0;
-    public static double autoDriveToCloseSwitchInches = 36.0;
-    public static double autoDriveToCloseScaleInches = 72.0;
-    public static double autoDrivePastSwitchInches = 42.0;
-    public static double autoDriveAcrossSwitchInches = 100.0;
-    public static double autoDriveToNullZone = 20.0;
+    public static double autoDriveStraightAutoInches = 100.0;
+    public static double autoDriveToCloseSwitchInches = 100.0;
+    public static double autoDriveToCloseScaleInches = 280.0;
+    public static double autoDrivePastSwitchInches = 210.0;
+    public static double autoDriveAcrossSwitchInches = 132.0;
+    public static double autoDriveAcrossScaleInches = 250.0;
+    public static double autoDriveToNullZone = 30.0;
     public static double autoDriveToOppositeSwitchZone = 20.0;
     public static double autoDriveToFenceFromSwitchZone = 20.0;
-    public static double autoDriveToFenceFromCenter = 50.0;
+    public static double autoDriveToFenceFromCenter = 120.0;
     public static double autoOppositeScaleTurnDegrees = 135.0;
-    public static double autoTurnDegreesFromCenter = 30.0;
+    public static double autoTurnDegreesFromCenter = -30.0;
+    public static double autoClosSwitchTurnDegrees = -30.0;
     public static double scaleInches = 100.0;
     public static double straightDriveDutyCycle = 0.4;
     public static double armDownMaxDriveDutyCycle = 1.0;
@@ -130,7 +134,6 @@ public class Constants {
     /* post the constants to the shuffleboard */
 	private void postConstants() {
 		/* drive train */
-		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Inches to drive for test", driveInchesForTest);
 		SmartDashboard.putNumber("Timed Drive Timeout", timedDriveTimeout);
 		SmartDashboard.putNumber("Autonomous drive inches", autoDriveStraightAutoInches);
@@ -138,11 +141,15 @@ public class Constants {
 		SmartDashboard.putNumber("Autonomous drive to close scale inches", autoDriveToCloseScaleInches);
 		SmartDashboard.putNumber("Autonomous drive past switch inches", autoDrivePastSwitchInches);
 		SmartDashboard.putNumber("Autonomous drive across switch inches", autoDriveAcrossSwitchInches);
+		SmartDashboard.putNumber("Autonomous drive across scale inches", autoDriveAcrossScaleInches);
 		SmartDashboard.putNumber("Autonomous opposite scale degrees to turn", autoOppositeScaleTurnDegrees);
 		SmartDashboard.putNumber("Autonomous drive to null zone", autoDriveToNullZone);
 		SmartDashboard.putNumber("Autonomous drive to opposite switch zone", autoDriveToOppositeSwitchZone);
 		SmartDashboard.putNumber("Autonomous drive to fence from switch zone", autoDriveToFenceFromSwitchZone);
 		SmartDashboard.putNumber("Autonomous turn degrees from center", autoTurnDegreesFromCenter);
+		SmartDashboard.putNumber("Autonomous close switch degrees to turn", autoClosSwitchTurnDegrees);
+		SmartDashboard.putNumber("Autonomous 90 degree turn", autoNinetyDegrees);
+		SmartDashboard.putNumber("Autonomous scale degree turn", autoScaleTurnDegrees);
 		SmartDashboard.putNumber("Autonomous drive to fence from center", autoDriveToFenceFromCenter);
 		
 		/* consider ramping function on the talons */
