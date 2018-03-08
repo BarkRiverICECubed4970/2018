@@ -38,10 +38,10 @@ public class TurnDegrees extends Command {
 	@Override
 	protected void initialize() {
 		Constants.turnDegreesTimeout = SmartDashboard.getNumber("Turn Degrees Timeout", Constants.turnDegreesTimeout);
-    	if (SmartDashboard.getNumber("Turn Degrees Override", 0.0) == 1.0)
-    	{
-    		desiredAngle = SmartDashboard.getNumber("Turn Degrees", desiredAngle);
-    	}
+//    	if (SmartDashboard.getNumber("Turn Degrees Override", 0.0) == 1.0)
+//    	{
+//    		desiredAngle = SmartDashboard.getNumber("Turn Degrees", desiredAngle);
+//    	}
     	setTimeout(Constants.turnDegreesTimeout);
     	Robot._driveTrain.resetOnTargetCount();
     	Robot._driveTrain.setupGyroPID();

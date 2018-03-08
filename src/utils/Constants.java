@@ -36,7 +36,7 @@ public class Constants {
     public static double autoDriveToFenceFromCenter = 120.0;
     public static double autoOppositeScaleTurnDegrees = 135.0;
     public static double autoTurnDegreesFromCenter = -30.0;
-    public static double autoClosSwitchTurnDegrees = -30.0;
+    public static double autoCloseSwitchTurnDegrees = -30.0;
     public static double scaleInches = 100.0;
     public static double straightDriveDutyCycle = 0.4;
     public static double armDownMaxDriveDutyCycle = 1.0;
@@ -58,7 +58,8 @@ public class Constants {
     
     
     public static double turnDegreesTimeout = 3.0;
-
+    public static double turnDegrees = -60.0;
+    
     public static double gyroPidKp = 0.05;
     public static double gyroPidKi = 0.0;
     public static double gyroPidKd = 0.0;
@@ -93,7 +94,7 @@ public class Constants {
     
     
     public static double armMotorPidKp = 5.0;
-    public static double armMotorLowerPidKp = 2.0;
+    public static double armMotorLowerPidKp = 3.0;
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
     public static double armMotorRaisePidKf = 0.0;
@@ -102,7 +103,7 @@ public class Constants {
     public static double armSecondsFromNeutral = 0.5;
     public static double intakePositionArmPidSetpoint = 100.0;
     public static double switchPositionArmPidSetpoint = 500.0;
-    public static double armMotorLowerArmPidEntryPoint = 300.0;
+    public static double armMotorLowerArmPidEntryPoint = 400.0;
     public static double scalePositionArmPidSetpoint = 1200.0;
     public static double armMotorPeakRaiseVoltage = 0.7;
     public static double armMotorPeakLowerVoltage = 0.5;
@@ -136,6 +137,7 @@ public class Constants {
 		/* drive train */
 		SmartDashboard.putNumber("Inches to drive for test", driveInchesForTest);
 		SmartDashboard.putNumber("Timed Drive Timeout", timedDriveTimeout);
+		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Autonomous drive inches", autoDriveStraightAutoInches);
 		SmartDashboard.putNumber("Autonomous drive to close switch inches", autoDriveToCloseSwitchInches);
 		SmartDashboard.putNumber("Autonomous drive to close scale inches", autoDriveToCloseScaleInches);

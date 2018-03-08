@@ -47,7 +47,7 @@ public class DriveStraight extends Command {
 		
 		Robot._driveTrain.setupGyroPID();
 		/* redundant... the setup function should call this */
-    	Robot._driveTrain.setGyroPidSetpoint(Robot._driveTrain.getGyroHeading());
+ //   	Robot._driveTrain.setGyroPidSetpoint(Robot._driveTrain.getGyroHeading());
 	}
 
 	// Called repeatedly when this Command is scheduled to run

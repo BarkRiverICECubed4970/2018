@@ -670,6 +670,17 @@
               "startAngle": 180.0,
               "tickMarkRingVisible": true
             }
+          },
+          "3,7": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Down Max Drive DutyCycle",
+              "_title": "SmartDashboard/Arm Down Max Drive DutyCycle"
+            }
           }
         }
       }
@@ -706,7 +717,7 @@
               "_title": "SmartDashboard/Get Game Data"
             }
           },
-          "8,2": {
+          "11,2": {
             "size": [
               3,
               1
@@ -731,7 +742,7 @@
               "tickMarkRingVisible": true
             }
           },
-          "4,4": {
+          "5,2": {
             "size": [
               2,
               1
@@ -745,7 +756,7 @@
               "blockIncrement": 0.0625
             }
           },
-          "4,2": {
+          "5,0": {
             "size": [
               2,
               1
@@ -759,7 +770,7 @@
               "blockIncrement": 0.0625
             }
           },
-          "8,4": {
+          "11,4": {
             "size": [
               3,
               2
@@ -769,8 +780,67 @@
               "_source0": "network_table:///SmartDashboard/Reset Encoders",
               "_title": "/SmartDashboard/Reset Encoders"
             }
+          },
+          "4,4": {
+            "size": [
+              5,
+              4
+            ],
+            "content": {
+              "_type": "PDP",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PowerDistributionPanel[0]",
+              "_title": "LiveWindow/Ungrouped/PowerDistributionPanel[0]",
+              "showIndicatorText": true
+            }
           }
         }
+      }
+    },
+    {
+      "title": "Intake",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "1,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Intake Cube Duty Cycle",
+              "_title": "SmartDashboard/Intake Cube Duty Cycle"
+            }
+          },
+          "4,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Output Cube Duty Cycle",
+              "_title": "SmartDashboard/Output Cube Duty Cycle"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Tab 6",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {}
       }
     }
   ]
