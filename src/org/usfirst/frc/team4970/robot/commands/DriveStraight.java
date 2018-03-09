@@ -48,6 +48,7 @@ public class DriveStraight extends Command {
 //		encoderAvg = 0;
 		
 		Robot._driveTrain.setupGyroPID();
+		Robot._driveTrain.setDriveTrainBrakeMode(true);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team4970.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -70,6 +71,11 @@ public class Robot extends TimedRobot {
 
 	public static Constants _calibrationManager;
 	
+    private static final int IMG_WIDTH = 160;
+    private static final int IMG_HEIGHT = 120;
+    private static UsbCamera usbCamera;
+    private static int cameraExposure = 3;
+    
     /**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -105,6 +111,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);	
 
 		CameraServer.getInstance().startAutomaticCapture();
+//    	usbCamera = CameraServer.getInstance().startAutomaticCapture(1);
+//    	usbCamera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+//    	usbCamera.setExposureManual(cameraExposure);
 
 	}
 

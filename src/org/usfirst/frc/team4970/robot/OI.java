@@ -121,8 +121,7 @@ public class OI {
     	SmartDashboard.putData("Arm to Intake Position", new ArmToIntakePosition());
     	SmartDashboard.putData("Intake Cube", new CubeIntake());
     	SmartDashboard.putData("Output Cube", new CubeOutput());
-    	SmartDashboard.putData("Extend Tape", new ExtendTape());
-    	SmartDashboard.putData("Reel Tape", new ReelTape());
+    	SmartDashboard.putData("Reel Tape", new OperateWinch());
     	SmartDashboard.putData("Get Game Data", new TestAutoCommand());
     	SmartDashboard.putData("Reset Encoders", new ResetEncoders());
     	SmartDashboard.putData("Arm Release Spring", new ReleaseArmSpring());    	

@@ -147,13 +147,10 @@ public class ArmMotor extends Subsystem {
     
     public void unlockArm()
     {
-    	if (_armState == ArmState.ARM_LOCKED)
-    	{
-    		moveArmPercentOutputMode(Constants.armReleaseSpringDutyCycle);
-    		Timer.delay(Constants.armReleaseSpringTimeout);
-    		stop();
-    		_armState = ArmState.ARM_INTAKE_HEIGHT;
-    	}
+   		moveArmPercentOutputMode(Constants.armReleaseSpringDutyCycle);
+   		Timer.delay(Constants.armReleaseSpringTimeout);
+   		stop();
+   		_armState = ArmState.ARM_INTAKE_HEIGHT;
     }
     
     public void stop() {

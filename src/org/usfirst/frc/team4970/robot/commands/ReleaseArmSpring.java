@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import utils.Constants;
 
 import org.usfirst.frc.team4970.robot.Robot;
 
@@ -14,6 +15,7 @@ public class ReleaseArmSpring extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	setTimeout(Constants.armReleaseSpringTimeout);
      	Robot._armMotor.unlockArm();
     }
 
@@ -22,7 +24,7 @@ public class ReleaseArmSpring extends Command {
     }
 
     protected boolean isFinished() {
-       	return true;
+       	return isTimedOut();
    	}
 
     // Called once after isFinished returns true

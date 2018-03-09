@@ -21,17 +21,14 @@ import utils.Constants;
 public class TurnDegrees extends Command {
 
 	private double desiredAngle;
+	private boolean testTurn;
 	
 	public TurnDegrees(double degrees, boolean testOverride) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 
-		if (testOverride == true)
-		{
-			desiredAngle = SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees);
-		} else {
-			desiredAngle = degrees;
-		}
+		desiredAngle = degrees;
+		testTurn = testOverride;
 	}
 
 	// Called just before this Command runs the first time
@@ -42,6 +39,12 @@ public class TurnDegrees extends Command {
 //    	{
 //    		desiredAngle = SmartDashboard.getNumber("Turn Degrees", desiredAngle);
 //    	}
+		
+		if (testTurn == true)
+		{
+			desiredAngle = SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees);
+		}
+		
     	setTimeout(Constants.turnDegreesTimeout);
     	Robot._driveTrain.resetOnTargetCount();
     	Robot._driveTrain.setupGyroPID();

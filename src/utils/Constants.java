@@ -93,14 +93,14 @@ public class Constants {
     
     
     public static double armMotorPidKp = 5.0;
-    public static double armMotorLowerPidKp = 3.0;
+    public static double armMotorLowerPidKp = 5.0;
     public static double armMotorPidKi = 0.0;
     public static double armMotorPidKd = 0.0;
     public static double armMotorRaisePidKf = 0.0;
     public static double armMotorLowerPidKf = 0.0;
     public static double armMotorAllowableClosedLoopError = 10;
     public static double armSecondsFromNeutral = 0.5;
-    public static double intakePositionArmPidSetpoint = 100.0;
+    public static double intakePositionArmPidSetpoint = 50.0;
     public static double switchPositionArmPidSetpoint = 500.0;
     public static double armMotorLowerArmPidEntryPoint = 400.0;
     public static double scalePositionArmPidSetpoint = 1200.0;
