@@ -17,6 +17,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team4970.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
 import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
@@ -39,10 +42,21 @@ import utils.Constants;
  */
 public class Robot extends TimedRobot {
 	
+	/* 
+	 * due to wiring and weight, the climber and gyro are using the same talonSRX,
+	 * keep things simple and have robot own it, so both subsystems can see it. 
+	 */
+	public static WPI_TalonSRX m_climber = new WPI_TalonSRX(Constants.climbMotorCanAddress);
+    
 	public static final DriveTrain _driveTrain = new DriveTrain();
 	public static final IntakeMotor _intakeMotor = new IntakeMotor();
 	public static final HingeMotor _hingeMotor = new HingeMotor();
 	public static final ArmMotor _armMotor = new ArmMotor();
+	/* 
+	 * this call needs to come after the drivetrain instantiation...
+	 * due to wiring constraints, the gyro and climbMotor are using
+	 * the same talonSRX
+	 */
 	public static final ClimbMotor _climbMotor = new ClimbMotor();
 
 	public static OI m_oi;

@@ -22,17 +22,14 @@ public class DriveStraight extends Command {
 	
 //	private double encoderAvg;
 	private double inchesToDrive;
+	private boolean testButton;
 	
 	public DriveStraight(double inches, boolean testOverride) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 		
-		if (testOverride == true)
-		{
-			inchesToDrive = SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest);
-		} else {
-			inchesToDrive = inches;
-		}
+		inchesToDrive = inches;
+		testButton = testOverride;
 	}
 
 	// Called just before this Command runs the first time
@@ -41,13 +38,16 @@ public class DriveStraight extends Command {
 
 		Constants.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Constants.straightDriveDutyCycle);	
 		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
+
+		if (testButton == true)
+		{
+			inchesToDrive = SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest);
+		}
 		
 		Robot._driveTrain.resetEncoders();
 //		encoderAvg = 0;
 		
 		Robot._driveTrain.setupGyroPID();
-		/* redundant... the setup function should call this */
- //   	Robot._driveTrain.setGyroPidSetpoint(Robot._driveTrain.getGyroHeading());
 	}
 
 	// Called repeatedly when this Command is scheduled to run

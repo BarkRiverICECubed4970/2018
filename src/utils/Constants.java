@@ -16,8 +16,7 @@ public class Constants {
 	public static final int hingeMotorCanAddress = 7;
 	public static final int intakeMotor1CanAddress = 8;
 	public static final int intakeMotor2CanAddress = 9;
-	public static final int climbMotorCanAddress = 10;
-	public static final int gyroControllerCanAddress = 12;
+	public static final int climbMotorCanAddress = 12;
 	
     public static double autoClosSwitchTurnDegrees = -30.0;
     public static double autoScaleTurnDegrees = -45.0;
@@ -115,8 +114,8 @@ public class Constants {
     
     public static double intakeCubeDutyCycle = 0.3;
     public static double outputCubeDutyCycle = 0.3;
-    public static double extendTapeDutyCycle = 0.3;
-    public static double reelTapeDutyCycle = 0.3;
+    public static double extendTapeDutyCycle = 1.0;
+    public static double reelTapeDutyCycle = 1.0;
 
     public static final int timeoutMs = 10;
     
@@ -231,7 +230,6 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge Motor CAN Address", hingeMotorCanAddress);   
     	SmartDashboard.putNumber("Arm Motor CAN Address", armMotorCanAddress);   
     	SmartDashboard.putNumber("Climb Motor CAN Address", climbMotorCanAddress);   
-    	SmartDashboard.putNumber("Gyro Controller CAN Address", gyroControllerCanAddress);   
 	}
     
 	/* periodically publish outputs */

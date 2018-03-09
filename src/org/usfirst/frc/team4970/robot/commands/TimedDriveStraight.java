@@ -40,8 +40,6 @@ public class TimedDriveStraight extends Command {
 		Robot._driveTrain.resetEncoders();
 		
 		Robot._driveTrain.setupGyroPID();
-		/* redundant... the setup function should call this */
-    	Robot._driveTrain.setGyroPidSetpoint(Robot._driveTrain.getGyroHeading());
 	}
 
 	// Called repeatedly when this Command is scheduled to run

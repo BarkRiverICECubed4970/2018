@@ -55,15 +55,12 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	WPI_TalonSRX m_rightRear = new WPI_TalonSRX(Constants.rightRearDriveMotorCanAddress);
 	WPI_TalonSRX m_rightFront = new WPI_TalonSRX(Constants.rightFrontDriveMotorCanAddress);
 	
-	/* using a spare talon SRX so the gyro can be as far away from any motors as possible */
-	WPI_TalonSRX m_gyro = new WPI_TalonSRX(Constants.gyroControllerCanAddress);
-    
 	SpeedControllerGroup m_left = new SpeedControllerGroup(m_leftFront, m_leftRear);
 	SpeedControllerGroup m_right = new SpeedControllerGroup(m_rightFront, m_rightRear);
 	
     private final DifferentialDrive _robotDrive = new DifferentialDrive(m_left, m_right);
 
-	public Gyro _gyro = new Gyro(m_gyro);
+	public Gyro _gyro = new Gyro(Robot.m_climber);
 	
     public final PIDController _gyroPid = new PIDController(Constants.gyroPidKp, Constants.gyroPidKi, Constants.gyroPidKd, _gyro, this);
 	
