@@ -23,13 +23,13 @@ public class DriveWithJoystick extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.JOYSTICK);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.JOYSTICK, 0.0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.JOYSTICK);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.JOYSTICK, 0.0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -41,7 +41,7 @@ public class DriveWithJoystick extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP, 0.0);
 	}
 
 	// Called when another command which requires one or more of the same
