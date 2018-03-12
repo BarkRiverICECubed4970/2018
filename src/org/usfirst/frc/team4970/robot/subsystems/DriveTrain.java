@@ -90,7 +90,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		setDefaultCommand(new DriveWithJoystick());		
 	}
 	
-    public void controlLoop(DriveTrainControl commandInControl)
+    /* forward duty cycle is only used for autonomous straight drive and reverse drive */
+    public void controlLoop(DriveTrainControl commandInControl, forwardDutyCycle)
     {
     	_driveTrainControl = commandInControl;
     	
@@ -113,7 +114,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    	case DRIVE_STRAIGHT:
 	    		squaredInputs = false;
 //	   			forward = -Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
-	   			forward = -Constants.straightDriveDutyCycle;	    		
+//	   			forward = -Constants.straightDriveDutyCycle;	    		
+	   			forward = -forwardDutyCycle;	    		
 	    		rotate = PID_rotateValue;
 //	    		prevForward = forward;
 	    		break;
@@ -121,7 +123,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    	case DRIVE_STRAIGHT_REVERSE:
 	    		squaredInputs = false;
 //    			forward = Math.min((prevForward + Constants.straightDriveRateLimit), Constants.straightDriveDutyCycle);	    		
-	   			forward = Constants.straightDriveDutyCycle;	    		
+//	   			forward = Constants.straightDriveDutyCycle;	    		
+	   			forward = forwardDutyCycle;	    		
 	    		rotate = PID_rotateValue;
 //	    		prevForward = forward;
 	    		break;
