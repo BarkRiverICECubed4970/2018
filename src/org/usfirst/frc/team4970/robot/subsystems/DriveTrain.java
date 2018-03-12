@@ -69,6 +69,9 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	m_leftFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.timeoutMs);
     	m_rightFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.timeoutMs);
     	
+	/* invert right encoder to count forward when drive is moving forward */
+	m_rightFront.setSensorPhase(true);
+		
     	/* reset encoder counters */
     	m_leftFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
     	m_rightFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
