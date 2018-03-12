@@ -42,6 +42,8 @@ public class Constants {
     public static double armDownMaxDriveDutyCycle = 1.0;
     public static double armUpMaxDriveDutyCycle = 0.4;
     public static double straightDriveRateLimit = 0.01;
+    public static double straightDriveInchesForRampDownBegin = 24.0;	
+	
     /* counts per revolution on output shaft * inches per revolution from tires
      * 
      *  6 inch diameter wheels. 
@@ -158,6 +160,7 @@ public class Constants {
 		SmartDashboard.putNumber("Straight drive start duty cycle", straightDriveStartDutyCycle);
 		SmartDashboard.putNumber("Straight drive final duty cycle", straightDriveFinalDutyCycle);
 		SmartDashboard.putNumber("Straight drive rate limit", straightDriveRateLimit);
+		SmartDashboard.putNumber("Straight drive ramp down inches", straightDriveInchesForRampDownBegin);
 		SmartDashboard.putNumber("Arm Up Max Drive DutyCycle",armUpMaxDriveDutyCycle);
 		SmartDashboard.putNumber("Arm Down Max Drive DutyCycle",armDownMaxDriveDutyCycle);
     	SmartDashboard.putNumber("Gyro PID KP", gyroPidKp);
