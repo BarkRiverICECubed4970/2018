@@ -51,7 +51,7 @@ public class DriveStraightReverse extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT_REVERSE);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT_REVERSE, Constants.straightDriveDutyCycle);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -66,7 +66,7 @@ public class DriveStraightReverse extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP, 0.0);
 	}
 
 	// Called when another command which requires one or more of the same
