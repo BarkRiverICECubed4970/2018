@@ -21,8 +21,16 @@ import utils.Constants;
 public class DriveStraight extends Command {
 	
 //	private double encoderAvg;
+	private double encoderCount;
+	private double encoderTarget;
+	private double encoderRampDownTarget;
 	private double inchesToDrive;
 	private boolean testButton;
+	private double startDutyCycle;
+	private double endDutyCycle;
+	private double dutyCycle;
+	private double dcDecreasePerInch;
+	private double rampDownInches;
 	
 	public DriveStraight(double inches, boolean testOverride) {
 		// Use requires() here to declare subsystem dependencies
@@ -36,7 +44,9 @@ public class DriveStraight extends Command {
 	@Override
 	protected void initialize() {
 
-		Constants.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Constants.straightDriveDutyCycle);	
+		startDutyCycle = SmartDashboard.getNumber("Straight drive start duty cycle", Constants.straightDriveStartDutyCycle);	
+		endDutyCycle = SmartDashboard.getNumber("Straight drive final duty cycle", Constants.straightDriveFinalDutyCycle);	
+		rampDownInches = SmartDashboard.getNumber("Straight drive ramp down inches", straightDriveInchesForRampDownBegin);
 		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
 
 		if (testButton == true)
@@ -47,6 +57,13 @@ public class DriveStraight extends Command {
 		Robot._driveTrain.resetEncoders();
 //		encoderAvg = 0;
 		
+		/* target encoder count to drive to */
+		encoderTarget = Constants.driveEncoderCountsPerInch * inchesToDrive;
+		/* encoder count to begin slowing down */
+		encoderRampDownTarget = math.max(0.0, (encoderTarget - Constants.driveEncoderCountsPerInch * rampDownInches));
+		/* how much to decrease the duty cycle per inch (but in terms of encoder counts) */
+		encoderRampDownRatio = (startDutyCycle - endDutyCycle)/(rampDownInches * Constants.driveEncoderCountsPerInch);
+		
 		Robot._driveTrain.setupGyroPID();
 		Robot._driveTrain.setDriveTrainBrakeMode(true);
 	}
@@ -54,7 +71,14 @@ public class DriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT);
+		dutyCycle = startDutyCycle;
+		encoderCount = Robot._driveTrain.getRightEncoderCount();
+		if (encoderCount > encoderRampDownTarget)
+		{
+		     dutyCycle = startDutyCycle - encoderRampDownRatio * (encoderCount - encoderRampDownTarget);
+		     dutyCycle = math.max(dutyCycle, endDutyCycle);
+		}
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT, dutyCycle);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -63,13 +87,13 @@ public class DriveStraight extends Command {
 //		encoderAvg = (-(double)Robot._driveTrain.getLeftEncoderCount() + -(double)Robot._driveTrain.getRightEncoderCount())/2.0;
 //		return (encoderAvg = (Constants.driveEncoderCountsPerInch * inchesToDrive));
 
-		return (-1.0* Robot._driveTrain.getRightEncoderCount() > (Constants.driveEncoderCountsPerInch * inchesToDrive));
+		return (Robot._driveTrain.getRightEncoderCount() > encoderTarget);
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP, 0.0);
 	}
 
 	// Called when another command which requires one or more of the same
