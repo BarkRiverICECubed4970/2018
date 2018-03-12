@@ -37,7 +37,8 @@ public class Constants {
     public static double autoTurnDegreesFromCenter = -30.0;
     public static double autoCloseSwitchTurnDegrees = -30.0;
     public static double scaleInches = 100.0;
-    public static double straightDriveDutyCycle = 0.4;
+    public static double straightDriveStartDutyCycle = 0.4;
+    public static double straightDriveFinalDutyCycle = 0.25;
     public static double armDownMaxDriveDutyCycle = 1.0;
     public static double armUpMaxDriveDutyCycle = 0.4;
     public static double straightDriveRateLimit = 0.01;
@@ -154,7 +155,8 @@ public class Constants {
 		SmartDashboard.putNumber("Autonomous drive to fence from center", autoDriveToFenceFromCenter);
 		
 		/* consider ramping function on the talons */
-		SmartDashboard.putNumber("Straight drive duty cycle", straightDriveDutyCycle);
+		SmartDashboard.putNumber("Straight drive start duty cycle", straightDriveStartDutyCycle);
+		SmartDashboard.putNumber("Straight drive final duty cycle", straightDriveFinalDutyCycle);
 		SmartDashboard.putNumber("Straight drive rate limit", straightDriveRateLimit);
 		SmartDashboard.putNumber("Arm Up Max Drive DutyCycle",armUpMaxDriveDutyCycle);
 		SmartDashboard.putNumber("Arm Down Max Drive DutyCycle",armDownMaxDriveDutyCycle);
