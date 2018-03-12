@@ -24,7 +24,6 @@ public class DriveWithJoystick extends Command {
 	@Override
 	protected void initialize() {
 		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.JOYSTICK);
-		Robot._driveTrain.setDriveTrainBrakeMode(false);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
