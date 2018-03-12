@@ -29,7 +29,7 @@ public class DriveStraight extends Command {
 	private double startDutyCycle;
 	private double endDutyCycle;
 	private double dutyCycle;
-	private double dcDecreasePerInch;
+	private double encoderRampDownRatio;
 	private double rampDownInches;
 	
 	public DriveStraight(double inches, boolean testOverride) {
