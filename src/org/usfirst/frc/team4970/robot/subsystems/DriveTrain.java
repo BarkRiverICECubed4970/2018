@@ -156,10 +156,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		{
 			if (rotate < 0.0)
 			{
-				_robotDrive.tankDrive(Math.abs(rotate), 0.0);
+				_robotDrive.tankDrive(0.0, -Math.abs(rotate));
 			} else
 			{
-				_robotDrive.tankDrive(0.0, Math.abs(rotate));				
+				_robotDrive.tankDrive(-Math.abs(rotate), 0.0);				
 			}
 		} else
 		{
