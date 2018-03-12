@@ -19,7 +19,12 @@ public class OperateWinch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._climbMotor.operateWinch();
+        if (Robot.m_oi.joystick.getRawAxis(5) < 0.0)
+	{
+	    Robot._climbMotor.extendWinch(Robot.m_oi.joystick.getRawAxis(5));
+	} else {
+	    Robot._climbMotor.reelWinch(Robot.m_oi.joystick.getRawAxis(5));
+	}		
     }
 
     protected boolean isFinished() {
