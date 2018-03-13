@@ -30,7 +30,7 @@ public class ClimbMotor extends Subsystem {
     public void unlockWinch()
     {
 	m_soloenoid.set(0.0);
-	timerdelay(halfsecond);
+	Timer.delay(Constants.unlockWinchTimeout);
 	_solenoidState = SolenoidState.WINCH_UNLOCKED);
     }
 	
