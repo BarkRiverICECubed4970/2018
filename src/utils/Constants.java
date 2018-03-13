@@ -119,7 +119,8 @@ public class Constants {
     public static double outputCubeDutyCycle = 0.3;
     public static double extendTapeDutyCycle = 1.0;
     public static double reelTapeDutyCycle = 1.0;
-
+    public static double unlockWinchTimeout = 0.25;
+	
     public static final int timeoutMs = 10;
     
     public Constants() {
