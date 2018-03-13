@@ -39,7 +39,7 @@ public class DriveStraightReverse extends Command {
 	@Override
 	protected void initialize() {
 
-		Constants.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Constants.straightDriveDutyCycle);	
+		Constants.straightDriveStartDutyCycle = SmartDashboard.getNumber("Straight drive start duty cycle", Constants.straightDriveStartDutyCycle);	
 		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
 		
 		Robot._driveTrain.resetEncoders();
@@ -51,7 +51,7 @@ public class DriveStraightReverse extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT_REVERSE, Constants.straightDriveDutyCycle);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT_REVERSE, Constants.straightDriveStartDutyCycle);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

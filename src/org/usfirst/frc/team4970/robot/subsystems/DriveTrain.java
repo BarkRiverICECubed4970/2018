@@ -60,7 +60,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	
     private final DifferentialDrive _robotDrive = new DifferentialDrive(m_left, m_right);
 
-	public Gyro _gyro = new Gyro(Robot.m_climber);
+	public Gyro _gyro = new Gyro(Robot.m_solenoid);
 	
     public final PIDController _gyroPid = new PIDController(Constants.gyroPidKp, Constants.gyroPidKi, Constants.gyroPidKd, _gyro, this);
 	
@@ -94,7 +94,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	}
 	
     /* forward duty cycle is only used for autonomous straight drive and reverse drive */
-    public void controlLoop(DriveTrainControl commandInControl, forwardDutyCycle)
+    public void controlLoop(DriveTrainControl commandInControl, double forwardDutyCycle)
     {
     	_driveTrainControl = commandInControl;
     	

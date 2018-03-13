@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team4970.robot;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -22,6 +24,8 @@ import org.usfirst.frc.team4970.robot.subsystems.IntakeMotor;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
@@ -44,11 +48,11 @@ import utils.Constants;
 public class Robot extends TimedRobot {
 	
 	/* 
-	 * due to wiring and weight, the climber and gyro are using the same talonSRX,
+	 * due to wiring and weight, the solenoid and gyro are using the same talonSRX,
 	 * keep things simple and have robot own it, so both subsystems can see it. 
 	 */
-	public static WPI_TalonSRX m_climber = new WPI_TalonSRX(Constants.climbMotorCanAddress);
-    
+    public static WPI_TalonSRX m_solenoid = new WPI_TalonSRX(Constants.solenoidMotorCanAddress);
+
 	public static final DriveTrain _driveTrain = new DriveTrain();
 	public static final IntakeMotor _intakeMotor = new IntakeMotor();
 	public static final HingeMotor _hingeMotor = new HingeMotor();
@@ -64,17 +68,12 @@ public class Robot extends TimedRobot {
 
 	public static String gameData;
 	
-	public static PowerDistributionPanel pdp = new PowerDistributionPanel(); 
+//	public static PowerDistributionPanel pdp = new PowerDistributionPanel(); 
 	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	public static Constants _calibrationManager;
-	
-    private static final int IMG_WIDTH = 160;
-    private static final int IMG_HEIGHT = 120;
-    private static UsbCamera usbCamera;
-    private static int cameraExposure = 3;
     
     /**
 	 * This function is run when the robot is first started up and should be
@@ -110,26 +109,26 @@ public class Robot extends TimedRobot {
 
 		SmartDashboard.putData("Auto mode", m_chooser);	
 
-		CameraServer.getInstance().startAutomaticCapture();
+//		CameraServer.getInstance().startAutomaticCapture();
 
-//	      new Thread(() -> {
-//	      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-//	      camera.setResolution(320, 240);
-//	      camera.setExposureAuto();
+	      new Thread(() -> {
+	      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+	      camera.setResolution(320, 240);
+	      camera.setExposureAuto();
 	
 	      
-//	      CvSink cvSink = CameraServer.getInstance().getVideo();
-//	      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 320, 240);
+	      CvSink cvSink = CameraServer.getInstance().getVideo();
+	      CvSource outputStream = CameraServer.getInstance().putVideo("Blur", 320, 240);
 	      
-//	      Mat source = new Mat();
-//	      Mat output = new Mat();
+	      Mat source = new Mat();
+	      Mat output = new Mat();
 	      
-//	      while(true) {            	
-//	          cvSink.grabFrameNoTimeout(source);
-//	          Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
-//	          outputStream.putFrame(output);
-//	      }
-//	  }, "camera").start();
+	      while(true) {            	
+	          cvSink.grabFrameNoTimeout(source);
+	          Imgproc.cvtColor(source, output, Imgproc.COLOR_BGR2GRAY);
+	          outputStream.putFrame(output);
+	      }
+	  }, "camera").start();
 	}
 
 	/**

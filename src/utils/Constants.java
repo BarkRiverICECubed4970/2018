@@ -16,8 +16,8 @@ public class Constants {
 	public static final int hingeMotorCanAddress = 7;
 	public static final int intakeMotor1CanAddress = 8;
 	public static final int intakeMotor2CanAddress = 9;
-	public static final int climbMotorCanAddress = 12;
-	public static final int solenoidMotorCanAddress = 13;
+	public static final int climbMotorCanAddress = 13;
+	public static final int solenoidMotorCanAddress = 12;
 	
     public static double autoClosSwitchTurnDegrees = -30.0;
     public static double autoScaleTurnDegrees = -45.0;
@@ -131,7 +131,7 @@ public class Constants {
 	    new Thread(() -> {
 		   	while (true) {
 		   		updateSmartDashboard();
-		   		Timer.delay(0.5);
+		   		Timer.delay(1.0);
 		   	}
 		}).start();
     }
@@ -253,7 +253,7 @@ public class Constants {
     	 * put an instance of the PDP to shuffleboard... this may help to see
     	 * issues with motors, etc...
     	 */
-    	SmartDashboard.putData("Power Distribution Panel", Robot.pdp);
+//    	SmartDashboard.putData("Power Distribution Panel", Robot.pdp);
     	
 		/* joystick */
 		SmartDashboard.putNumber("Joystick forward", Robot.m_oi.joystick.getRawAxis(1));

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
 
@@ -19,12 +20,15 @@ public class OperateWinch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (Robot.m_oi.joystick.getRawAxis(5) < 0.0)
-	{
-	    Robot._climbMotor.extendWinch(Robot.m_oi.joystick.getRawAxis(5));
-	} else {
-	    Robot._climbMotor.reelWinch(Robot.m_oi.joystick.getRawAxis(5));
-	}		
+        if (Robot.m_oi.joystick.getRawAxis(5) < -0.5)
+		{
+	        Robot._climbMotor.extendWinch(Robot.m_oi.joystick.getRawAxis(5));
+		} else if (Robot.m_oi.joystick.getRawAxis(5) > 0.5) {
+			Robot._climbMotor.reelWinch(Robot.m_oi.joystick.getRawAxis(5));
+		}		else {
+        	Robot._climbMotor.stop();
+		}
+
     }
 
     protected boolean isFinished() {

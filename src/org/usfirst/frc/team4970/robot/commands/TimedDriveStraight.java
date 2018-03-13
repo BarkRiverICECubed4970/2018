@@ -33,7 +33,7 @@ public class TimedDriveStraight extends Command {
 	@Override
 	protected void initialize() {
 
-		Constants.straightDriveDutyCycle = SmartDashboard.getNumber("Straight drive duty cycle", Constants.straightDriveDutyCycle);	
+		Constants.straightDriveStartDutyCycle = SmartDashboard.getNumber("Straight drive start duty cycle", Constants.straightDriveStartDutyCycle);	
 
     	setTimeout(timeout);
 		
@@ -45,7 +45,7 @@ public class TimedDriveStraight extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT, Constants.straightDriveStartDutyCycle);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -57,7 +57,7 @@ public class TimedDriveStraight extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP);
+		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP, 0.0);
 	}
 
 	// Called when another command which requires one or more of the same

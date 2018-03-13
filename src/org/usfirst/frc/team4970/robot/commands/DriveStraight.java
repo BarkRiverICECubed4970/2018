@@ -46,7 +46,7 @@ public class DriveStraight extends Command {
 
 		startDutyCycle = SmartDashboard.getNumber("Straight drive start duty cycle", Constants.straightDriveStartDutyCycle);	
 		endDutyCycle = SmartDashboard.getNumber("Straight drive final duty cycle", Constants.straightDriveFinalDutyCycle);	
-		rampDownInches = SmartDashboard.getNumber("Straight drive ramp down inches", straightDriveInchesForRampDownBegin);
+		rampDownInches = SmartDashboard.getNumber("Straight drive ramp down inches", Constants.straightDriveInchesForRampDownBegin);
 		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
 
 		if (testButton == true)
@@ -60,7 +60,7 @@ public class DriveStraight extends Command {
 		/* target encoder count to drive to */
 		encoderTarget = Constants.driveEncoderCountsPerInch * inchesToDrive;
 		/* encoder count to begin slowing down */
-		encoderRampDownTarget = math.max(0.0, (encoderTarget - Constants.driveEncoderCountsPerInch * rampDownInches));
+		encoderRampDownTarget = Math.max(0.0, (encoderTarget - Constants.driveEncoderCountsPerInch * rampDownInches));
 		/* how much to decrease the duty cycle per inch (but in terms of encoder counts) */
 		encoderRampDownRatio = (startDutyCycle - endDutyCycle)/(rampDownInches * Constants.driveEncoderCountsPerInch);
 		
@@ -76,7 +76,7 @@ public class DriveStraight extends Command {
 		if (encoderCount > encoderRampDownTarget)
 		{
 		     dutyCycle = startDutyCycle - encoderRampDownRatio * (encoderCount - encoderRampDownTarget);
-		     dutyCycle = math.max(dutyCycle, endDutyCycle);
+		     dutyCycle = Math.max(dutyCycle, endDutyCycle);
 		}
 		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT, dutyCycle);
 	}

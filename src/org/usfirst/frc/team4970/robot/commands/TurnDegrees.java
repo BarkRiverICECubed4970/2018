@@ -71,7 +71,6 @@ public class TurnDegrees extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot._driveTrain.setDriveTrainBrakeMode(false);
 		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.STOP,0.0);
 	}
 
