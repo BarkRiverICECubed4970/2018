@@ -23,6 +23,7 @@ public class ClimbMotor extends Subsystem {
 	
     private static SolenoidState _solenoidState = SolenoidState.WINCH_LOCKED;
     private static WinchState _winchState = WinchState.WINCH_START;
+    private static double _winchExtendCounter = 0;
 	
 	WPI_TalonSRX m_climber = new WPI_TalonSRX(Constants.climbMotorCanAddress);
 
@@ -50,10 +51,16 @@ public class ClimbMotor extends Subsystem {
 		    unlockWinch();
 		}
 		m_climber.set(dutyCycle);
-		_winchState = WinchState.WINCH_OUT;
+	        _winchExtendCounter++;
+	    	
+	        if (_winchExtendCounter > Constants.winchOutCount)
+		{
+		    _winchState = WinchState.WINCH_OUT;
+		}
     }
     
     public void reelWinch(double dutyCycle) {
+	/* don't allow the winch to be reeled in until it has been extended */
     	if (_winchState == WinchState.WINCH_OUT)
     	{	
     		lockWinch();
@@ -63,6 +70,10 @@ public class ClimbMotor extends Subsystem {
     
     public void stop() {
     	m_climber.set(0.0);
-    }    
+    }  
+	
+    public double getWinchOutCount() {
+        return _winchExtendCounter;
+    }
 }
 
