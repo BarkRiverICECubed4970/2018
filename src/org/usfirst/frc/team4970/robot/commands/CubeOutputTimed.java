@@ -26,7 +26,7 @@ public class CubeOutputTimed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._intakeMotor.outputCube(Constants.outputCubeDutyCycle);
+    	Robot._intakeMotor.outputCubeAuton(1.0);
     }
 
     protected boolean isFinished() {

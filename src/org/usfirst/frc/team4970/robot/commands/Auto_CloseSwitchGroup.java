@@ -24,12 +24,11 @@ public class Auto_CloseSwitchGroup extends CommandGroup {
  //   	addParallel(new ReleaseArmSpring());
     	
    		/* switch is on our side... place the cube there */
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to close switch inches", Constants.autoDriveToCloseSwitchInches), false));
-    	addParallel(new ArmToSwitchGroup());
-		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous close switch degrees to turn", Constants.autoClosSwitchTurnDegrees), false));
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to fence from switch zone", Constants.autoDriveToFenceFromSwitchZone), false));
+    	addSequential(new Auto_ArmToSwitchPosition());
+   		addSequential(new TimedDriveStraight(SmartDashboard.getNumber("Autonomous drive to switch from center timeout", Constants.autoDriveToSwitchFromCenterTimeout), degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees from side", Constants.autoTurnDegreesFromSide)));
 		
 		addSequential(new CubeOutputTimed());
    		addSequential(new StopArm());
+   		addSequential(new DriveStraightReverse(SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest), -degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees from center", Constants.autoTurnDegreesFromCenter), false));
     }
 }

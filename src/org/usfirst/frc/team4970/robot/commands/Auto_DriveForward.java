@@ -10,7 +10,7 @@ import utils.Constants;
 public class Auto_DriveForward extends CommandGroup {
     public Auto_DriveForward() {
 
- //   	addParallel(new ReleaseArmSpring());
-    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive inches", Constants.autoDriveStraightAutoInches), false));    	
+    	addParallel(new ReleaseArmSpring());
+    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive inches", Constants.autoDriveStraightAutoInches), 0.0, false));    	
     }
 }

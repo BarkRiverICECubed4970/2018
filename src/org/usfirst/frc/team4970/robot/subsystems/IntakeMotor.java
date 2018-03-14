@@ -62,6 +62,7 @@ public class IntakeMotor extends Subsystem {
     	m_intake1.set(ControlMode.PercentOutput, dutyCycle);
     	m_intake2.set(dutyCycle);
     }
+
     public void outputCube(double maxDutyCycle) {
     	outputDc = Math.max(0.0, Robot.m_oi.joystick.getRawAxis(3));
  
@@ -80,7 +81,12 @@ public class IntakeMotor extends Subsystem {
     		m_intake2.set(outputDc);    		
     	}
     }
- 
+
+    public void outputCubeAuton(double maxDutyCycle) {
+    		m_intake1.set(ControlMode.PercentOutput, maxDutyCycle);    		
+    		m_intake2.set(ControlMode.PercentOutput, maxDutyCycle);    		
+    }
+
     public void outputCubeSlow(double dutyCycle) {
     	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN) 
     	{

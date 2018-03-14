@@ -54,6 +54,7 @@ public class DriveStraight extends Command {
 		if (testButton == true)
 		{
 			inchesToDrive = SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest);
+			_gyroPidSetpoint = SmartDashboard.getNumber("Drive straight angle for test", Constants.driveStraightAngleForTest);
 		}
 		
 		Robot._driveTrain.resetEncoders();
@@ -82,6 +83,8 @@ public class DriveStraight extends Command {
 		     dutyCycle = Math.max(dutyCycle, endDutyCycle);
 		}
 		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT, dutyCycle);
+    	// continue to set this, since this function will ramp the setpoint
+    	Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

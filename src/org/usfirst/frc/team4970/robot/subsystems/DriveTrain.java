@@ -147,8 +147,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		break;
     	}
 
-		if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
-			(ArmMotor._armState == ArmMotor.ArmState.ARM_MOVING))	
+		if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT))
+//			(ArmMotor._armState == ArmMotor.ArmState.ARM_MOVING))	
 		{
 			dutyCycleLimit = Constants.armUpMaxDriveDutyCycle;
 		} else {

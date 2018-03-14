@@ -22,7 +22,7 @@ public class Constants {
     public static double autoClosSwitchTurnDegrees = -30.0;
     public static double autoScaleTurnDegrees = -45.0;
     public static double autoNinetyDegrees = -90.0;
-    public static double driveInchesForTest = 18.0;
+    public static double driveInchesForTest = 36.0;
     public static double timedDriveTimeout = 1.0;
     public static double autoDriveStraightAutoInches = 100.0;
     public static double autoDriveToCloseSwitchInches = 100.0;
@@ -36,14 +36,17 @@ public class Constants {
     public static double autoDriveToFenceFromCenter = 120.0;
     public static double autoOppositeScaleTurnDegrees = 135.0;
     public static double autoTurnDegreesFromCenter = -30.0;
+    public static double autoTurnDegreesFromSide = -30.0;
     public static double autoCloseSwitchTurnDegrees = -30.0;
+    public static double autoDriveToSwitchFromCenterTimeout = 2.5;
     public static double scaleInches = 100.0;
     public static double straightDriveStartDutyCycle = 0.4;
     public static double straightDriveFinalDutyCycle = 0.25;
     public static double armDownMaxDriveDutyCycle = 1.0;
-    public static double armUpMaxDriveDutyCycle = 0.4;
+    public static double armUpMaxDriveDutyCycle = 0.5;
     public static double straightDriveRateLimit = 0.01;
     public static double straightDriveInchesForRampDownBegin = 24.0;	
+    public static double driveStraightAngleForTest = 0.0;
 	
     /* counts per revolution on output shaft * inches per revolution from tires
      * 
@@ -63,7 +66,7 @@ public class Constants {
     public static double turnDegreesTimeout = 3.0;
     public static double turnDegrees = -60.0;
     
-    public static double gyroPidKp = 0.05;
+    public static double gyroPidKp = 0.02;
     public static double gyroPidKi = 0.0;
     public static double gyroPidKd = 0.0;
     public static double gyroPidMinIn = -60.0;
@@ -93,7 +96,7 @@ public class Constants {
     public static double intakeMotorPidKi = 0.0;
     public static double intakeMotorPidKd = 0.0;
     public static double intakeMotorAllowableClosedLoopError = 10;
-    public static double cubeOutputAutoTimeout = 1.0;
+    public static double cubeOutputAutoTimeout = 0.5;
     
     
     public static double armMotorPidKp = 5.0;
@@ -113,7 +116,7 @@ public class Constants {
     public static double armToSwitchTimeout = 2.0;
     public static double armToScaleTimeout = 3.0;
     public static double armToIntakeTimeout = 5.0;
-    public static double armReleaseSpringDutyCycle = -0.35;
+    public static double armReleaseSpringDutyCycle = -0.65;
     public static double armReleaseSpringTimeout = 0.25;
     
     public static double intakeCubeDutyCycle = 0.3;
@@ -126,7 +129,7 @@ public class Constants {
        before reelWinch() can be called (to prevent sucking the hook 
        in and destroying the assembly)
     */
-    public static double winchOutCount = 1000;
+    public static double winchOutCount = 75.0;
 	
     public static final int timeoutMs = 10;
     
@@ -159,10 +162,12 @@ public class Constants {
 		SmartDashboard.putNumber("Autonomous drive to opposite switch zone", autoDriveToOppositeSwitchZone);
 		SmartDashboard.putNumber("Autonomous drive to fence from switch zone", autoDriveToFenceFromSwitchZone);
 		SmartDashboard.putNumber("Autonomous turn degrees from center", autoTurnDegreesFromCenter);
+		SmartDashboard.putNumber("Autonomous turn degrees from side", autoTurnDegreesFromSide);
 		SmartDashboard.putNumber("Autonomous close switch degrees to turn", autoClosSwitchTurnDegrees);
 		SmartDashboard.putNumber("Autonomous 90 degree turn", autoNinetyDegrees);
 		SmartDashboard.putNumber("Autonomous scale degree turn", autoScaleTurnDegrees);
 		SmartDashboard.putNumber("Autonomous drive to fence from center", autoDriveToFenceFromCenter);
+		SmartDashboard.putNumber("Autonomous drive to switch from center timeout", autoDriveToSwitchFromCenterTimeout);
 		
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive start duty cycle", straightDriveStartDutyCycle);
@@ -182,6 +187,7 @@ public class Constants {
     	SmartDashboard.putNumber("Gyro PID Max Setpoint", gyroPidMaxSetpoint);
     	SmartDashboard.putNumber("Drive Encoder Counts Per Inch", driveEncoderCountsPerInch);
     	SmartDashboard.putNumber("Turn Degrees Timeout", turnDegreesTimeout);
+    	SmartDashboard.putNumber("Drive straight angle for test", driveStraightAngleForTest);
 
     	/* Arm motor */
     	SmartDashboard.putNumber("Arm PID KP", armMotorPidKp);

@@ -49,6 +49,7 @@ public class TimedDriveStraight extends Command {
 	@Override
 	protected void execute() {
 		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT, Constants.straightDriveStartDutyCycle);
+		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -24,7 +24,7 @@ public class Auto_CloseScaleGroup extends CommandGroup {
 //    	addParallel(new ReleaseArmSpring());
     	
    		/* switch is on our side... place the cube there */
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to close scale inches", Constants.autoDriveToCloseScaleInches), false));
+   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to close scale inches", Constants.autoDriveToCloseScaleInches), 0.0, false));
     	addParallel(new ArmToScaleGroup());
 		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous scale degree turn", Constants.autoScaleTurnDegrees), false));
 

@@ -22,17 +22,17 @@ public class DriveStraightReverse extends Command {
 	
 //	private double encoderAvg;
 	private double inchesToDrive;
+	private double _gyroPidSetpoint;
+	private boolean testButton;
 	
-	public DriveStraightReverse(double inches, boolean testOverride) {
+	public DriveStraightReverse(double inches, double gyroPidSetpoint, boolean testOverride) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 
-		if (testOverride == true)
-		{
-			inchesToDrive = SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest);
-		} else {
-			inchesToDrive = inches;
-		}
+		
+		inchesToDrive = inches;
+		_gyroPidSetpoint = gyroPidSetpoint;
+		testButton = testOverride;
 	}
 
 	// Called just before this Command runs the first time
@@ -41,17 +41,26 @@ public class DriveStraightReverse extends Command {
 
 		Constants.straightDriveStartDutyCycle = SmartDashboard.getNumber("Straight drive start duty cycle", Constants.straightDriveStartDutyCycle);	
 		Constants.driveEncoderCountsPerInch = SmartDashboard.getNumber("Drive Encoder Counts Per Inch", Constants.driveEncoderCountsPerInch);
+
+		if (testButton == true)
+		{
+			inchesToDrive = SmartDashboard.getNumber("Inches to drive for test", Constants.driveInchesForTest);
+			_gyroPidSetpoint = SmartDashboard.getNumber("Drive straight angle for test", Constants.driveStraightAngleForTest);
+		}
 		
 		Robot._driveTrain.resetEncoders();
 //		encoderAvg = 0;
 		
 		Robot._driveTrain.setupGyroPID();
+		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		Robot._driveTrain.controlLoop(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT_REVERSE, Constants.straightDriveStartDutyCycle);
+		// continue to set this, since this function will ramp the setpoint
+    	Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -60,7 +69,7 @@ public class DriveStraightReverse extends Command {
 //		encoderAvg = ((double)Robot._driveTrain.getLeftEncoderCount() + (double)Robot._driveTrain.getRightEncoderCount())/2.0;
 		
 //		return (encoderAvg >= (Constants.driveEncoderCountsPerInch * inchesToDrive));
-		return (Robot._driveTrain.getRightEncoderCount() > (Constants.driveEncoderCountsPerInch * inchesToDrive));
+		return (Robot._driveTrain.getRightEncoderCount() < -(Constants.driveEncoderCountsPerInch * inchesToDrive));
 	}
 
 	// Called once after isFinished returns true
