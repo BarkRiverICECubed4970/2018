@@ -121,6 +121,12 @@ public class Constants {
     public static double extendTapeDutyCycle = 1.0;
     public static double reelTapeDutyCycle = 1.0;
     public static double unlockWinchTimeout = 0.25;
+    /* 
+       how many times the extend winch command has been called
+       before reelWinch() can be called (to prevent sucking the hook 
+       in and destroying the assembly)
+    */
+    public static double winchOutCount = 1000;
 	
     public static final int timeoutMs = 10;
     
@@ -285,6 +291,8 @@ public class Constants {
     	SmartDashboard.putNumber("Intake Closed Loop Error", Robot._intakeMotor.getClosedLoopError());
     	SmartDashboard.putNumber("Intake Motor Output Voltage", Robot._intakeMotor.getMotorOutputVoltage());
 
+        SmartDashboard.putNumber("Winch Extend Counter", Robot._climbMotor.getWinchOutCount());
+	    
     	Constants.armUpMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Up Max Drive DutyCycle",Constants.armUpMaxDriveDutyCycle);
     	Constants.armDownMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Down Max Drive DutyCycle",Constants.armDownMaxDriveDutyCycle);
 
