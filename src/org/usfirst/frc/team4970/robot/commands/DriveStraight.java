@@ -31,13 +31,15 @@ public class DriveStraight extends Command {
 	private double dutyCycle;
 	private double encoderRampDownRatio;
 	private double rampDownInches;
+	private double _gyroPidSetpoint;
 	
-	public DriveStraight(double inches, boolean testOverride) {
+	public DriveStraight(double inches, double gyroPidSetpoint, boolean testOverride) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 		
 		inchesToDrive = inches;
 		testButton = testOverride;
+		_gyroPidSetpoint = gyroPidSetpoint;
 	}
 
 	// Called just before this Command runs the first time
@@ -66,6 +68,7 @@ public class DriveStraight extends Command {
 		
 		Robot._driveTrain.setupGyroPID();
 		Robot._driveTrain.setDriveTrainBrakeMode(true);
+		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
