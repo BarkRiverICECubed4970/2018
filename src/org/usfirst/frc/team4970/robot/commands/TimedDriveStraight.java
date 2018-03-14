@@ -21,12 +21,14 @@ import utils.Constants;
 public class TimedDriveStraight extends Command {
 	
 	private double timeout;
+	private double _gyroPidSetpoint;
 	
-	public TimedDriveStraight(double timedDriveTimeout) {
+	public TimedDriveStraight(double timedDriveTimeout, double gyroPidSetpoint) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 		
 		timeout = timedDriveTimeout;
+		_gyroPidSetpoint = gyroPidSetpoint;
 	}
 
 	// Called just before this Command runs the first time
@@ -40,6 +42,7 @@ public class TimedDriveStraight extends Command {
 		Robot._driveTrain.resetEncoders();
 		
 		Robot._driveTrain.setupGyroPID();
+		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
