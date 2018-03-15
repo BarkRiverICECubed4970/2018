@@ -19,7 +19,6 @@ public class Constants {
 	public static final int climbMotorCanAddress = 13;
 	public static final int solenoidMotorCanAddress = 12;
 	
-    public static double autoClosSwitchTurnDegrees = -30.0;
     public static double autoScaleTurnDegrees = -45.0;
     public static double autoNinetyDegrees = -90.0;
     public static double driveInchesForTest = 36.0;
@@ -35,15 +34,16 @@ public class Constants {
     public static double autoDriveToFenceFromSwitchZone = 20.0;
     public static double autoDriveToFenceFromCenter = 120.0;
     public static double autoOppositeScaleTurnDegrees = 135.0;
+    public static double autoReverseDriveInches = 36.0;
     public static double autoTurnDegreesFromCenter = -30.0;
     public static double autoTurnDegreesFromSide = -30.0;
-    public static double autoCloseSwitchTurnDegrees = -30.0;
+    public static double autoTurnDegreesToCloseScale = -30.0;
     public static double autoDriveToSwitchFromCenterTimeout = 2.5;
     public static double scaleInches = 100.0;
     public static double straightDriveStartDutyCycle = 0.4;
     public static double straightDriveFinalDutyCycle = 0.25;
     public static double armDownMaxDriveDutyCycle = 1.0;
-    public static double armUpMaxDriveDutyCycle = 0.5;
+    public static double armUpMaxDriveDutyCycle = 0.75;
     public static double straightDriveRateLimit = 0.01;
     public static double straightDriveInchesForRampDownBegin = 24.0;	
     public static double driveStraightAngleForTest = 0.0;
@@ -66,7 +66,9 @@ public class Constants {
     public static double turnDegreesTimeout = 3.0;
     public static double turnDegrees = -60.0;
     
-    public static double gyroPidKp = 0.02;
+    public static double gyroStraightPidKp = 0.02;
+    public static double gyroTurnPidKp = 0.05;
+    public static double gyroReversePidKp = 0.05;
     public static double gyroPidKi = 0.0;
     public static double gyroPidKd = 0.0;
     public static double gyroPidMinIn = -60.0;
@@ -163,11 +165,12 @@ public class Constants {
 		SmartDashboard.putNumber("Autonomous drive to fence from switch zone", autoDriveToFenceFromSwitchZone);
 		SmartDashboard.putNumber("Autonomous turn degrees from center", autoTurnDegreesFromCenter);
 		SmartDashboard.putNumber("Autonomous turn degrees from side", autoTurnDegreesFromSide);
-		SmartDashboard.putNumber("Autonomous close switch degrees to turn", autoClosSwitchTurnDegrees);
+		SmartDashboard.putNumber("Autonomous turn degrees to close scale", autoTurnDegreesToCloseScale);
 		SmartDashboard.putNumber("Autonomous 90 degree turn", autoNinetyDegrees);
 		SmartDashboard.putNumber("Autonomous scale degree turn", autoScaleTurnDegrees);
 		SmartDashboard.putNumber("Autonomous drive to fence from center", autoDriveToFenceFromCenter);
 		SmartDashboard.putNumber("Autonomous drive to switch from center timeout", autoDriveToSwitchFromCenterTimeout);
+		SmartDashboard.putNumber("Autonomous reverse drive inches", autoReverseDriveInches);
 		
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive start duty cycle", straightDriveStartDutyCycle);
@@ -176,7 +179,9 @@ public class Constants {
 		SmartDashboard.putNumber("Straight drive ramp down inches", straightDriveInchesForRampDownBegin);
 		SmartDashboard.putNumber("Arm Up Max Drive DutyCycle",armUpMaxDriveDutyCycle);
 		SmartDashboard.putNumber("Arm Down Max Drive DutyCycle",armDownMaxDriveDutyCycle);
-    	SmartDashboard.putNumber("Gyro PID KP", gyroPidKp);
+		SmartDashboard.putNumber("Gyro Turn Degrees PID KP", Constants.gyroTurnPidKp);    		
+    	SmartDashboard.putNumber("Gyro Drive Reverse PID KP", Constants.gyroReversePidKp);    		    		
+    	SmartDashboard.putNumber("Gyro Drive Straight PID KP", Constants.gyroStraightPidKp);    		
     	SmartDashboard.putNumber("Gyro PID KI", gyroPidKi);
     	SmartDashboard.putNumber("Gyro PID KD", gyroPidKd);
     	SmartDashboard.putNumber("Gyro PID Min Input", gyroPidMinIn);

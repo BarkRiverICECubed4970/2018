@@ -67,7 +67,7 @@ public class DriveStraight extends Command {
 		/* how much to decrease the duty cycle per inch (but in terms of encoder counts) */
 		encoderRampDownRatio = (startDutyCycle - endDutyCycle)/(rampDownInches * Constants.driveEncoderCountsPerInch);
 		
-		Robot._driveTrain.setupGyroPID();
+		Robot._driveTrain.setupGyroPID(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT);
 		Robot._driveTrain.setDriveTrainBrakeMode(true);
 		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}

@@ -41,7 +41,7 @@ public class TimedDriveStraight extends Command {
 		
 		Robot._driveTrain.resetEncoders();
 		
-		Robot._driveTrain.setupGyroPID();
+		Robot._driveTrain.setupGyroPID(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT);
 		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 

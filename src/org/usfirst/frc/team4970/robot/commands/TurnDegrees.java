@@ -47,7 +47,7 @@ public class TurnDegrees extends Command {
 		
     	setTimeout(Constants.turnDegreesTimeout);
     	Robot._driveTrain.resetOnTargetCount();
-    	Robot._driveTrain.setupGyroPID();
+    	Robot._driveTrain.setupGyroPID(DriveTrain.DriveTrainControl.TURN_DEGREES);
     	// redundant, since setupGyroPID() does this already
     	Robot._driveTrain.setGyroPidSetpoint(0.0);
     	

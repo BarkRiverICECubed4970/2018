@@ -21,13 +21,11 @@ public class Auto_FarSwitchGroup extends CommandGroup {
     		degreeMultiplier = -1.0;
     	}
     	
-  //  	addParallel(new ReleaseArmSpring());
-    	
    		/* switch is on our side... place the cube there */
    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches), 0.0, false));
 //		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous 90 degree turn", Constants.autoNinetyDegrees), false));
    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across switch inches", Constants.autoDriveAcrossSwitchInches), degreeMultiplier*SmartDashboard.getNumber("Autonomous 90 degree turn", Constants.autoNinetyDegrees), false));
-   		addParallel(new Auto_ArmToSwitchPosition());
+   		addSequential(new Auto_ArmToSwitchPosition());
    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to fence from switch zone", Constants.autoDriveToFenceFromSwitchZone), degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees from center", Constants.autoTurnDegreesFromCenter), false));
 
 		addSequential(new CubeOutputTimed());

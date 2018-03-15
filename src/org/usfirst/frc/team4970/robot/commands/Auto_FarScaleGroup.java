@@ -25,11 +25,10 @@ public class Auto_FarScaleGroup extends CommandGroup {
     	
    		/* switch is on our side... place the cube there */
    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches), 0.0, false));
-		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous 90 degree turn", Constants.autoNinetyDegrees), false));
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across scale inches", Constants.autoDriveAcrossScaleInches), 0.0, false));
-		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous opposite scale degrees to turn", Constants.autoOppositeScaleTurnDegrees), false));
+   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across scale inches", Constants.autoDriveAcrossScaleInches), degreeMultiplier * SmartDashboard.getNumber("Autonomous 90 degree turn", Constants.autoNinetyDegrees), false));
+		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous opposite scale degrees to turn", degreeMultiplier*Constants.autoOppositeScaleTurnDegrees), false));
 
-    	addParallel(new ArmToScaleGroup());
+    	addParallel(new Auto_ArmToScalePosition());
     	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to null zone", Constants.autoDriveToNullZone), 0.0, false));
     	
 		addSequential(new CubeOutputTimed());

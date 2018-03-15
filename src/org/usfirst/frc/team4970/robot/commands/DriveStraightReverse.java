@@ -51,7 +51,7 @@ public class DriveStraightReverse extends Command {
 		Robot._driveTrain.resetEncoders();
 //		encoderAvg = 0;
 		
-		Robot._driveTrain.setupGyroPID();
+		Robot._driveTrain.setupGyroPID(DriveTrain.DriveTrainControl.DRIVE_STRAIGHT_REVERSE);
 		Robot._driveTrain.setGyroPidSetpoint(_gyroPidSetpoint);
 	}
 

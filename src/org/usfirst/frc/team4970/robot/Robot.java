@@ -29,6 +29,7 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
+import org.usfirst.frc.team4970.robot.commands.Auto_SwitchForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOSwitch;
@@ -92,6 +93,8 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Left Position: Switch Either Side", new Auto_EitherSwitch('L'));
 		m_chooser.addObject("Right Position: Switch Either Side", new Auto_EitherSwitch('R'));
 		m_chooser.addObject("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
+		m_chooser.addObject("Right Position: Close Switch or Drive Forward", new Auto_SwitchForward('R'));
+		m_chooser.addObject("Left Position: Close Switch or Drive Forward", new Auto_SwitchForward('L'));
 		
 		m_chooser.addObject("Left Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('L'));
 		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('L'));

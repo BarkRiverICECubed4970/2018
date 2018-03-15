@@ -62,7 +62,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
 	public Gyro _gyro = new Gyro(Robot.m_solenoid);
 	
-    public final PIDController _gyroPid = new PIDController(Constants.gyroPidKp, Constants.gyroPidKi, Constants.gyroPidKd, _gyro, this);
+    public final PIDController _gyroPid = new PIDController(Constants.gyroStraightPidKp, Constants.gyroPidKi, Constants.gyroPidKd, _gyro, this);
 	
 	public DriveTrain()
 	{
@@ -211,9 +211,19 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	return _gyro.getAngle();
     }
     
-    public void setupGyroPID()
+    public void setupGyroPID(DriveTrainControl commandInControl)
     {
-    	Constants.gyroPidKp = SmartDashboard.getNumber("Gyro PID KP", Constants.gyroPidKp);
+    	double kp;
+    	if (commandInControl == DriveTrainControl.TURN_DEGREES)
+    	{
+        	kp = SmartDashboard.getNumber("Gyro Turn Degrees PID KP", Constants.gyroTurnPidKp);    		
+    	} else if (commandInControl == DriveTrainControl.DRIVE_STRAIGHT_REVERSE)
+    	{
+        	kp = SmartDashboard.getNumber("Gyro Drive Reverse PID KP", Constants.gyroReversePidKp);    		    		
+    	} else {
+        	kp = SmartDashboard.getNumber("Gyro Drive Straight PID KP", Constants.gyroStraightPidKp);    		
+    	}
+    		
     	Constants.gyroPidKi = SmartDashboard.getNumber("Gyro PID KI", Constants.gyroPidKi);
     	Constants.gyroPidKd = SmartDashboard.getNumber("Gyro PID KD", Constants.gyroPidKd);
     	Constants.gyroPidMinIn = SmartDashboard.getNumber("Gyro PID Min Input", Constants.gyroPidMinIn);
@@ -224,7 +234,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	Constants.gyroPidMaxSetpoint = SmartDashboard.getNumber("Gyro PID Max Setpoint", Constants.gyroPidMaxSetpoint);
 
     	_gyroPid.reset();
-		_gyroPid.setPID(Constants.gyroPidKp, Constants.gyroPidKi , Constants.gyroPidKd);
+		_gyroPid.setPID(kp, Constants.gyroPidKi , Constants.gyroPidKd);
 		_gyroPid.setInputRange(Constants.gyroPidMinIn, Constants.gyroPidMaxIn);
 		_gyroPid.setOutputRange(Constants.gyroPidMinOut, Constants.gyroPidMaxOut);
 		_gyroPid.setAbsoluteTolerance(Constants.gyroPidTolerance);
