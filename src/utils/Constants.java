@@ -1,6 +1,7 @@
 package utils;
 
 import org.usfirst.frc.team4970.robot.Robot;
+import org.usfirst.frc.team4970.robot.commands.DriveStraight;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,31 +24,41 @@ public class Constants {
     public static double autoNinetyDegrees = -90.0;
     public static double driveInchesForTest = 36.0;
     public static double timedDriveTimeout = 1.0;
-    public static double autoDriveStraightAutoInches = 100.0;
-    public static double autoDriveToCloseSwitchInches = 100.0;
-    public static double autoDriveToCloseScaleInches = 280.0;
+    public static double autoStraightDriveToCloseScaleInches = 280.0;
+    public static double autoAngleDriveToCloseScaleInches = 80.0;
     public static double autoDrivePastSwitchInches = 210.0;
     public static double autoDriveAcrossSwitchInches = 132.0;
     public static double autoDriveAcrossScaleInches = 250.0;
     public static double autoDriveToNullZone = 30.0;
     public static double autoDriveToOppositeSwitchZone = 20.0;
     public static double autoDriveToFenceFromSwitchZone = 20.0;
-    public static double autoDriveToFenceFromCenter = 90.0;
     public static double autoOppositeScaleTurnDegrees = 135.0;
     public static double autoReverseDriveInches = 36.0;
     public static double autoTurnDegreesFromCenter = -30.0;
-    public static double autoTurnDegreesFromSide = -30.0;
     public static double autoTurnDegreesToCloseScale = -30.0;
     public static double autoDriveToSwitchFromCenterTimeout = 2.5;
     public static double scaleInches = 100.0;
-    public static double straightDriveStartDutyCycle = 0.4;
-    public static double straightDriveFinalDutyCycle = 0.25;
     public static double armDownMaxDriveDutyCycle = 1.0;
     public static double armUpMaxDriveDutyCycle = 0.75;
     public static double straightDriveRateLimit = 0.01;
     public static double straightDriveInchesForRampDownBegin = 24.0;	
     public static double driveStraightAngleForTest = 0.0;
-	
+
+    /* tuned or in progress parameters */
+    public static double straightDriveStartDutyCycle = 0.4;
+    public static double straightDriveFinalDutyCycle = 0.25;
+
+    public static double autoDriveToFenceFromCenter = 90.0;
+
+    public static double autoSwitchFromCenterLeftDegreeAdder = 0.0;
+	public static double autoSwitchFromCenterLeftDistanceAdder = 20.0;
+
+    public static double autoDriveStraightAutoInches = 80.0;
+    public static double autoStraightDriveToCloseSwitchInches = 100.0;
+    public static double autoAngleDriveToCloseSwitchInches = 20.0;
+    public static double autoSwitchTurnDegreesFromSide = -30.0;
+
+    
     /* counts per revolution on output shaft * inches per revolution from tires
      * 
      *  6 inch diameter wheels. 
@@ -154,8 +165,10 @@ public class Constants {
 		SmartDashboard.putNumber("Timed Drive Timeout", timedDriveTimeout);
 		SmartDashboard.putNumber("Degrees to turn", turnDegrees);
 		SmartDashboard.putNumber("Autonomous drive inches", autoDriveStraightAutoInches);
-		SmartDashboard.putNumber("Autonomous drive to close switch inches", autoDriveToCloseSwitchInches);
-		SmartDashboard.putNumber("Autonomous drive to close scale inches", autoDriveToCloseScaleInches);
+		SmartDashboard.putNumber("Autonomous straight drive to close switch inches", autoStraightDriveToCloseSwitchInches);
+		SmartDashboard.putNumber("Autonomous angle drive to close switch inches", autoAngleDriveToCloseSwitchInches);
+		SmartDashboard.putNumber("Autonomous straight drive to close scale inches", autoStraightDriveToCloseScaleInches);
+		SmartDashboard.putNumber("Autonomous angle drive to close scale inches", autoAngleDriveToCloseScaleInches);
 		SmartDashboard.putNumber("Autonomous drive past switch inches", autoDrivePastSwitchInches);
 		SmartDashboard.putNumber("Autonomous drive across switch inches", autoDriveAcrossSwitchInches);
 		SmartDashboard.putNumber("Autonomous drive across scale inches", autoDriveAcrossScaleInches);
@@ -164,14 +177,16 @@ public class Constants {
 		SmartDashboard.putNumber("Autonomous drive to opposite switch zone", autoDriveToOppositeSwitchZone);
 		SmartDashboard.putNumber("Autonomous drive to fence from switch zone", autoDriveToFenceFromSwitchZone);
 		SmartDashboard.putNumber("Autonomous turn degrees from center", autoTurnDegreesFromCenter);
-		SmartDashboard.putNumber("Autonomous turn degrees from side", autoTurnDegreesFromSide);
+		SmartDashboard.putNumber("Autonomous switch turn degrees from side", autoSwitchTurnDegreesFromSide);
 		SmartDashboard.putNumber("Autonomous turn degrees to close scale", autoTurnDegreesToCloseScale);
 		SmartDashboard.putNumber("Autonomous 90 degree turn", autoNinetyDegrees);
 		SmartDashboard.putNumber("Autonomous scale degree turn", autoScaleTurnDegrees);
 		SmartDashboard.putNumber("Autonomous drive to fence from center", autoDriveToFenceFromCenter);
 		SmartDashboard.putNumber("Autonomous drive to switch from center timeout", autoDriveToSwitchFromCenterTimeout);
 		SmartDashboard.putNumber("Autonomous reverse drive inches", autoReverseDriveInches);
-		
+		SmartDashboard.putNumber("Autonomous switch from center left degree adder", autoSwitchFromCenterLeftDegreeAdder);
+		SmartDashboard.putNumber("Autonomous switch from center left distance adder", autoSwitchFromCenterLeftDistanceAdder);
+				
 		/* consider ramping function on the talons */
 		SmartDashboard.putNumber("Straight drive start duty cycle", straightDriveStartDutyCycle);
 		SmartDashboard.putNumber("Straight drive final duty cycle", straightDriveFinalDutyCycle);

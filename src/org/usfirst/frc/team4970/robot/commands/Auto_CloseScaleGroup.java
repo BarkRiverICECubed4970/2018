@@ -25,9 +25,11 @@ public class Auto_CloseScaleGroup extends CommandGroup {
     	
    		/* scale is on our side... place the cube there */
     	addSequential(new Auto_ArmToScalePosition());
-    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to close scale inches", Constants.autoDriveToCloseScaleInches), 
-    									degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees to close scale", Constants.autoTurnDegreesToCloseScale),
-    									false));
+    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous straight drive to close scale inches", Constants.autoStraightDriveToCloseScaleInches), 
+				0.0, false));
+    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous angle drive to close scale inches", Constants.autoAngleDriveToCloseScaleInches), 
+				degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees to close scale", Constants.autoTurnDegreesToCloseScale),
+				false));
 		addSequential(new CubeOutputTimed(1.0));
    		addSequential(new StopArm());
    		addSequential(new DriveStraightReverse(SmartDashboard.getNumber("Autonomous reverse drive inches", Constants.autoReverseDriveInches), 

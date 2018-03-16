@@ -19,8 +19,9 @@ public class Auto_SwitchFromCenter extends CommandGroup {
     	if (switchLocation == 'L')
     	{
     		degreeMultiplier = -1.0;
-    		degreeAdder = 0.0;
-    		distanceAdder = 20.0;
+
+    		degreeAdder = SmartDashboard.getNumber("Autonomous switch from center left degree adder", Constants.autoSwitchFromCenterLeftDegreeAdder);
+    		distanceAdder = SmartDashboard.getNumber("Autonomous switch from center left distance adder", Constants.autoSwitchFromCenterLeftDistanceAdder);
     	}
     	
     	addSequential(new Auto_ArmToSwitchPosition());

@@ -97,12 +97,12 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Left Position: Close Switch or Drive Forward", new Auto_SwitchForward('L'));
 		
 		m_chooser.addObject("Left Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('L'));
-		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('L'));
+//		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('L'));
 		m_chooser.addObject("Left Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('L'));
 		m_chooser.addObject("Left Position: Scale Either Side", new Auto_EitherScale('L'));
 
 		m_chooser.addObject("Right Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('R'));
-		m_chooser.addObject("Right Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('R'));
+//		m_chooser.addObject("Right Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('R'));
 		m_chooser.addObject("Right Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('R'));
 		m_chooser.addObject("Right Position: Scale Either Side", new Auto_EitherScale('R'));
 

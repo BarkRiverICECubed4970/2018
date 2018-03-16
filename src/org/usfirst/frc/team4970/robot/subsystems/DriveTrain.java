@@ -84,6 +84,9 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	_gyroPid.setName("Gyro PID");
     	_gyro.setName("Pigeon");
     	
+    	
+		_robotDrive.setMaxOutput(dutyCycleLimit);
+
     	// just in case
 //    	prevForward = 0;
 	}
@@ -147,15 +150,15 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 	    		break;
     	}
 
-		if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT))
-//			(ArmMotor._armState == ArmMotor.ArmState.ARM_MOVING))	
-		{
-			dutyCycleLimit = Constants.armUpMaxDriveDutyCycle;
-		} else {
-			dutyCycleLimit = Constants.armDownMaxDriveDutyCycle;			
-		}
+//		if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT))
+////			(ArmMotor._armState == ArmMotor.ArmState.ARM_MOVING))	
+//		{
+//			dutyCycleLimit = Constants.armUpMaxDriveDutyCycle;
+//		} else {
+//			dutyCycleLimit = Constants.armDownMaxDriveDutyCycle;			
+//		}
 			
-		_robotDrive.setMaxOutput(dutyCycleLimit);
+//		_robotDrive.setMaxOutput(dutyCycleLimit);
 
 		/* try this to potentially turn better with only high gear */
 		if (_driveTrainControl == DriveTrainControl.TURN_DEGREES)
