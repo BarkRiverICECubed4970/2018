@@ -32,7 +32,7 @@ public class Constants {
     public static double autoDriveToNullZone = 30.0;
     public static double autoDriveToOppositeSwitchZone = 20.0;
     public static double autoDriveToFenceFromSwitchZone = 20.0;
-    public static double autoDriveToFenceFromCenter = 120.0;
+    public static double autoDriveToFenceFromCenter = 90.0;
     public static double autoOppositeScaleTurnDegrees = 135.0;
     public static double autoReverseDriveInches = 36.0;
     public static double autoTurnDegreesFromCenter = -30.0;
@@ -98,7 +98,7 @@ public class Constants {
     public static double intakeMotorPidKi = 0.0;
     public static double intakeMotorPidKd = 0.0;
     public static double intakeMotorAllowableClosedLoopError = 10;
-    public static double cubeOutputAutoTimeout = 0.5;
+    public static double cubeOutputAutoTimeout = 1.0;
     
     
     public static double armMotorPidKp = 5.0;
@@ -118,7 +118,7 @@ public class Constants {
     public static double armToSwitchTimeout = 2.0;
     public static double armToScaleTimeout = 3.0;
     public static double armToIntakeTimeout = 5.0;
-    public static double armReleaseSpringDutyCycle = -0.65;
+    public static double armReleaseSpringDutyCycle = -0.45;
     public static double armReleaseSpringTimeout = 0.25;
     
     public static double intakeCubeDutyCycle = 0.3;

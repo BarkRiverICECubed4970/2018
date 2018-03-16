@@ -28,7 +28,7 @@ public class Auto_CloseScaleGroup extends CommandGroup {
     	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to close scale inches", Constants.autoDriveToCloseScaleInches), 
     									degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees to close scale", Constants.autoTurnDegreesToCloseScale),
     									false));
-		addSequential(new CubeOutputTimed());
+		addSequential(new CubeOutputTimed(1.0));
    		addSequential(new StopArm());
    		addSequential(new DriveStraightReverse(SmartDashboard.getNumber("Autonomous reverse drive inches", Constants.autoReverseDriveInches), 
 				   	  -degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees to close scale", Constants.autoTurnDegreesToCloseScale), 

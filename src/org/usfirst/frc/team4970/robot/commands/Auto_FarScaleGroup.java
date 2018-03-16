@@ -31,7 +31,7 @@ public class Auto_FarScaleGroup extends CommandGroup {
     	addParallel(new Auto_ArmToScalePosition());
     	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to null zone", Constants.autoDriveToNullZone), 0.0, false));
     	
-		addSequential(new CubeOutputTimed());
+		addSequential(new CubeOutputTimed(1.0));
    		addSequential(new StopArm());
     }
 }

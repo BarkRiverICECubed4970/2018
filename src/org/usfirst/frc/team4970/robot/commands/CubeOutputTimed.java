@@ -11,14 +11,16 @@ import utils.Constants;
 public class CubeOutputTimed extends Command {
 
 	private double timeout;
+	private double dc;
 	
-	public CubeOutputTimed() {
+	public CubeOutputTimed(double dutyCycle) {
         requires(Robot._intakeMotor);
+        dc = dutyCycle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Constants.outputCubeDutyCycle = SmartDashboard.getNumber("Output Cube Duty Cycle", Constants.outputCubeDutyCycle);
+//    	Constants.outputCubeDutyCycle = SmartDashboard.getNumber("Output Cube Duty Cycle", Constants.outputCubeDutyCycle);
     	timeout = SmartDashboard.getNumber("Cube Output Auto Timeout", Constants.cubeOutputAutoTimeout);    		
 
     	setTimeout(timeout);
@@ -26,7 +28,7 @@ public class CubeOutputTimed extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot._intakeMotor.outputCubeAuton(1.0);
+    	Robot._intakeMotor.outputCubeAuton(dc);
     }
 
     protected boolean isFinished() {

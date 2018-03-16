@@ -10,6 +10,8 @@ import utils.Constants;
 public class Auto_SwitchFromCenter extends CommandGroup {
     public Auto_SwitchFromCenter(char switchLocation) {
     	double degreeMultiplier = 1.0;
+    	double degreeAdder = 0.0;
+    	double distanceAdder = 0.0;
     	
     	/* 
     	 * Assume the switch is on the left side.
@@ -17,13 +19,15 @@ public class Auto_SwitchFromCenter extends CommandGroup {
     	if (switchLocation == 'L')
     	{
     		degreeMultiplier = -1.0;
+    		degreeAdder = 0.0;
+    		distanceAdder = 20.0;
     	}
     	
     	addSequential(new Auto_ArmToSwitchPosition());
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to fence from center", Constants.autoDriveToFenceFromCenter), 
-   										degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees from side", Constants.autoTurnDegreesFromSide), 
+   		addSequential(new DriveStraight(distanceAdder + SmartDashboard.getNumber("Autonomous drive to fence from center", Constants.autoDriveToFenceFromCenter), 
+   										degreeAdder + degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees from center", Constants.autoTurnDegreesFromCenter), 
    										false));
-		addSequential(new CubeOutputTimed());
+		addSequential(new CubeOutputTimed(SmartDashboard.getNumber("Output Cube Duty Cycle", Constants.outputCubeDutyCycle)));
    		addSequential(new StopArm());
    		addSequential(new DriveStraightReverse(SmartDashboard.getNumber("Autonomous reverse drive inches", Constants.autoReverseDriveInches), 
    											   -degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees from center", Constants.autoTurnDegreesFromCenter), 

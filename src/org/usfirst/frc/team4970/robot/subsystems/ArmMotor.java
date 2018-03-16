@@ -14,7 +14,7 @@ public class ArmMotor extends Subsystem {
 
 	public enum ArmState
 	{
-		ARM_LOCKED, ARM_INTAKE_HEIGHT, ARM_SWITCH_HEIGHT, ARM_SCALE_HEIGHT, ARM_MOVING
+		ARM_LOCKED, ARM_START_HEIGHT, ARM_INTAKE_HEIGHT, ARM_SWITCH_HEIGHT, ARM_SCALE_HEIGHT, ARM_MOVING
 	};
 	
 	public static ArmState _armState = ArmState.ARM_LOCKED;
@@ -150,7 +150,7 @@ public class ArmMotor extends Subsystem {
    		moveArmPercentOutputMode(Constants.armReleaseSpringDutyCycle);
    		Timer.delay(Constants.armReleaseSpringTimeout);
    		stop();
-   		_armState = ArmState.ARM_INTAKE_HEIGHT;
+   		_armState = ArmState.ARM_START_HEIGHT;
     }
     
     public void stop() {

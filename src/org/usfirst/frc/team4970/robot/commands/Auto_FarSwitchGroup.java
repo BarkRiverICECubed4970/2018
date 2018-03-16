@@ -28,7 +28,7 @@ public class Auto_FarSwitchGroup extends CommandGroup {
    		addSequential(new Auto_ArmToSwitchPosition());
    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to fence from switch zone", Constants.autoDriveToFenceFromSwitchZone), degreeMultiplier*SmartDashboard.getNumber("Autonomous turn degrees from center", Constants.autoTurnDegreesFromCenter), false));
 
-		addSequential(new CubeOutputTimed());
+		addSequential(new CubeOutputTimed(SmartDashboard.getNumber("Output Cube Duty Cycle", Constants.outputCubeDutyCycle)));
    		addSequential(new StopArm());
     }
 }

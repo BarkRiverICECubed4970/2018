@@ -35,9 +35,9 @@ public class ArmToIntakePosition extends Command {
     	{
     		_cancelCommand = true;
     	} else {
+        	Robot._armMotor.lowerArmInit();
         	/* indicate that the arm is about to move, so the hinge cannot */
         	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
-        	Robot._armMotor.lowerArmInit();
     	}
     }
 

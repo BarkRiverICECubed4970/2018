@@ -125,6 +125,8 @@ public class OI {
     	SmartDashboard.putData("Get Game Data", new TestAutoCommand());
     	SmartDashboard.putData("Reset Encoders", new ResetEncoders());
     	SmartDashboard.putData("Arm Release Spring", new ReleaseArmSpring());    	
-    	SmartDashboard.putData("Cube Output Timed", new CubeOutputTimed());    	
+    	SmartDashboard.putData("Cube Output Timed", new CubeOutputTimed(1.0));
+		SmartDashboard.putData("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
+
     }
 }

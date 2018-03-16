@@ -484,6 +484,17 @@
               "_source0": "network_table:///SmartDashboard/Arm to Switch",
               "_title": "/SmartDashboard/Arm to Switch"
             }
+          },
+          "1,7": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Arm Release Spring Duty Cycle",
+              "_title": "/SmartDashboard/Arm Release Spring Duty Cycle"
+            }
           }
         }
       }
@@ -507,17 +518,6 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Gyro PID Max Input",
               "_title": "SmartDashboard/Gyro PID Max Input"
-            }
-          },
-          "7,2": {
-            "size": [
-              3,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Gyro PID Max Output",
-              "_title": "SmartDashboard/Gyro PID Max Output"
             }
           },
           "10,2": {
@@ -646,17 +646,6 @@
               "_title": "SmartDashboard/Pigeon fused heading"
             }
           },
-          "6,4": {
-            "size": [
-              3,
-              4
-            ],
-            "content": {
-              "_type": "PID Controller",
-              "_source0": "network_table:///SmartDashboard/Gyro PID",
-              "_title": "SmartDashboard/Gyro PID"
-            }
-          },
           "3,4": {
             "size": [
               3,
@@ -678,8 +667,41 @@
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Arm Down Max Drive DutyCycle",
-              "_title": "SmartDashboard/Arm Down Max Drive DutyCycle"
+              "_source0": "network_table:///SmartDashboard/Drive straight angle for test",
+              "_title": "/SmartDashboard/Drive straight angle for test"
+            }
+          },
+          "7,2": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Straight drive start duty cycle",
+              "_title": "/SmartDashboard/Straight drive start duty cycle"
+            }
+          },
+          "13,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Drive Straight Reverse",
+              "_title": "/SmartDashboard/Drive Straight Reverse"
+            }
+          },
+          "7,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Gyro PID KP",
+              "_title": "/SmartDashboard/Gyro PID KP"
             }
           }
         }
@@ -827,12 +849,58 @@
               "_source0": "network_table:///SmartDashboard/Output Cube Duty Cycle",
               "_title": "SmartDashboard/Output Cube Duty Cycle"
             }
+          },
+          "2,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Cube Output Timed",
+              "_title": "/SmartDashboard/Cube Output Timed"
+            }
+          },
+          "3,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Cube Output Auto Timeout",
+              "_title": "/SmartDashboard/Cube Output Auto Timeout"
+            }
           }
         }
       }
     },
     {
-      "title": "Tab 6",
+      "title": "Camera",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 64.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "3,1": {
+            "size": [
+              9,
+              7
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://Blur",
+              "_title": "Blur"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Winch",
       "autoPopulate": false,
       "autoPopulatePrefix": "",
       "widgetPane": {
@@ -843,13 +911,59 @@
         "tiles": {
           "1,0": {
             "size": [
-              6,
-              4
+              1,
+              1
             ],
             "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://Blur",
-              "_title": "Blur"
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Winch Extend Counter",
+              "_title": "/SmartDashboard/Winch Extend Counter"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Auton",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "1,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/Center Position: Switch Either Side",
+              "_title": "SmartDashboard/Center Position: Switch Either Side"
+            }
+          },
+          "1,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Autonomous drive to fence from center",
+              "_title": "SmartDashboard/Autonomous drive to fence from center"
+            }
+          },
+          "2,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Autonomous turn degrees from center",
+              "_title": "SmartDashboard/Autonomous turn degrees from center"
             }
           }
         }
