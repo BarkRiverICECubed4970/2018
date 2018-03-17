@@ -85,7 +85,7 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	_gyro.setName("Pigeon");
     	
     	
-		_robotDrive.setMaxOutput(dutyCycleLimit);
+		_robotDrive.setMaxOutput(1.0);
 
     	// just in case
 //    	prevForward = 0;
@@ -165,10 +165,10 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 		{
 			if (rotate < 0.0)
 			{
-				_robotDrive.tankDrive(0.0, -Math.abs(rotate));
+				_robotDrive.tankDrive(-Math.abs(rotate), 0.0);				
 			} else
 			{
-				_robotDrive.tankDrive(-Math.abs(rotate), 0.0);				
+				_robotDrive.tankDrive(0.0, -Math.abs(rotate));
 			}
 		} else
 		{
@@ -273,8 +273,13 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     		_gyroPid.setSetpoint((Math.copySign(Constants.gyroPidMaxSetpoint, potentialError) + gyroAngle));
     	} else
     	{
-    		_gyroPid.setSetpoint(setPoint);    	    		
+    		_gyroPid.setSetpoint(setPoint);    
     	}
+    }
+    
+    public double getGyroPidSetpoint()
+    {
+    	return _gyroPid.getSetpoint();
     }
     
     static int onTargetCount = 0;

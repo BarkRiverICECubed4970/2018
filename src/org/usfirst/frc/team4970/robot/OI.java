@@ -127,6 +127,10 @@ public class OI {
     	SmartDashboard.putData("Arm Release Spring", new ReleaseArmSpring());    	
     	SmartDashboard.putData("Cube Output Timed", new CubeOutputTimed(1.0));
 		SmartDashboard.putData("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
+		SmartDashboard.putData("Left Position: Close Switch Group", new Auto_CloseSwitchGroup('L'));
+		SmartDashboard.putData("Left Position: Close Scale Group", new Auto_CloseScaleGroup('L'));
+		SmartDashboard.putData("Right Position: Close Scale Group", new Auto_CloseScaleGroup('R'));
+		SmartDashboard.putData("Right Position: Far Scale Group", new Auto_FarScaleGroup('R'));
 
     }
 }

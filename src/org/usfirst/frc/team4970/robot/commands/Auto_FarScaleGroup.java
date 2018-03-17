@@ -25,13 +25,23 @@ public class Auto_FarScaleGroup extends CommandGroup {
     	
    		/* switch is on our side... place the cube there */
    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches), 0.0, false));
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across scale inches", Constants.autoDriveAcrossScaleInches), degreeMultiplier * SmartDashboard.getNumber("Autonomous 90 degree turn", Constants.autoNinetyDegrees), false));
-		addSequential(new TurnDegrees(degreeMultiplier * SmartDashboard.getNumber("Autonomous opposite scale degrees to turn", degreeMultiplier*Constants.autoOppositeScaleTurnDegrees), false));
+//   		addSequential(new TurnDegrees(degreeMultiplier*-90.0, false));
+   		addSequential(new RaiseHinge());
+   		addSequential(new ArmToIntakePosition());   		
 
-    	addParallel(new Auto_ArmToScalePosition());
-    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to null zone", Constants.autoDriveToNullZone), 0.0, false));
+   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across scale inches", Constants.autoDriveAcrossScaleInches), degreeMultiplier * -90.0, false));
+		addSequential(new TurnDegrees(-degreeMultiplier * SmartDashboard.getNumber("Autonomous opposite scale degrees to turn", Constants.autoOppositeScaleTurnDegrees), false));
+
+//		addSequential(new ArmToScalePosition());   		
+
+//    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to null zone", Constants.autoDriveToNullZone), 0.0, false));
+//    	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive to null zone", Constants.autoDriveToNullZone), 0.0, false));
     	
-		addSequential(new CubeOutputTimed(1.0));
-   		addSequential(new StopArm());
+//		addSequential(new CubeOutputTimed(1.0));
+//   		addSequential(new DriveStraightReverse(SmartDashboard.getNumber("Autonomous reverse drive inches", Constants.autoReverseDriveInches), 
+//					  -degreeMultiplier*SmartDashboard.getNumber("Autonomous switch turn degrees from side", Constants.autoSwitchTurnDegreesFromSide), 
+//					  false));
+//		addSequential(new StopArm());
+
     }
 }

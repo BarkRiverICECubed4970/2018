@@ -29,6 +29,8 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4970.robot.commands.Auto_DriveForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherScale;
 import org.usfirst.frc.team4970.robot.commands.Auto_EitherSwitch;
+import org.usfirst.frc.team4970.robot.commands.Auto_ScaleForward;
+import org.usfirst.frc.team4970.robot.commands.Auto_ScaleSwitchForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleForward;
 import org.usfirst.frc.team4970.robot.commands.Auto_SwitchScaleOScale;
@@ -90,21 +92,25 @@ public class Robot extends TimedRobot {
 //		m_chooser.addDefault("All Positions: Drive Forward", new DriveStraight(Constants.autoDriveStraightAutoInches));
 		m_chooser.addDefault("All Positions: Drive Forward", new Auto_DriveForward());
 
-		m_chooser.addObject("Left Position: Switch Either Side", new Auto_EitherSwitch('L'));
-		m_chooser.addObject("Right Position: Switch Either Side", new Auto_EitherSwitch('R'));
+//		m_chooser.addObject("Left Position: Switch Either Side", new Auto_EitherSwitch('L'));
+//		m_chooser.addObject("Right Position: Switch Either Side", new Auto_EitherSwitch('R'));
 		m_chooser.addObject("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
 		m_chooser.addObject("Right Position: Close Switch or Drive Forward", new Auto_SwitchForward('R'));
 		m_chooser.addObject("Left Position: Close Switch or Drive Forward", new Auto_SwitchForward('L'));
 		
 		m_chooser.addObject("Left Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('L'));
+		m_chooser.addObject("Left Position: Scale, Switch, Forward", new Auto_ScaleSwitchForward('L'));
+		m_chooser.addObject("Left Position: Scale, Forward", new Auto_ScaleForward('L'));
 //		m_chooser.addObject("Left Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('L'));
-		m_chooser.addObject("Left Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('L'));
-		m_chooser.addObject("Left Position: Scale Either Side", new Auto_EitherScale('L'));
+//		m_chooser.addObject("Left Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('L'));
+//		m_chooser.addObject("Left Position: Scale Either Side", new Auto_EitherScale('L'));
 
 		m_chooser.addObject("Right Position: Switch, Scale, Forward", new Auto_SwitchScaleForward('R'));
+		m_chooser.addObject("Right Position: Scale, Switch, Forward", new Auto_ScaleSwitchForward('R'));
+		m_chooser.addObject("Right Position: Scale, Forward", new Auto_ScaleForward('R'));
 //		m_chooser.addObject("Right Position: Switch, Scale, Opposite Scale", new Auto_SwitchScaleOScale('R'));
-		m_chooser.addObject("Right Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('R'));
-		m_chooser.addObject("Right Position: Scale Either Side", new Auto_EitherScale('R'));
+//		m_chooser.addObject("Right Position: Switch, Scale, Opposite Switch", new Auto_SwitchScaleOSwitch('R'));
+//		m_chooser.addObject("Right Position: Scale Either Side", new Auto_EitherScale('R'));
 
 		m_chooser.addObject("Display Position and Game Data", new TestAutoCommand());
         m_chooser.addObject("Release Spring and Do Nothing", new ReleaseArmSpring());
@@ -112,10 +118,12 @@ public class Robot extends TimedRobot {
 
 		SmartDashboard.putData("Auto mode", m_chooser);	
 
-//		CameraServer.getInstance().startAutomaticCapture();
+		CameraServer.getInstance().startAutomaticCapture();
+		
+		/*
 
 	      new Thread(() -> {
-	      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+	      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture("cam0", 0);
 	      camera.setResolution(320, 240);
 	      camera.setExposureAuto();
 	
@@ -132,7 +140,10 @@ public class Robot extends TimedRobot {
 	          outputStream.putFrame(output);
 	      }
 	  }, "camera").start();
+	  
+	  */
 	}
+	
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.

@@ -21,20 +21,20 @@ public class Constants {
 	public static final int solenoidMotorCanAddress = 12;
 	
     public static double autoScaleTurnDegrees = -45.0;
-    public static double autoNinetyDegrees = -90.0;
+    public static double autoNinetyDegrees = -40.0;
     public static double driveInchesForTest = 36.0;
     public static double timedDriveTimeout = 1.0;
-    public static double autoStraightDriveToCloseScaleInches = 280.0;
+    public static double autoStraightDriveToCloseScaleInches = 240.0;
     public static double autoAngleDriveToCloseScaleInches = 80.0;
-    public static double autoDrivePastSwitchInches = 210.0;
-    public static double autoDriveAcrossSwitchInches = 132.0;
-    public static double autoDriveAcrossScaleInches = 250.0;
-    public static double autoDriveToNullZone = 30.0;
+    public static double autoDrivePastSwitchInches = 174.0;
+    public static double autoDriveAcrossSwitchInches = 168.0;
+    public static double autoDriveAcrossScaleInches = 286.0;
+    public static double autoDriveToNullZone = 8.0;
     public static double autoDriveToOppositeSwitchZone = 20.0;
     public static double autoDriveToFenceFromSwitchZone = 20.0;
-    public static double autoOppositeScaleTurnDegrees = 135.0;
+    public static double autoOppositeScaleTurnDegrees = -120.0;
     public static double autoReverseDriveInches = 36.0;
-    public static double autoTurnDegreesFromCenter = -30.0;
+    public static double autoTurnDegreesFromCenter = -25.0;
     public static double autoTurnDegreesToCloseScale = -30.0;
     public static double autoDriveToSwitchFromCenterTimeout = 2.5;
     public static double scaleInches = 100.0;
@@ -50,13 +50,13 @@ public class Constants {
 
     public static double autoDriveToFenceFromCenter = 90.0;
 
-    public static double autoSwitchFromCenterLeftDegreeAdder = 0.0;
+    public static double autoSwitchFromCenterLeftDegreeAdder = 2.0;
 	public static double autoSwitchFromCenterLeftDistanceAdder = 20.0;
 
     public static double autoDriveStraightAutoInches = 80.0;
-    public static double autoStraightDriveToCloseSwitchInches = 100.0;
+    public static double autoStraightDriveToCloseSwitchInches = 95.0;
     public static double autoAngleDriveToCloseSwitchInches = 20.0;
-    public static double autoSwitchTurnDegreesFromSide = -30.0;
+    public static double autoSwitchTurnDegreesFromSide = -20.0;
 
     
     /* counts per revolution on output shaft * inches per revolution from tires
@@ -74,16 +74,17 @@ public class Constants {
     public static double driveEncoderCountsPerInch = 74.7;
     
     
-    public static double turnDegreesTimeout = 3.0;
-    public static double turnDegrees = -60.0;
+//    public static double turnDegreesTimeout = 90.0;
+    public static double turnDegreesTimeout = 2.0;
+    public static double turnDegrees = -90.0;
     
-    public static double gyroStraightPidKp = 0.02;
-    public static double gyroTurnPidKp = 0.05;
+    public static double gyroStraightPidKp = 0.04;
+    public static double gyroTurnPidKp = 0.08;
     public static double gyroReversePidKp = 0.05;
     public static double gyroPidKi = 0.0;
     public static double gyroPidKd = 0.0;
-    public static double gyroPidMinIn = -60.0;
-    public static double gyroPidMaxIn = 60.0;
+    public static double gyroPidMinIn = -120.0;
+    public static double gyroPidMaxIn = 120.0;
     public static double gyroPidMinOut = -1.0;
     public static double gyroPidMaxOut = 1.0;
     public static double gyroPidTolerance = 2.0;
@@ -109,7 +110,7 @@ public class Constants {
     public static double intakeMotorPidKi = 0.0;
     public static double intakeMotorPidKd = 0.0;
     public static double intakeMotorAllowableClosedLoopError = 10;
-    public static double cubeOutputAutoTimeout = 1.0;
+    public static double cubeOutputAutoTimeout = 2.0;
     
     
     public static double armMotorPidKp = 5.0;
@@ -129,11 +130,12 @@ public class Constants {
     public static double armToSwitchTimeout = 2.0;
     public static double armToScaleTimeout = 3.0;
     public static double armToIntakeTimeout = 5.0;
-    public static double armReleaseSpringDutyCycle = -0.45;
+    public static double armReleaseSpringDutyCycle = -0.65;
     public static double armReleaseSpringTimeout = 0.25;
     
     public static double intakeCubeDutyCycle = 0.3;
-    public static double outputCubeDutyCycle = 0.3;
+    public static double outputCubeDutyCycle = 0.4;
+    public static double outputScaleCubeDutyCycle = 0.6;
     public static double extendTapeDutyCycle = 1.0;
     public static double reelTapeDutyCycle = 1.0;
     public static double unlockWinchTimeout = 0.25;
@@ -234,6 +236,7 @@ public class Constants {
     	/* Intake motor */
     	SmartDashboard.putNumber("Intake Cube Duty Cycle", intakeCubeDutyCycle);
     	SmartDashboard.putNumber("Output Cube Duty Cycle", outputCubeDutyCycle);   
+    	SmartDashboard.putNumber("Output Scale Cube Duty Cycle", outputScaleCubeDutyCycle);   
     	SmartDashboard.putNumber("Intake PID KP", intakeMotorPidKp);
     	SmartDashboard.putNumber("Intake PID KI", intakeMotorPidKi);
     	SmartDashboard.putNumber("Intake PID KD", intakeMotorPidKd);
