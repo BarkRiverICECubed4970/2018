@@ -24,6 +24,7 @@ public class ClimbMotor extends Subsystem {
     private static SolenoidState _solenoidState = SolenoidState.WINCH_LOCKED;
     private static WinchState _winchState = WinchState.WINCH_START;
     private static double _winchExtendCounter = 0;
+    private static double _winchReelCounter = 0;
 	
 	WPI_TalonSRX m_climber = new WPI_TalonSRX(Constants.climbMotorCanAddress);
 
@@ -86,6 +87,10 @@ public class ClimbMotor extends Subsystem {
 	
     public double getWinchOutCount() {
         return _winchExtendCounter;
+    }
+	
+    public double getWinchReelCount() {
+	return _winchReelCounter;
     }
 }
 
