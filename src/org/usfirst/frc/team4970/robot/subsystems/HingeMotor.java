@@ -13,7 +13,7 @@ public class HingeMotor extends Subsystem {
 
 	public enum HingeState
 	{
-		HINGE_UP, HINGE_DOWN, HINGE_LOAD_SCALE
+		HINGE_UP, HINGE_DOWN, HINGE_MANUAL_MODE
 	};
 	
 	public static HingeState _hingeState = HingeState.HINGE_UP;
@@ -57,6 +57,11 @@ public class HingeMotor extends Subsystem {
     public void initDefaultCommand() {
     }
     
+    public void moveHingeManual(double percentOutput) {
+	_hingeState = HingeState.HINGE_MANUAL_MODE;
+	m_hinge.set(ControlMode.PercentOutput, percentOutput);
+    }
+	
     public void moveHinge(double setPoint) {
     	m_hinge.set(ControlMode.Position, setPoint);
     }
