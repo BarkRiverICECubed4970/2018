@@ -18,7 +18,7 @@ public class ClimbMotor extends Subsystem {
 	
     public enum WinchState
     {
-	WINCH_START, WINCH_OUT
+	WINCH_START, WINCH_OUT, WINCH_CLIMBING
     };
 	
     private static SolenoidState _solenoidState = SolenoidState.WINCH_LOCKED;
@@ -63,13 +63,25 @@ public class ClimbMotor extends Subsystem {
 	/* don't allow the winch to be reeled in until it has been extended */
     	if (_winchState == WinchState.WINCH_OUT)
     	{	
-    		lockWinch();
+		_winchReelCounter++;
+		
+		if (_winchReelCounter > Constants.winchReelCount)
+		{
+			_winchState = WinchState.WINCH_CLIMBING;
+		}
+		
+//		lockWinch();
     		m_climber.set(dutyCycle);
     	}
     }
     
     public void stop() {
-    	m_climber.set(0.0);
+	if (_winchState == WinchState.WINCH_CLIMBING)
+	{
+		lockWinch();
+	}
+	    
+	m_climber.set(0.0);
     }  
 	
     public double getWinchOutCount() {
