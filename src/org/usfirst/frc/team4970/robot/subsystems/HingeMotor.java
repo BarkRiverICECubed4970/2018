@@ -58,7 +58,6 @@ public class HingeMotor extends Subsystem {
     }
     
     public void moveHingeManual(double percentOutput) {
-	_hingeState = HingeState.HINGE_MANUAL_MODE;
 	m_hinge.set(ControlMode.PercentOutput, percentOutput);
     }
 	
