@@ -145,6 +145,12 @@ public class Constants {
        in and destroying the assembly)
     */
     public static double winchOutCount = 75.0;
+    /*
+       how many times the reel winch command has been called
+       before the winch can be locked (solenoid released) once the 
+       climb button has been let go
+    */
+    public static double winchReelCount = 75.0;	
 	
     public static final int timeoutMs = 10;
     
@@ -321,6 +327,7 @@ public class Constants {
     	SmartDashboard.putNumber("Intake Motor Output Voltage", Robot._intakeMotor.getMotorOutputVoltage());
 
         SmartDashboard.putNumber("Winch Extend Counter", Robot._climbMotor.getWinchOutCount());
+        SmartDashboard.putNumber("Winch Reel Counter", Robot._climbMotor.getWinchReelCount());
 	    
     	Constants.armUpMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Up Max Drive DutyCycle",Constants.armUpMaxDriveDutyCycle);
     	Constants.armDownMaxDriveDutyCycle = SmartDashboard.getNumber("Arm Down Max Drive DutyCycle",Constants.armDownMaxDriveDutyCycle);
