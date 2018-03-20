@@ -145,6 +145,11 @@ public class ArmMotor extends Subsystem {
     	m_arm.set(ControlMode.PercentOutput, percentOutput);    	
     }
     
+    public void hold ()
+    {
+	    moveArm(getEncoderCount());
+    }
+	
     public void unlockArm()
     {
    		moveArmPercentOutputMode(Constants.armReleaseSpringDutyCycle);
