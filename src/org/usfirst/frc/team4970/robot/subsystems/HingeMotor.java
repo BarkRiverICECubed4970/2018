@@ -61,6 +61,11 @@ public class HingeMotor extends Subsystem {
 	m_hinge.set(ControlMode.PercentOutput, percentOutput);
     }
 	
+    public void hold()
+    {
+	moveHinge(getEncoderCount());    
+    }
+	
     public void moveHinge(double setPoint) {
     	m_hinge.set(ControlMode.Position, setPoint);
     }
