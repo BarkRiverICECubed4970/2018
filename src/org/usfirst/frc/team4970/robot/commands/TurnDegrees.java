@@ -22,30 +22,27 @@ public class TurnDegrees extends Command {
 
 	private double desiredAngle;
 	private boolean testTurn;
+	private double _timeout;
 	
-	public TurnDegrees(double degrees, boolean testOverride) {
+	public TurnDegrees(double degrees, boolean testOverride, double timeout) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot._driveTrain);
 
 		desiredAngle = degrees;
 		testTurn = testOverride;
+		_timeout = timeout;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Constants.turnDegreesTimeout = SmartDashboard.getNumber("Turn Degrees Timeout", Constants.turnDegreesTimeout);
-//    	if (SmartDashboard.getNumber("Turn Degrees Override", 0.0) == 1.0)
-//    	{
-//    		desiredAngle = SmartDashboard.getNumber("Turn Degrees", desiredAngle);
-//    	}
 		
 		if (testTurn == true)
 		{
 			desiredAngle = SmartDashboard.getNumber("Degrees to turn", Constants.turnDegrees);
 		}
 		
-    	setTimeout(Constants.turnDegreesTimeout);
+    	setTimeout(_timeout);
     	Robot._driveTrain.resetOnTargetCount();
     	Robot._driveTrain.setupGyroPID(DriveTrain.DriveTrainControl.TURN_DEGREES);
     	// redundant, since setupGyroPID() does this already

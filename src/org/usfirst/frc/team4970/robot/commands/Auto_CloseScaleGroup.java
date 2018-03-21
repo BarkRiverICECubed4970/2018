@@ -28,7 +28,7 @@ public class Auto_CloseScaleGroup extends CommandGroup {
     	addSequential(new Auto_ArmToScalePosition());
     	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous straight drive to close scale inches", Constants.autoStraightDriveToCloseScaleInches), 
 				0.0, false));
-    	addSequential(new TurnDegrees(degreeMultiplier*SmartDashboard.getNumber("Autonomous 90 degree turn", Constants.autoNinetyDegrees), false));
+    	addSequential(new TurnDegrees(degreeMultiplier*SmartDashboard.getNumber("Autonomous close scale turn", Constants.autoCloseScaleDegrees), false, 2.0));
     	addSequential(new DriveStraight(2.0, 0.0, false));
     	addSequential(new DriveStraight(2.0, 0.0, false));
 		addSequential(new CubeOutputTimed(SmartDashboard.getNumber("Output Scale Cube Duty Cycle", Constants.outputScaleCubeDutyCycle)));

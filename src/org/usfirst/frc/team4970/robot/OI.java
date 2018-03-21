@@ -13,6 +13,7 @@ import org.usfirst.frc.team4970.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import utils.Constants;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -106,7 +107,7 @@ public class OI {
     	// SmartDashboard Buttons
     	SmartDashboard.putData("Drive Straight", new DriveStraight(0.0, 0.0, true));
     	SmartDashboard.putData("Drive Straight Reverse", new DriveStraightReverse(0.0, 0.0, true));
-    	SmartDashboard.putData("Turn Degrees", new TurnDegrees(0.0, true));
+    	SmartDashboard.putData("Turn Degrees", new TurnDegrees(0.0, true, Constants.turnDegreesTimeout));
     	SmartDashboard.putData("Raise Hinge", new RaiseHinge());
     	SmartDashboard.putData("Lower Hinge", new LowerHinge());
     	SmartDashboard.putData("Toggle Hinge", new ToggleHinge());
@@ -126,7 +127,7 @@ public class OI {
     	SmartDashboard.putData("Reset Encoders", new ResetEncoders());
     	SmartDashboard.putData("Arm Release Spring", new ReleaseArmSpring());    	
     	SmartDashboard.putData("Cube Output Timed", new CubeOutputTimed(1.0));
-		SmartDashboard.putData("Center Position: Switch Either Side", new Auto_EitherSwitch('C'));
+		SmartDashboard.putData("Center Position: Switch Either Side", new Auto_EitherSwitchFromCenter('C'));
 		SmartDashboard.putData("Left Position: Close Switch Group", new Auto_CloseSwitchGroup('L'));
 		SmartDashboard.putData("Left Position: Close Scale Group", new Auto_CloseScaleGroup('L'));
 		SmartDashboard.putData("Right Position: Close Scale Group", new Auto_CloseScaleGroup('R'));

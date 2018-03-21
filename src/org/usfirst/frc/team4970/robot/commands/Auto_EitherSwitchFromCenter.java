@@ -8,12 +8,12 @@ import org.usfirst.frc.team4970.robot.Robot;
 /**
  *
  */
-public class Auto_EitherSwitch extends Command {
+public class Auto_EitherSwitchFromCenter extends Command {
 
 	private char _location;
 	private CommandGroup _commandGroup;
 	
-	public Auto_EitherSwitch(char robotLocation) {
+	public Auto_EitherSwitchFromCenter(char robotLocation) {
 		_location = robotLocation;
     }
 
@@ -34,7 +34,7 @@ public class Auto_EitherSwitch extends Command {
     			_commandGroup = new Auto_CloseSwitchGroup(_location);
 	    	} else
 	    	{
-	    		_commandGroup = new Auto_FarSwitchGroup(_location);
+	    		_commandGroup = new Auto_DriveForward();
 	    	}
     	} else
     	{

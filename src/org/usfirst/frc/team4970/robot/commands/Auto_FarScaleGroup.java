@@ -23,14 +23,19 @@ public class Auto_FarScaleGroup extends CommandGroup {
     	
   //  	addParallel(new ReleaseArmSpring());
     	
+    	/* hold the hinge up while driving */
+    	addSequential(new RaiseHinge());
    		/* switch is on our side... place the cube there */
    		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive past switch inches", Constants.autoDrivePastSwitchInches), 0.0, false));
 //   		addSequential(new TurnDegrees(degreeMultiplier*-90.0, false));
-   		addSequential(new RaiseHinge());
-   		addSequential(new ArmToIntakePosition());   		
 
-   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across scale inches", Constants.autoDriveAcrossScaleInches), degreeMultiplier * -90.0, false));
-		addSequential(new TurnDegrees(-degreeMultiplier * SmartDashboard.getNumber("Autonomous opposite scale degrees to turn", Constants.autoOppositeScaleTurnDegrees), false));
+		addSequential(new DriveStraightReverse(SmartDashboard.getNumber("Autonomous drive across scale inches", Constants.autoDriveAcrossScaleInches), 
+						degreeMultiplier * -90.0, false));
+
+//   		addSequential(new ArmToIntakePosition());   		
+
+//   		addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous drive across scale inches", Constants.autoDriveAcrossScaleInches), degreeMultiplier * -90.0, false));
+//		addSequential(new TurnDegrees(-degreeMultiplier * SmartDashboard.getNumber("Autonomous opposite scale degrees to turn", Constants.autoOppositeScaleTurnDegrees), false, 2.0));
 
 //		addSequential(new ArmToScalePosition());   		
 

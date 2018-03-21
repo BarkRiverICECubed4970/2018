@@ -12,8 +12,6 @@ import utils.Constants;
  */
 public class ArmMoveManual extends Command {
 
-	private boolean _cancelCommand = false;
-	
 	public ArmMoveManual() {
         requires(Robot._armMotor);
     }
@@ -24,7 +22,7 @@ public class ArmMoveManual extends Command {
     	
     	Robot._armMotor.moveArmPercentOutputMode(Constants.armManualDutyCycle);
 
-    	ArmMotor._armState = ArmMotor.armState.ARM_MOVING;
+    	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;
     }
 
     // Called repeatedly when this Command is scheduled to run

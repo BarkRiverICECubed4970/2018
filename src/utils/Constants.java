@@ -1,7 +1,6 @@
 package utils;
 
 import org.usfirst.frc.team4970.robot.Robot;
-import org.usfirst.frc.team4970.robot.commands.DriveStraight;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,8 +19,7 @@ public class Constants {
 	public static final int climbMotorCanAddress = 13;
 	public static final int solenoidMotorCanAddress = 12;
 	
-    public static double autoScaleTurnDegrees = -45.0;
-    public static double autoNinetyDegrees = -40.0;
+    public static double autoCloseScaleDegrees = -40.0;
     public static double driveInchesForTest = 36.0;
     public static double timedDriveTimeout = 1.0;
     public static double autoStraightDriveToCloseScaleInches = 240.0;
@@ -102,6 +100,7 @@ public class Constants {
     public static double raiseHingeTimeout = 1.0;
     public static double hingeSecondsFromNeutral = 0.5;
     public static double hingeMotorPeakVoltage = 0.7;
+    public static double hingeManualDutyCycle = 0.4;
 
 //    public static double raiseHingePidSetpoint = 0.3;
 //    public static double lowerHingePidSetpoint = 0.3;
@@ -132,6 +131,7 @@ public class Constants {
     public static double armToIntakeTimeout = 5.0;
     public static double armReleaseSpringDutyCycle = -0.65;
     public static double armReleaseSpringTimeout = 0.25;
+    public static double armManualDutyCycle = 0.3;
     
     public static double intakeCubeDutyCycle = 0.3;
     public static double outputCubeDutyCycle = 0.4;
@@ -187,8 +187,7 @@ public class Constants {
 		SmartDashboard.putNumber("Autonomous turn degrees from center", autoTurnDegreesFromCenter);
 		SmartDashboard.putNumber("Autonomous switch turn degrees from side", autoSwitchTurnDegreesFromSide);
 		SmartDashboard.putNumber("Autonomous turn degrees to close scale", autoTurnDegreesToCloseScale);
-		SmartDashboard.putNumber("Autonomous 90 degree turn", autoNinetyDegrees);
-		SmartDashboard.putNumber("Autonomous scale degree turn", autoScaleTurnDegrees);
+		SmartDashboard.putNumber("Autonomous close scale turn", autoCloseScaleDegrees);
 		SmartDashboard.putNumber("Autonomous drive to fence from center", autoDriveToFenceFromCenter);
 		SmartDashboard.putNumber("Autonomous drive to switch from center timeout", autoDriveToSwitchFromCenterTimeout);
 		SmartDashboard.putNumber("Autonomous reverse drive inches", autoReverseDriveInches);
@@ -237,6 +236,8 @@ public class Constants {
 		SmartDashboard.putNumber("Arm To Intake Timeout", Constants.armToIntakeTimeout);
 		SmartDashboard.putNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
 		SmartDashboard.putNumber("Arm Release Spring Timeout", Constants.armReleaseSpringTimeout);
+      	SmartDashboard.putNumber("Arm Manual Move Duty Cycle", armManualDutyCycle);
+
 
     	
     	/* Intake motor */
@@ -262,6 +263,7 @@ public class Constants {
     	SmartDashboard.putNumber("Hinge Peak Voltage", hingeMotorPeakVoltage);
     	SmartDashboard.putNumber("Lower Hinge Timeout", lowerHingeTimeout);
     	SmartDashboard.putNumber("Raise Hinge Timeout", raiseHingeTimeout);
+    	SmartDashboard.putNumber("Hinge Manual Move Duty Cycle", hingeManualDutyCycle);
 
 
     	/* Climbing */
