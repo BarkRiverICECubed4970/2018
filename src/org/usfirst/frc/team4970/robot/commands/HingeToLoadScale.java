@@ -25,6 +25,8 @@ public class HingeToLoadScale extends Command {
     	
     	Constants.hingeToScalePidSetpoint = SmartDashboard.getNumber("Hinge To Scale PID Setpoint", Constants.hingeToScalePidSetpoint);
 
+	setTimeout(Constants.raiseHingeTimeout);
+	    
     	/* do not move hinge into scale position unless arm is at scale height */
     	if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
     	{
@@ -44,7 +46,9 @@ public class HingeToLoadScale extends Command {
     }
 
     protected boolean isFinished() {
-    	if ((_cancelCommand) || ((Math.abs(Robot._hingeMotor.getEncoderCount() - Constants.hingeToScalePidSetpoint))
+    	if ((isTimedOut()) ||
+	    (_cancelCommand) || 
+	    ((Math.abs(Robot._hingeMotor.getEncoderCount() - Constants.hingeToScalePidSetpoint))
     			<= (int)Constants.hingeMotorAllowableClosedLoopError))
     	{
     		return true;
