@@ -23,8 +23,9 @@ public class Auto_CloseScaleGroup extends CommandGroup {
     	
 //    	addParallel(new ReleaseArmSpring());
     	
-   		/* scale is on our side... place the cube there */
-//    	addSequential(new Auto_ArmToScalePosition());
+	/* hold the hinge up while driving */
+    	addSequential(new RaiseHinge());
+	    
     	addSequential(new Auto_ArmToScalePosition());
     	addSequential(new DriveStraight(SmartDashboard.getNumber("Autonomous straight drive to close scale inches", Constants.autoStraightDriveToCloseScaleInches), 
 				0.0, false));
