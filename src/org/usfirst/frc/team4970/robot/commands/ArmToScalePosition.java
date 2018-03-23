@@ -28,16 +28,32 @@ public class ArmToScalePosition extends Command {
 
     	setTimeout(Constants.armToScaleTimeout);
 
-    	/* don't attempt to move the arm up or down when the hinge is not closed */
-    	if ((HingeMotor._hingeState != HingeMotor.HingeState.HINGE_UP) ||
-    		(ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT))
-    	{
-    		_cancelCommand = true;
-    	} else {
-        	/* indicate that the arm is about to move, so the hinge cannot */
+	/* if the arm is already at the scale position, toggle the hinge from "up" to "scale" */
+	if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
+	{
+		private Command _command;
+		if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_UP)
+		{
+			_command = new HingeToLoadScale();
+		} else
+		{
+			_command = new RaiseHinge();
+		}
+		
+		_command.start();
+		
+		/* no need to hang around in this command */
+		_cancelCommand = true;
+	} else if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_UP)
+	{
+		/* indicate that the arm is about to move, so the hinge cannot */
         	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
         	Robot._armMotor.raiseArm(Constants.scalePositionArmPidSetpoint);
-    	}
+	} else
+	{
+		/* arm is not at scale height, and the hinge isn't up. cancel command */
+		_cancelCommand = true;
+	}
     }
 
     // Called repeatedly when this Command is scheduled to run
