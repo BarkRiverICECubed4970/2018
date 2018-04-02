@@ -11,17 +11,18 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class ClimbMotor extends Subsystem {
 
+/*
     public enum SolenoidState
     {
 	WINCH_LOCKED, WINCH_UNLOCKED
     };
-	
+*/	
     public enum WinchState
     {
 	WINCH_START, WINCH_OUT, WINCH_CLIMBING
     };
 	
-    private static SolenoidState _solenoidState = SolenoidState.WINCH_LOCKED;
+//    private static SolenoidState _solenoidState = SolenoidState.WINCH_LOCKED;
     private static WinchState _winchState = WinchState.WINCH_START;
     private static double _winchExtendCounter = 0;
     private static double _winchReelCounter = 0;
@@ -33,6 +34,7 @@ public class ClimbMotor extends Subsystem {
 		setDefaultCommand(new OperateWinch());
     }
     
+/*
     public void lockWinch()
     {
 		Robot.m_solenoid.set(0.0);
@@ -45,12 +47,15 @@ public class ClimbMotor extends Subsystem {
 		Timer.delay(Constants.unlockWinchTimeout);
 		_solenoidState = SolenoidState.WINCH_UNLOCKED;
     }
-	
+*/	
     public void extendWinch(double dutyCycle) {
-		if (_solenoidState == SolenoidState.WINCH_LOCKED)
-		{
-		    unlockWinch();
-		}
+//		if (_solenoidState == SolenoidState.WINCH_LOCKED)
+//		{
+//		    unlockWinch();
+//		}
+	    /* do not allow extending the winch once it has begun climbing */
+	    if (_winchState != WinchState.WINCH_CLIMBING)
+	    {
 		m_climber.set(dutyCycle);
 	        _winchExtendCounter++;
 	    	
@@ -58,6 +63,10 @@ public class ClimbMotor extends Subsystem {
 		{
 		    _winchState = WinchState.WINCH_OUT;
 		}
+	    } else
+	    {
+		m_climber.set(0.0);
+	    }		    
     }
     
     public void reelWinch(double dutyCycle) {
@@ -77,10 +86,10 @@ public class ClimbMotor extends Subsystem {
     }
     
     public void stop() {
-	if (_winchState == WinchState.WINCH_CLIMBING)
-	{
-		lockWinch();
-	}
+//	if (_winchState == WinchState.WINCH_CLIMBING)
+//	{
+//		lockWinch();
+//	}
 	    
 	m_climber.set(0.0);
     }  
