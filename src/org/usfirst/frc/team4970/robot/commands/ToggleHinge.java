@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 import org.usfirst.frc.team4970.robot.subsystems.ArmMotor;
 import org.usfirst.frc.team4970.robot.subsystems.HingeMotor;
@@ -19,7 +20,8 @@ public class ToggleHinge extends Command {
     	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN)
     	{	
     		_moveHinge = new RaiseHinge();
-    		_moveHinge.start();
+			Scheduler.getInstance().add(_moveHinge);
+//    		_moveHinge.start();
     	} else
     	{
         	/* do not lower hinge unless arm is at intake height or still locked */
@@ -27,7 +29,8 @@ public class ToggleHinge extends Command {
        			(ArmMotor._armState == ArmMotor.ArmState.ARM_LOCKED))
        		{
         		_moveHinge = new LowerHinge();
-        		_moveHinge.start();
+    			Scheduler.getInstance().add(_moveHinge);
+//        		_moveHinge.start();
        		}
     	}
     }

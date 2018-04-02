@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4970.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4970.robot.Robot;
@@ -28,32 +29,34 @@ public class ArmToScalePosition extends Command {
 
     	setTimeout(Constants.armToScaleTimeout);
 
-	/* if the arm is already at the scale position, toggle the hinge from "up" to "scale" */
-	if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
-	{
-		private Command _command;
-		if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_UP)
+		/* if the arm is already at the scale position, toggle the hinge from "up" to "scale" */
+		if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
 		{
-			_command = new HingeToLoadScale();
+			Command _command;
+	
+			if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_UP)
+			{
+				_command = new HingeToLoadScale();
+			} else
+			{
+				_command = new RaiseHinge();
+			}
+			
+			Scheduler.getInstance().add(_command);
+//			_command.start();
+			
+			/* no need to hang around in this command */
+			_cancelCommand = true;
+		} else if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_UP)
+		{
+			/* indicate that the arm is about to move, so the hinge cannot */
+	        	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
+	        	Robot._armMotor.raiseArm(Constants.scalePositionArmPidSetpoint);
 		} else
 		{
-			_command = new RaiseHinge();
+			/* arm is not at scale height, and the hinge isn't up. cancel command */
+			_cancelCommand = true;
 		}
-		
-		_command.start();
-		
-		/* no need to hang around in this command */
-		_cancelCommand = true;
-	} else if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_UP)
-	{
-		/* indicate that the arm is about to move, so the hinge cannot */
-        	ArmMotor._armState = ArmMotor.ArmState.ARM_MOVING;    		
-        	Robot._armMotor.raiseArm(Constants.scalePositionArmPidSetpoint);
-	} else
-	{
-		/* arm is not at scale height, and the hinge isn't up. cancel command */
-		_cancelCommand = true;
-	}
     }
 
     // Called repeatedly when this Command is scheduled to run

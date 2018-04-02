@@ -150,7 +150,8 @@ public class Constants {
        before the winch can be locked (solenoid released) once the 
        climb button has been let go
     */
-    public static double winchReelCount = 75.0;	
+//    public static double winchReelCount = 75.0;	
+    public static double winchReelCount = 1.0;	
 	
     public static final int timeoutMs = 10;
     
