@@ -23,7 +23,7 @@ public class ClimbMotor extends Subsystem {
     };
 	
 //    private static SolenoidState _solenoidState = SolenoidState.WINCH_LOCKED;
-    private static WinchState _winchState = WinchState.WINCH_START;
+    public static WinchState _winchState = WinchState.WINCH_START;
     private static double _winchExtendCounter = 0;
     private static double _winchReelCounter = 0;
 	
@@ -56,10 +56,10 @@ public class ClimbMotor extends Subsystem {
 	    /* do not allow extending the winch once it has begun climbing */
 	    if (_winchState != WinchState.WINCH_CLIMBING)
 	    {
-		m_climber.set(dutyCycle);
+    		m_climber.set(Math.max(dutyCycle, Constants.winchExtendMaxDutyCycle));
 	        _winchExtendCounter++;
 	    	
-	        if (_winchExtendCounter > Constants.winchOutCount)
+	    if (_winchExtendCounter > Constants.winchOutCount)
 		{
 		    _winchState = WinchState.WINCH_OUT;
 		}
@@ -71,7 +71,7 @@ public class ClimbMotor extends Subsystem {
     
     public void reelWinch(double dutyCycle) {
 	/* don't allow the winch to be reeled in until it has been extended */
-    	if (_winchState == WinchState.WINCH_OUT)
+    	if ((_winchState == WinchState.WINCH_OUT) || (_winchState == WinchState.WINCH_CLIMBING))
     	{	
 		_winchReelCounter++;
 		
@@ -81,7 +81,7 @@ public class ClimbMotor extends Subsystem {
 		}
 		
 //		lockWinch();
-    		m_climber.set(dutyCycle);
+    		m_climber.set(Math.min(dutyCycle, Constants.winchReelMaxDutyCycle));
     	}
     }
     

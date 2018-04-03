@@ -17,6 +17,7 @@ public class ToggleHinge extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     	if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_DOWN)
     	{	
     		_moveHinge = new RaiseHinge();
@@ -26,12 +27,28 @@ public class ToggleHinge extends Command {
     	{
         	/* do not lower hinge unless arm is at intake height or still locked */
         	if ((ArmMotor._armState == ArmMotor.ArmState.ARM_INTAKE_HEIGHT) ||
-       			(ArmMotor._armState == ArmMotor.ArmState.ARM_LOCKED))
+       			(ArmMotor._armState == ArmMotor.ArmState.ARM_LOCKED) ||
+       			(ArmMotor._armState == ArmMotor.ArmState.ARM_START_HEIGHT))
        		{
         		_moveHinge = new LowerHinge();
     			Scheduler.getInstance().add(_moveHinge);
 //        		_moveHinge.start();
        		}
+    		/* if the arm is already at the scale position, toggle the hinge from "up" to "scale" */
+        	else if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
+    		{
+    			if (HingeMotor._hingeState == HingeMotor.HingeState.HINGE_UP)
+    			{
+    				_moveHinge = new HingeToLoadScale();
+    			} else
+    			{
+    				_moveHinge = new RaiseHinge();
+    			}
+    			
+    			Scheduler.getInstance().add(_moveHinge);
+//    			_command.start();
+    			
+    		}
     	}
     }
 

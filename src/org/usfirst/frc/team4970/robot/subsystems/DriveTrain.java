@@ -69,8 +69,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	m_leftFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.timeoutMs);
     	m_rightFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, Constants.timeoutMs);
     	
-	/* invert right encoder to count forward when drive is moving forward */
-	m_rightFront.setSensorPhase(true);
+    	/* invert right encoder to count forward when drive is moving forward */
+    	m_rightFront.setSensorPhase(true);
 		
     	/* reset encoder counters */
     	m_leftFront.setSelectedSensorPosition(0, 0, Constants.timeoutMs);
@@ -157,8 +157,13 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 //		} else {
 //			dutyCycleLimit = Constants.armDownMaxDriveDutyCycle;			
 //		}
-			
+
 //		_robotDrive.setMaxOutput(dutyCycleLimit);
+
+//    	if (ClimbMotor._winchState != ClimbMotor.WinchState.WINCH_START)
+//    	{
+//    		_robotDrive.setMaxOutput(Constants.winchOutMaxDriveDutyCycle);    		
+//    	}
 
 		/* try this to potentially turn better with only high gear */
 		if (_driveTrainControl == DriveTrainControl.TURN_DEGREES)
@@ -219,7 +224,14 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     	double kp;
     	if (commandInControl == DriveTrainControl.TURN_DEGREES)
     	{
-        	kp = SmartDashboard.getNumber("Gyro Turn Degrees PID KP", Constants.gyroTurnPidKp);    		
+    		if ((ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT) ||
+    			(ArmMotor._armState == ArmMotor.ArmState.ARM_MOVING))
+    		{
+            	kp = SmartDashboard.getNumber("Gyro Turn Degrees Arm Up PID KP", Constants.gyroTurnArmUpPidKp);    		    			    			
+    		} else
+    		{
+            	kp = SmartDashboard.getNumber("Gyro Turn Degrees PID KP", Constants.gyroTurnPidKp);    		    			
+    		}
     	} else if (commandInControl == DriveTrainControl.DRIVE_STRAIGHT_REVERSE)
     	{
         	kp = SmartDashboard.getNumber("Gyro Drive Reverse PID KP", Constants.gyroReversePidKp);    		    		

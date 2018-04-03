@@ -73,11 +73,12 @@ public class Constants {
     
     
 //    public static double turnDegreesTimeout = 90.0;
-    public static double turnDegreesTimeout = 2.0;
+    public static double turnDegreesTimeout = 3.0;
     public static double turnDegrees = -90.0;
     
     public static double gyroStraightPidKp = 0.04;
     public static double gyroTurnPidKp = 0.08;
+    public static double gyroTurnArmUpPidKp = 0.085;
     public static double gyroReversePidKp = 0.05;
     public static double gyroPidKi = 0.0;
     public static double gyroPidKd = 0.0;
@@ -136,9 +137,11 @@ public class Constants {
     public static double intakeCubeDutyCycle = 0.3;
     public static double outputCubeDutyCycle = 0.4;
     public static double outputScaleCubeDutyCycle = 0.6;
-    public static double extendTapeDutyCycle = 1.0;
-    public static double reelTapeDutyCycle = 1.0;
     public static double unlockWinchTimeout = 0.25;
+    public static double winchOutMaxDriveDutyCycle = 0.3;
+    public static double winchExtendMaxDutyCycle = -1.0;
+    public static double winchReelMaxDutyCycle = 1.0;
+    
     /* 
        how many times the extend winch command has been called
        before reelWinch() can be called (to prevent sucking the hook 
@@ -202,7 +205,8 @@ public class Constants {
 		SmartDashboard.putNumber("Straight drive ramp down inches", straightDriveInchesForRampDownBegin);
 		SmartDashboard.putNumber("Arm Up Max Drive DutyCycle",armUpMaxDriveDutyCycle);
 		SmartDashboard.putNumber("Arm Down Max Drive DutyCycle",armDownMaxDriveDutyCycle);
-		SmartDashboard.putNumber("Gyro Turn Degrees PID KP", Constants.gyroTurnPidKp);    		
+		SmartDashboard.putNumber("Gyro Turn Degrees PID KP", Constants.gyroTurnPidKp);
+    	SmartDashboard.putNumber("Gyro Turn Degrees Arm Up PID KP", Constants.gyroTurnArmUpPidKp);    		    			    			
     	SmartDashboard.putNumber("Gyro Drive Reverse PID KP", Constants.gyroReversePidKp);    		    		
     	SmartDashboard.putNumber("Gyro Drive Straight PID KP", Constants.gyroStraightPidKp);    		
     	SmartDashboard.putNumber("Gyro PID KI", gyroPidKi);
@@ -268,8 +272,9 @@ public class Constants {
 
 
     	/* Climbing */
-    	SmartDashboard.putNumber("Extend Tape Duty Cycle", extendTapeDutyCycle);   
-    	SmartDashboard.putNumber("Reel Tape Duty Cycle", reelTapeDutyCycle);   
+    	SmartDashboard.putNumber("Winch Extend Max Duty Cycle", winchExtendMaxDutyCycle);   
+    	SmartDashboard.putNumber("Winch Reel Max Duty Cycle", winchReelMaxDutyCycle);   
+    	SmartDashboard.putNumber("Winch Out Max Drive Duty Cycle", winchOutMaxDriveDutyCycle);   
     	
     	/* CAN Addresses for Talons */
     	SmartDashboard.putNumber("Left Rear Drive Motor CAN Address", leftRearDriveMotorCanAddress);   
@@ -337,5 +342,9 @@ public class Constants {
 
 		Constants.armReleaseSpringDutyCycle = SmartDashboard.getNumber("Arm Release Spring Duty Cycle", Constants.armReleaseSpringDutyCycle);
 		Constants.armReleaseSpringTimeout = SmartDashboard.getNumber("Arm Release Spring Timeout", Constants.armReleaseSpringTimeout);
+		
+		Constants.winchOutMaxDriveDutyCycle = SmartDashboard.getNumber("Winch Out Max Drive Duty Cycle", Constants.winchOutMaxDriveDutyCycle);
+    	winchExtendMaxDutyCycle = SmartDashboard.getNumber("Winch Extend Max Duty Cycle", winchExtendMaxDutyCycle);   
+    	winchReelMaxDutyCycle = SmartDashboard.getNumber("Winch Reel Max Duty Cycle", winchReelMaxDutyCycle);   
 	}
 }

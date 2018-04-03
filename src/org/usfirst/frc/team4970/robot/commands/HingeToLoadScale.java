@@ -25,7 +25,7 @@ public class HingeToLoadScale extends Command {
     	
     	Constants.hingeToScalePidSetpoint = SmartDashboard.getNumber("Hinge To Scale PID Setpoint", Constants.hingeToScalePidSetpoint);
 
-	setTimeout(Constants.raiseHingeTimeout);
+    	setTimeout(Constants.raiseHingeTimeout);
 	    
     	/* do not move hinge into scale position unless arm is at scale height */
     	if (ArmMotor._armState == ArmMotor.ArmState.ARM_SCALE_HEIGHT)
